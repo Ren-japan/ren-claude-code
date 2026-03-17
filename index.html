@@ -84,6 +84,18 @@
   .cat-title { font-size: 18px; font-weight: 600; }
   .cat-desc { font-size: 13px; color: var(--text-muted); margin-left: auto; }
 
+  /* ロール別サブヘッダー */
+  .role-group { margin-top: 12px; }
+  .role-group:first-of-type { margin-top: 0; }
+  .role-label {
+    display: flex; align-items: center; gap: 8px;
+    padding: 6px 12px; margin-bottom: 6px;
+    font-size: 13px; font-weight: 600; color: var(--text-muted);
+    letter-spacing: 0.5px; text-transform: uppercase;
+    border-left: 3px solid var(--accent);
+  }
+  .role-label .role-emoji { font-size: 15px; }
+
   /* ファイルカード */
   .card {
     background: var(--surface);
@@ -269,6 +281,9 @@
     <span class="cat-desc">4つの役割。それぞれに「性格」「記憶」「業務マニュアル」がある</span>
   </div>
 
+  <div class="role-group">
+  <div class="role-label"><span class="role-emoji">👔</span> CEO — 判断とルーティング</div>
+
   <!-- CEO mind -->
   <div class="card" id="ceo-mind">
     <div class="card-head" onclick="toggle(this)">
@@ -382,6 +397,11 @@
     </div>
   </div>
 
+  </div><!-- /role-group CEO -->
+
+  <div class="role-group">
+  <div class="role-label"><span class="role-emoji">📊</span> CIO — データ分析</div>
+
   <!-- CIO mind -->
   <div class="card" id="cio-mind">
     <div class="card-head" onclick="toggle(this)">
@@ -430,6 +450,11 @@
     </div>
   </div>
 
+  </div><!-- /role-group CIO -->
+
+  <div class="role-group">
+  <div class="role-label"><span class="role-emoji">📢</span> CMO — マーケティング設計</div>
+
   <!-- CMO mind -->
   <div class="card" id="cmo-mind">
     <div class="card-head" onclick="toggle(this)">
@@ -475,6 +500,34 @@
     </div>
   </div>
 
+  <!-- CMO workflow -->
+  <div class="card" id="cmo-workflow">
+    <div class="card-head" onclick="toggle(this)">
+      <span class="card-icon">📋</span>
+      <span class="card-name">roles/cmo/tasks/cmo-workflow.md</span>
+      <span class="card-role">CMOの業務フロー — 分析→マーケター投入→統合報告</span>
+      <span class="tag tag-skill">タスク</span>
+      <span class="card-arrow">▶</span>
+    </div>
+    <div class="summary">
+      <strong>3フェーズ：</strong>
+      <ul>
+        <li><strong>Phase 1:</strong> マーケ分析&方針決定（CIOデータ受け取り→GOAL配分→施策タイプ判定→ROI）</li>
+        <li><strong>Phase 2:</strong> マーケター投入（並行実行、ブリーフ渡し→5観点レビュー→承認/差し戻し）</li>
+        <li><strong>Phase 3:</strong> 統合&報告（全成果物確定→統合レポート→briefs/書き出し→renに報告）</li>
+      </ul>
+      <div class="raw-wrap">
+        <span class="raw-btn" onclick="toggleRaw(event, this)">📋 原文を見る</span>
+        <div class="raw"><pre id="raw-cmo-workflow"></pre></div>
+      </div>
+    </div>
+  </div>
+
+  </div><!-- /role-group CMO -->
+
+  <div class="role-group">
+  <div class="role-label"><span class="role-emoji">⚙️</span> CTO — 技術基盤</div>
+
   <!-- CTO mind -->
   <div class="card" id="cto-mind">
     <div class="card-head" onclick="toggle(this)">
@@ -514,28 +567,7 @@
     </div>
   </div>
 
-  <!-- CMO workflow -->
-  <div class="card" id="cmo-workflow">
-    <div class="card-head" onclick="toggle(this)">
-      <span class="card-icon">📋</span>
-      <span class="card-name">roles/cmo/tasks/cmo-workflow.md</span>
-      <span class="card-role">CMOの業務フロー — 分析→マーケター投入→統合報告</span>
-      <span class="tag tag-skill">タスク</span>
-      <span class="card-arrow">▶</span>
-    </div>
-    <div class="summary">
-      <strong>3フェーズ：</strong>
-      <ul>
-        <li><strong>Phase 1:</strong> マーケ分析&方針決定（CIOデータ受け取り→GOAL配分→施策タイプ判定→ROI）</li>
-        <li><strong>Phase 2:</strong> マーケター投入（並行実行、ブリーフ渡し→5観点レビュー→承認/差し戻し）</li>
-        <li><strong>Phase 3:</strong> 統合&報告（全成果物確定→統合レポート→briefs/書き出し→renに報告）</li>
-      </ul>
-      <div class="raw-wrap">
-        <span class="raw-btn" onclick="toggleRaw(event, this)">📋 原文を見る</span>
-        <div class="raw"><pre id="raw-cmo-workflow"></pre></div>
-      </div>
-    </div>
-  </div>
+  </div><!-- /role-group CTO -->
 </div>
 
 <!-- ==================== 長期記憶 ==================== -->
