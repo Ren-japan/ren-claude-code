@@ -96,19 +96,80 @@
 <div class="toc">
   <strong>もくじ</strong>
   <ol>
-    <li><a href="#s1">大前提 — Claude Codeとフォルダの関係</a></li>
-    <li><a href="#s2">このキットは何か</a></li>
-    <li><a href="#s3">全ファイル解説</a></li>
-    <li><a href="#s4">使い始め方</a></li>
-    <li><a href="#s5">AIが育つ話し方</a></li>
-    <li><a href="#s6">育った先の姿</a></li>
+    <li><a href="#s1">従来のAIと何が違うのか</a></li>
+    <li><a href="#s2">フォルダ = AIの脳</a></li>
+    <li><a href="#s3">「会社」として考える</a></li>
+    <li><a href="#s4">3つの記憶 — mind / memory / knowledge</a></li>
+    <li><a href="#s5">全ファイル解説</a></li>
+    <li><a href="#s6">使い始め方</a></li>
+    <li><a href="#s7">AIが育つ話し方</a></li>
+    <li><a href="#s8">育った先の姿</a></li>
   </ol>
 </div>
 
 <!-- ===================== -->
-<h2 id="s1">1. 大前提 — Claude Codeとフォルダの関係</h2>
+<h2 id="s1">1. 従来のAIと何が違うのか</h2>
 
-<p>Claude Codeを使う上で、<strong>一番大事な概念がフォルダ</strong>です。</p>
+<p>ChatGPT、Gemini、普通のClaude — どれも「便利な他人」です。<br>
+聞けば答えてくれる。でも<strong>あなたのことは何も知らない。毎回ゼロから。</strong></p>
+
+<div class="diagram">
+  <div class="diagram-title">従来のチャットAI</div>
+  <div class="diagram-col">
+    <div class="diagram-row">
+      <div class="diagram-box">月曜「資料作って」</div>
+      <div class="diagram-arrow">→</div>
+      <div class="diagram-box red">ゼロから説明</div>
+    </div>
+    <div class="diagram-row">
+      <div class="diagram-box">火曜「続きやって」</div>
+      <div class="diagram-arrow">→</div>
+      <div class="diagram-box red">「何の続きですか？」</div>
+    </div>
+    <div class="diagram-row">
+      <div class="diagram-box">水曜「前と同じ形式で」</div>
+      <div class="diagram-arrow">→</div>
+      <div class="diagram-box red">「どの形式ですか？」</div>
+    </div>
+  </div>
+</div>
+
+<p>Claude Code は違います。<strong>フォルダにファイルを置くだけで、記憶・性格・ルールを持てる。</strong><br>
+使えば使うほど、あなたの仕事のやり方を覚えていく。</p>
+
+<div class="diagram">
+  <div class="diagram-title">Claude Code（このキット導入後）</div>
+  <div class="diagram-col">
+    <div class="diagram-row">
+      <div class="diagram-box">月曜「資料作って」</div>
+      <div class="diagram-arrow">→</div>
+      <div class="diagram-box green">あなた好みの形式で即作成</div>
+    </div>
+    <div class="diagram-row">
+      <div class="diagram-box">火曜「続きやって」</div>
+      <div class="diagram-arrow">→</div>
+      <div class="diagram-box green">「昨日のA社の件ですね」</div>
+    </div>
+    <div class="diagram-row">
+      <div class="diagram-box">水曜「これどう思う？」</div>
+      <div class="diagram-arrow">→</div>
+      <div class="diagram-box green">過去の失敗踏まえた提案</div>
+    </div>
+  </div>
+</div>
+
+<div class="callout">
+  <p><strong>あなたにとって何が変わるか：</strong></p>
+  <p>・毎回の説明が消える → <strong>時間が浮く</strong><br>
+  ・ダメ出しが蓄積する → <strong>同じミスが消える</strong><br>
+  ・好みを覚える → <strong>出力の精度が上がり続ける</strong><br>
+  ・タスクの進捗を覚える → <strong>「どこまでやったっけ？」が消える</strong></p>
+</div>
+
+<!-- ===================== -->
+<h2 id="s2">2. フォルダ = AIの脳</h2>
+
+<p>じゃあどうやって記憶させるのか？答えはシンプル。<strong>フォルダにファイルを置くだけ。</strong></p>
 
 <p>Claude Codeは、<strong>起動したフォルダの中にあるファイルを全部読めます。</strong><br>
 逆に言えば、フォルダの外にあるファイルは読めません。</p>
@@ -131,64 +192,115 @@
 </div>
 
 <p><strong>フォルダの中にファイルがある = AIに脳がある。</strong><br>
-フォルダが空 = 脳が空。それだけの話です。</p>
+フォルダが空 = 脳が空。</p>
 
-<h3>CLAUDE.md とは？</h3>
-
-<p>フォルダの中に <code>CLAUDE.md</code> というファイルがあると、Claude Code は起動時に<strong>自動で読みます。</strong><br>
-読んだ内容をルールとして守ります。</p>
-
-<p>つまり CLAUDE.md は<strong>「AIへの業務マニュアル」</strong>です。</p>
-
-<p>新しいスタッフに「うちではこうやって仕事してね」と渡すマニュアルと同じ。<br>
-ただし人間と違うのは、<strong>AIは毎回このマニュアルを完璧に読んでくれる</strong>こと。</p>
-
-<div class="callout blue">
-  <p><strong>ポイント：</strong> CLAUDE.md は毎回自動で読まれる。書いたことは毎回守られる。だからここにルールを書くのが最強。</p>
-</div>
-
-<h3>じゃあ問題は何？</h3>
-
-<p>CLAUDE.md に書いたルールは毎回読まれる。でも<strong>「会話の中で学んだこと」は毎回消える。</strong></p>
-
-<p>例えば：</p>
-<ul>
-  <li>「うちの担当は田中さんだよ」と教えた → 次のセッションでは忘れてる</li>
-  <li>「そのやり方ダメって言ったでしょ」と直した → 次のセッションでまた同じことする</li>
-  <li>「昨日ここまで進んだよね」 → 「何の話ですか？」</li>
-</ul>
-
-<p>CLAUDE.md だけでは解決しない。<strong>会話で生まれた知識を自動で保存する仕組み</strong>が必要。</p>
-
-<p><strong>それがこのスターターキットです。</strong></p>
+<p>特に重要なのが <code>CLAUDE.md</code> というファイル。<br>
+Claude Code は起動時にこれを<strong>自動で読んで、書いてあることをルールとして守ります。</strong><br>
+新しいスタッフに渡す業務マニュアルと同じ。ただしAIは<strong>毎回完璧に読む</strong>。</p>
 
 <!-- ===================== -->
-<h2 id="s2">2. このキットは何か</h2>
+<h2 id="s3">3. 「会社」として考える</h2>
 
-<p>一言で言うと：<strong>「使うほど賢くなるAI」を実現するフォルダ一式</strong>です。</p>
+<p>ここが一番大事な考え方です。</p>
+
+<p>普通のAIチャットは「1人の賢い人に聞く」感覚。<br>
+Claude Code は違う。<strong>「自分の会社を作る」</strong>感覚です。</p>
 
 <div class="diagram">
-  <div class="diagram-title">記憶が育つループ</div>
+  <div class="diagram-title">AIを「会社」として考える</div>
   <div class="diagram-col">
-    <div class="diagram-box">普通に仕事する</div>
+    <div class="diagram-box purple" style="width: 80%;">CLAUDE.md = 会社の定款<small>全社ルール。「うちの会社はこう動く」</small></div>
     <div class="diagram-arrow-down">↓</div>
-    <div class="diagram-box active">「ここまで」と言う</div>
+    <div class="diagram-box active" style="width: 60%;">roles/ = 社員<small>最初は1人（assistant）から始まる</small></div>
     <div class="diagram-arrow-down">↓</div>
-    <div class="diagram-box green">memory.md に自動記録<small>学び・タスク・申し送り</small></div>
+    <div class="diagram-row">
+      <div class="diagram-box">mind.md<small>この社員の性格</small></div>
+      <div class="diagram-box green">memory.md<small>この社員の業務日報</small></div>
+    </div>
     <div class="diagram-arrow-down">↓</div>
-    <div class="diagram-box">次回起動時に自動で読む<small>前回の続きから始まる</small></div>
-    <div class="diagram-arrow-down">↓</div>
-    <div class="diagram-box orange">3回出たパターン → knowledge/ に昇格<small>二度と忘れない長期記憶に</small></div>
-    <div class="diagram-arrow-down" style="color: #1976d2;">↑ 繰り返す</div>
+    <div class="diagram-box orange" style="width: 60%;">knowledge/ = 社内マニュアル<small>全員が参照する確定知識</small></div>
   </div>
 </div>
 
-<div class="callout green">
-  <p><strong>あなたがやることは2つだけ：</strong></p>
-  <p>① フォルダを置いてClaude Codeを起動する</p>
-  <p>② セッションの終わりに「ここまで」と言う</p>
-  <p>残りは全部自動です。</p>
+<p><strong>最初は社員1人（assistant）で十分。</strong>慣れたら増やせます。<br>
+例えば「データ分析専門」「マーケティング専門」のように、役割ごとにロールを分けると、それぞれが専門性を持って育つ。</p>
+
+<div class="callout blue">
+  <p><strong>ロールが分かれてると何が嬉しいか：</strong></p>
+  <p>1人に全部やらせると、記憶がごちゃ混ぜになる。<br>
+  「データ分析の知識」と「営業トークの知識」は別の脳に入れた方がいい。<br>
+  人間の会社と同じ。専門分化した方が強い。<br><br>
+  <strong>でも最初は1人でOK。</strong>「もう1人欲しいな」と思った時に増やせばいい。</p>
 </div>
+
+<!-- ===================== -->
+<h2 id="s4">4. 3つの記憶 — mind / memory / knowledge</h2>
+
+<p>このキットには3種類の「記憶ファイル」があります。<br>
+全部「AIの記憶」なんだけど、<strong>役割が全然違う。</strong></p>
+
+<div class="diagram">
+  <div class="diagram-title">3つの記憶の関係</div>
+  <div class="diagram-col">
+    <div class="diagram-box active" style="width: 70%;">mind.md = 性格<small>「お前はこういうやつだ」</small></div>
+    <div class="diagram-arrow-down">↓ ダメ出しで育つ</div>
+    <div class="diagram-box green" style="width: 70%;">memory.md = 日記<small>「昨日こんなことがあった」</small></div>
+    <div class="diagram-arrow-down">↓ 3回出たら昇格</div>
+    <div class="diagram-box orange" style="width: 70%;">knowledge/ = 教科書<small>「これは確定事実」</small></div>
+  </div>
+</div>
+
+<h3>mind.md — 性格</h3>
+<p>「簡潔に話せ」「忖度するな」「データで語れ」— こういう<strong>行動原則</strong>が入る。</p>
+<div class="chat-example">
+  <div class="chat-you">あなた</div>
+  <div class="chat-text">長い。結論だけ先に言って</div>
+  <div class="chat-effect">→ mind.md に「結論ファーストで話せ」が追記される</div>
+  <div style="height:0.5rem"></div>
+  <div class="chat-you">あなた</div>
+  <div class="chat-text">毎回聞くな。自分で判断して</div>
+  <div class="chat-effect">→ mind.md に「判断を投げるな。自分で決めろ」が追記される</div>
+</div>
+<p><strong>変わるもの</strong>：AIの話し方、判断基準、仕事のスタイル<br>
+<strong>いつ変わる</strong>：あなたがダメ出しした時<br>
+<strong>頻度</strong>：最初は週に数個。1ヶ月で15個くらいに成長</p>
+
+<h3>memory.md — 日記</h3>
+<p>「A社の担当は田中さん」「この資料は先週の会議で使った」— <strong>事実と進捗</strong>が入る。</p>
+<div class="chat-example">
+  <div class="chat-you">あなた</div>
+  <div class="chat-text">ここまで</div>
+  <div class="chat-effect">→ memory.md に今日やったこと、学んだこと、次やることが記録される</div>
+  <div style="height:0.5rem"></div>
+  <div class="chat-you">あなた（翌日）</div>
+  <div class="chat-text">おはよう</div>
+  <div class="chat-ai">AI</div>
+  <div class="chat-text">おはようございます。昨日のA社提案書の続き、修正点3箇所ありましたよね。そこからやりますか？</div>
+</div>
+<p><strong>変わるもの</strong>：AIが覚えてる事実、進捗、文脈<br>
+<strong>いつ変わる</strong>：「ここまで」と言った時に自動記録<br>
+<strong>頻度</strong>：毎セッション</p>
+
+<h3>knowledge/ — 教科書</h3>
+<p>memory.md（日記）に何度も同じことが出てきたら、もう「確定知識」。</p>
+<div class="chat-example">
+  <div class="chat-effect">memory.md に3回「タイトル変更後は2週間待て」が出た</div>
+  <div class="chat-effect">→ knowledge/tips.md に自動昇格</div>
+  <div class="chat-effect">→ 二度と忘れない。新しいセッションでも最初から知ってる</div>
+</div>
+<p><strong>変わるもの</strong>：AIの「常識」。永久に残る確定知識<br>
+<strong>いつ変わる</strong>：同じパターンが3回出た時に自動昇格<br>
+<strong>頻度</strong>：週に1〜2件。ゆっくり確実に育つ</p>
+
+<div class="callout">
+  <p><strong>まとめると：</strong></p>
+  <p><strong>mind.md</strong> = 「こういう性格でいろ」 → ダメ出しで育つ<br>
+  <strong>memory.md</strong> = 「これ覚えとけ」 → 毎セッション自動記録<br>
+  <strong>knowledge/</strong> = 「これは常識だぞ」 → 3回出たら自動昇格</p>
+</div>
+
+<!-- ===================== -->
+<h2 id="s5">5. 全ファイル解説</h2>
 
 <h3>フォルダ構造</h3>
 
@@ -211,7 +323,7 @@ my-project/ <span class="comment">← 好きな名前に変えてOK</span><br>
 </div>
 
 <!-- ===================== -->
-<h2 id="s3">3. 全ファイル解説</h2>
+<h3>各ファイル詳細</h3>
 
 <p>1つずつ解説します。まず全体の関係図から。</p>
 
@@ -348,7 +460,7 @@ my-project/ <span class="comment">← 好きな名前に変えてOK</span><br>
 </div>
 
 <!-- ===================== -->
-<h2 id="s4">4. 使い始め方</h2>
+<h2 id="s6">6. 使い始め方</h2>
 
 <h3><span class="step-num">1</span> フォルダ名を変える</h3>
 <p><code>my-project</code> を自分の仕事の名前に変える。<br>
@@ -384,7 +496,7 @@ mind.md がまだ未設定なので、<strong>/setup が自動で始まる。</s
 <strong>次に起動した時、前回の続きから始まる。</strong></p>
 
 <!-- ===================== -->
-<h2 id="s5">5. AIが育つ話し方</h2>
+<h2 id="s7">7. AIが育つ話し方</h2>
 
 <p>特別なことは何もない。<strong>思ったことをそのまま言うだけ</strong>。<br>
 ただし、言い方によって育ち方が変わる。</p>
@@ -442,7 +554,7 @@ mind.md がまだ未設定なので、<strong>/setup が自動で始まる。</s
 </table>
 
 <!-- ===================== -->
-<h2 id="s6">6. 育った先の姿</h2>
+<h2 id="s8">8. 育った先の姿</h2>
 
 <h3>1日目</h3>
 <p>/setup が完了。mind.md に行動原則が3〜5個。memory.md は空。<br>
