@@ -61,6 +61,31 @@
   .toc a:hover { text-decoration: underline; }
   .toc ol { margin: 0.5rem 0 0 1.2rem; }
   .toc li { margin-bottom: 0.2rem; }
+
+  /* 図解 */
+  .diagram {
+    background: #f5f5f5; border: 1px solid #ddd; border-radius: 12px;
+    padding: 1.5rem; margin: 1.5rem 0; text-align: center;
+  }
+  .diagram-title { font-size: 0.8rem; color: #888; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1rem; }
+  .diagram-row { display: flex; align-items: center; justify-content: center; gap: 0.8rem; flex-wrap: wrap; margin: 0.5rem 0; }
+  .diagram-box {
+    background: #fff; border: 2px solid #ddd; border-radius: 10px;
+    padding: 0.7rem 1.2rem; font-size: 0.85rem; font-weight: 600; color: #333;
+    min-width: 120px; text-align: center;
+  }
+  .diagram-box.active { border-color: #1976d2; background: #e3f2fd; color: #1565c0; }
+  .diagram-box.green { border-color: #388e3c; background: #e8f5e9; color: #2e7d32; }
+  .diagram-box.orange { border-color: #f57f17; background: #fff8e1; color: #e65100; }
+  .diagram-box.red { border-color: #c62828; background: #fce4ec; color: #b71c1c; }
+  .diagram-box.purple { border-color: #7b1fa2; background: #f3e5f5; color: #6a1b9a; }
+  .diagram-box small { display: block; font-weight: 400; font-size: 0.75rem; color: #888; margin-top: 2px; }
+  .diagram-arrow { color: #999; font-size: 1.2rem; font-weight: 700; }
+  .diagram-arrow-down { color: #999; font-size: 1.2rem; text-align: center; padding: 0.2rem 0; }
+  .diagram-col { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; }
+  .diagram-label { font-size: 0.75rem; color: #888; font-weight: 600; }
+  .diagram-vs { display: grid; grid-template-columns: 1fr auto 1fr; gap: 1rem; align-items: center; margin: 1rem 0; }
+  @media (max-width: 500px) { .diagram-row { flex-direction: column; } .diagram-vs { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -88,16 +113,25 @@
 <p>Claude Codeは、<strong>起動したフォルダの中にあるファイルを全部読めます。</strong><br>
 逆に言えば、フォルダの外にあるファイルは読めません。</p>
 
-<div class="callout">
-  <p><strong>つまりこういうこと：</strong></p>
-  <p>「どのフォルダで Claude Code を起動するか」＝「AIが何を知ってるか」が決まる。</p>
+<div class="diagram">
+  <div class="diagram-title">起動するフォルダでAIの脳が変わる</div>
+  <div class="diagram-vs">
+    <div class="diagram-col">
+      <div class="diagram-box red">デスクトップで起動<small>ファイル何もなし</small></div>
+      <div class="diagram-arrow-down">↓</div>
+      <div class="diagram-box">何も知らないAI<small>毎回「はじめまして」</small></div>
+    </div>
+    <div style="font-size: 1.5rem; color: #999; font-weight: 700;">VS</div>
+    <div class="diagram-col">
+      <div class="diagram-box green">このキットで起動<small>CLAUDE.md + mind.md + memory.md</small></div>
+      <div class="diagram-arrow-down">↓</div>
+      <div class="diagram-box active">あなた専用のAI<small>ルール・性格・記憶つき</small></div>
+    </div>
+  </div>
 </div>
 
-<p>例えば：</p>
-<ul>
-  <li>デスクトップで起動 → デスクトップのファイルしか見えない。AIは何も知らない</li>
-  <li><strong>このキットのフォルダで起動</strong> → CLAUDE.md、mind.md、memory.md を自動で読む。AIがあなた専用の動きをする</li>
-</ul>
+<p><strong>フォルダの中にファイルがある = AIに脳がある。</strong><br>
+フォルダが空 = 脳が空。それだけの話です。</p>
 
 <h3>CLAUDE.md とは？</h3>
 
@@ -133,14 +167,21 @@
 
 <p>一言で言うと：<strong>「使うほど賢くなるAI」を実現するフォルダ一式</strong>です。</p>
 
-<p>仕組みはシンプル：</p>
-<ol>
-  <li>あなたが普通にClaude Codeを使う</li>
-  <li>セッション終了時に「ここまで」と言う</li>
-  <li>AIが学んだことをファイルに自動で書く（memory.md）</li>
-  <li>次回起動時にそのファイルを自動で読む</li>
-  <li>→ 前回の続きから始まる。同じミスをしない。</li>
-</ol>
+<div class="diagram">
+  <div class="diagram-title">記憶が育つループ</div>
+  <div class="diagram-col">
+    <div class="diagram-box">普通に仕事する</div>
+    <div class="diagram-arrow-down">↓</div>
+    <div class="diagram-box active">「ここまで」と言う</div>
+    <div class="diagram-arrow-down">↓</div>
+    <div class="diagram-box green">memory.md に自動記録<small>学び・タスク・申し送り</small></div>
+    <div class="diagram-arrow-down">↓</div>
+    <div class="diagram-box">次回起動時に自動で読む<small>前回の続きから始まる</small></div>
+    <div class="diagram-arrow-down">↓</div>
+    <div class="diagram-box orange">3回出たパターン → knowledge/ に昇格<small>二度と忘れない長期記憶に</small></div>
+    <div class="diagram-arrow-down" style="color: #1976d2;">↑ 繰り返す</div>
+  </div>
+</div>
 
 <div class="callout green">
   <p><strong>あなたがやることは2つだけ：</strong></p>
@@ -172,79 +213,91 @@ my-project/ <span class="comment">← 好きな名前に変えてOK</span><br>
 <!-- ===================== -->
 <h2 id="s3">3. 全ファイル解説</h2>
 
-<p>1つずつ、「何のためにあるか」「なぜ必要か」を説明します。</p>
+<p>1つずつ解説します。まず全体の関係図から。</p>
+
+<div class="diagram">
+  <div class="diagram-title">ファイルの関係 — 3つの層</div>
+  <div class="diagram-col">
+    <div class="diagram-box purple" style="width: 80%;">CLAUDE.md<small>憲法 — 全体のルール。触らなくてOK</small></div>
+    <div class="diagram-arrow-down">↓ 読み込む</div>
+    <div class="diagram-row">
+      <div class="diagram-box active">mind.md<small>性格 — /setupで自動生成。育つ</small></div>
+      <div class="diagram-box green">memory.md<small>日記 — 毎回自動で追記。育つ</small></div>
+    </div>
+    <div class="diagram-arrow-down">↓ 3回出たら昇格</div>
+    <div class="diagram-box orange" style="width: 60%;">knowledge/<small>教科書 — 確定した知識。永久保存</small></div>
+  </div>
+</div>
 
 <div class="file-section">
   <div class="file-name">CLAUDE.md</div>
-  <div class="file-role">AIの業務マニュアル</div>
-  <div class="file-why">なぜ必要？ → これがないとAIは何のルールも知らない状態で動く</div>
+  <div class="file-role">AIの憲法 — 「この会社ではこう働け」</div>
   <div class="file-desc">
-    起動時に自動で読まれるファイル。中には以下が書いてある：
+    Claude Codeが起動すると<strong>最初に自動で読むファイル</strong>。ここに書いたことは毎回守られる。<br><br>
+    中身は3つ：
     <ul>
-      <li><strong>初回起動ルール：</strong> mind.mdがまだ未設定なら /setup を自動実行する</li>
-      <li><strong>セッション開始ルール：</strong> 毎回 memory.md と knowledge/ を読んでから仕事を始める</li>
-      <li><strong>メモ魔ルール：</strong> 「こういう時は必ず記録しろ」という6つのトリガー</li>
+      <li><strong>初回起動ルール：</strong> mind.mdがまだ未設定なら /setup を自動実行</li>
+      <li><strong>セッション開始ルール：</strong> 毎回 memory.md と knowledge/ を読んでから仕事開始</li>
+      <li><strong>メモ魔ルール：</strong> 「ダメ出しされたら記録」「覚えてと言われたら記録」等、6つの自動記録トリガー</li>
     </ul>
-    このファイルは基本的に触らなくてOK。仕組みの土台。
+    <strong>あなたは触らなくてOK。</strong>仕組みの土台として最初から完成してる。
   </div>
 </div>
 
 <div class="file-section">
   <div class="file-name">roles/assistant/mind.md</div>
-  <div class="file-role">AIの性格・行動原則</div>
-  <div class="file-why">なぜ必要？ → 同じAIでも「簡潔に話せ」と「丁寧に説明して」では全然違う動きになる</div>
+  <div class="file-role">AIの性格 — 「お前はこういうやつだ」</div>
   <div class="file-desc">
-    あなた好みのAIにするための設定ファイル。<br>
-    <strong>手書き不要。</strong>初回起動時の /setup で自動生成される。<br>
-    使い続けると「こう話せ」「これするな」が自動で追記されていき、あなた専用の性格に育つ。
+    「簡潔に話せ」「忖度するな」「データで語れ」— こういう行動原則が入る場所。<br><br>
+    <strong>手書き不要。</strong>初回の /setup で4つの質問に答えるだけで自動生成。<br>
+    その後は使い続けるだけで育つ。あなたが「それ違う」と言うたびに、新しい原則が追記される。<br><br>
+    <strong>1日目は3個。1ヶ月後には15個。</strong>それが「あなた専用のAI」の正体。
   </div>
 </div>
 
 <div class="file-section">
   <div class="file-name">roles/assistant/memory.md</div>
-  <div class="file-role">AIの記憶（短期記憶）</div>
-  <div class="file-why">なぜ必要？ → これがないとAIは毎回全部忘れる。毎回同じ説明、毎回同じミス</div>
+  <div class="file-role">AIの日記 — 「昨日こんなことがあった」</div>
   <div class="file-desc">
-    空の状態からスタート。セッション終了時に「ここまで」と言うと、AIが自動で以下を書き込む：
+    <strong>このキットの核心。</strong>空の状態からスタート。<br><br>
+    「ここまで」と言うと、AIが自動でここに書き込む：
     <ul>
-      <li>今回学んだこと（ダメ出しされたこと、新しくわかったこと）</li>
-      <li>タスクの進捗（何が終わって、何が途中で、次に何をすべきか）</li>
+      <li>今回学んだこと（ダメ出し、新しい事実）</li>
+      <li>タスクの進捗（何が完了、何が途中、次にやること）</li>
       <li>次回への申し送り</li>
     </ul>
-    次に起動した時に自動で読み込まれる。だから「前回の続き」から始まる。
+    次回起動時に自動で読む → だから「前回の続き」から始まる。<br>
+    <strong>これがあるから「はじめまして」が消える。</strong>
   </div>
 </div>
 
 <div class="file-section">
   <div class="file-name">knowledge/</div>
-  <div class="file-role">AIの長期記憶</div>
-  <div class="file-why">なぜ必要？ → memory.mdは日々の記録で流れていく。何度も出るパターンは「確定知識」として永久保存すべき</div>
+  <div class="file-role">AIの教科書 — 「これは確定事実」</div>
   <div class="file-desc">
-    空フォルダからスタート。<br>
-    memory.md に同じパターンが3回出ると、AIが自動でここにファイルを作って移す。<br>
-    例：mistakes.md（やっちゃダメなこと集）、tips.md（うまくいくやり方集）。<br>
-    memory.md が「ノート」なら、knowledge/ は「教科書」。
+    memory.md（日記）は日々流れていく。でも何度も出てくるパターンは「もう確定でしょ」。<br><br>
+    <strong>同じことが3回出たら、AIが自動でここに移す。</strong><br>
+    例：mistakes.md（やったらダメなこと集）、tips.md（これやると効くリスト）。<br><br>
+    日記→教科書への自動昇格。一度教科書に載ったら二度と忘れない。
   </div>
 </div>
 
 <div class="file-section">
   <div class="file-name">files/</div>
-  <div class="file-role">画像・参考資料の置き場</div>
-  <div class="file-why">なぜ必要？ → VS Codeのチャットでは画像を直接貼り付けできない</div>
+  <div class="file-role">共有フォルダ — 「これ見て」の置き場</div>
   <div class="file-desc">
-    スクリーンショットやPDF等をここに置いて、「files/の画像見て」と伝える。<br>
-    Claude Codeがファイルを読み取って対応してくれる。
+    VS Codeのチャットでは画像を直接貼り付けできない。<br>
+    スクリーンショットやPDF等をここに入れて、<strong>「files/の画像見て」</strong>と言うだけ。
   </div>
 </div>
 
 <div class="file-section">
   <div class="file-name">ai-export-prompt.md</div>
-  <div class="file-role">別AIからの引き継ぎ用プロンプト</div>
-  <div class="file-why">なぜ必要？ → ChatGPTやGeminiで育てた好み・ルールがあるなら、ゼロからやり直すのは無駄</div>
+  <div class="file-role">引き継ぎ書 — 「前のAIで育てたもの、持ってきて」</div>
   <div class="file-desc">
-    中にプロンプトが入ってる。それを今使ってるAIに貼り付けると、あなたの好みを要約してくれる。<br>
-    その出力を /setup に貼り付けると、最初から精度の高い mind.md が生成される。<br>
-    別のAIを使ってない人はスキップしてOK。
+    ChatGPTやGeminiを使い込んでる人向け。<br>
+    中にプロンプトが入ってる → それを今のAIに貼る → あなたの好み・ルールをまとめてくれる → その出力を /setup に食わせる。<br>
+    <strong>ゼロからやり直す必要がなくなる。</strong>使ってない人はスキップOK。
   </div>
 </div>
 
