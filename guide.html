@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Claude Code スターターキット ガイド</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    background: #fafafa; color: #222; line-height: 2; max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem;
+  }
+  h1 { font-size: 1.6rem; font-weight: 800; margin: 3rem 0 0.5rem; color: #111; }
+  h2 { font-size: 1.3rem; font-weight: 700; margin: 3rem 0 0.8rem; color: #111; padding-bottom: 0.3rem; border-bottom: 2px solid #e0e0e0; }
+  h3 { font-size: 1.1rem; font-weight: 700; margin: 1.5rem 0 0.5rem; color: #333; }
+  p { margin-bottom: 1rem; color: #444; font-size: 0.95rem; }
+  strong { color: #111; }
+  code { background: #eee; padding: 2px 6px; border-radius: 4px; font-size: 0.85rem; font-family: 'SF Mono', monospace; }
+
+  .callout {
+    background: #fff8e1; border-left: 4px solid #f9a825; padding: 1rem 1.2rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0;
+  }
+  .callout.blue { background: #e3f2fd; border-color: #1976d2; }
+  .callout.green { background: #e8f5e9; border-color: #388e3c; }
+  .callout.red { background: #fce4ec; border-color: #c62828; }
+  .callout p { margin-bottom: 0.3rem; }
+
+  .tree {
+    background: #f5f5f5; border: 1px solid #ddd; border-radius: 8px; padding: 1.2rem 1.5rem; margin: 1rem 0;
+    font-family: 'SF Mono', monospace; font-size: 0.85rem; line-height: 1.8; color: #333;
+  }
+  .tree .comment { color: #888; }
+
+  .chat-example {
+    background: #f5f5f5; border-radius: 8px; padding: 1.2rem; margin: 1rem 0; border: 1px solid #ddd;
+  }
+  .chat-you { color: #1976d2; font-weight: 600; font-size: 0.85rem; }
+  .chat-ai { color: #7b1fa2; font-weight: 600; font-size: 0.85rem; }
+  .chat-text { color: #333; font-size: 0.9rem; margin: 0.2rem 0 0.6rem 1rem; }
+  .chat-effect { color: #388e3c; font-size: 0.85rem; margin: 0.5rem 0 0; font-weight: 600; }
+
+  .file-section { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.2rem 1.5rem; margin: 1rem 0; }
+  .file-name { font-family: 'SF Mono', monospace; color: #1976d2; font-weight: 600; font-size: 0.9rem; }
+  .file-role { font-weight: 700; color: #111; margin: 0.3rem 0; }
+  .file-why { color: #f57f17; font-size: 0.85rem; font-weight: 600; }
+  .file-desc { color: #666; font-size: 0.9rem; margin-top: 0.3rem; }
+
+  .step-num {
+    display: inline-block; background: #1976d2; color: white; width: 28px; height: 28px;
+    border-radius: 50%; text-align: center; line-height: 28px; font-size: 0.8rem; font-weight: 700;
+    margin-right: 0.5rem; vertical-align: middle;
+  }
+
+  ol, ul { margin: 0.5rem 0 1rem 1.5rem; }
+  li { margin-bottom: 0.3rem; font-size: 0.95rem; color: #444; }
+
+  hr { border: none; border-top: 1px solid #e0e0e0; margin: 2rem 0; }
+
+  .toc { background: #f5f5f5; border-radius: 8px; padding: 1.2rem 1.5rem; margin: 1.5rem 0; }
+  .toc a { color: #1976d2; text-decoration: none; font-size: 0.9rem; }
+  .toc a:hover { text-decoration: underline; }
+  .toc ol { margin: 0.5rem 0 0 1.2rem; }
+  .toc li { margin-bottom: 0.2rem; }
+</style>
+</head>
+<body>
+
+<h1>Claude Code スターターキット</h1>
+<p>このガイドを読めば、スターターキットの全てがわかります。</p>
+
+<div class="toc">
+  <strong>もくじ</strong>
+  <ol>
+    <li><a href="#s1">大前提 — Claude Codeとフォルダの関係</a></li>
+    <li><a href="#s2">このキットは何か</a></li>
+    <li><a href="#s3">全ファイル解説</a></li>
+    <li><a href="#s4">使い始め方</a></li>
+    <li><a href="#s5">AIが育つ話し方</a></li>
+    <li><a href="#s6">育った先の姿</a></li>
+  </ol>
+</div>
+
+<!-- ===================== -->
+<h2 id="s1">1. 大前提 — Claude Codeとフォルダの関係</h2>
+
+<p>Claude Codeを使う上で、<strong>一番大事な概念がフォルダ</strong>です。</p>
+
+<p>Claude Codeは、<strong>起動したフォルダの中にあるファイルを全部読めます。</strong><br>
+逆に言えば、フォルダの外にあるファイルは読めません。</p>
+
+<div class="callout">
+  <p><strong>つまりこういうこと：</strong></p>
+  <p>「どのフォルダで Claude Code を起動するか」＝「AIが何を知ってるか」が決まる。</p>
+</div>
+
+<p>例えば：</p>
+<ul>
+  <li>デスクトップで起動 → デスクトップのファイルしか見えない。AIは何も知らない</li>
+  <li><strong>このキットのフォルダで起動</strong> → CLAUDE.md、mind.md、memory.md を自動で読む。AIがあなた専用の動きをする</li>
+</ul>
+
+<h3>CLAUDE.md とは？</h3>
+
+<p>フォルダの中に <code>CLAUDE.md</code> というファイルがあると、Claude Code は起動時に<strong>自動で読みます。</strong><br>
+読んだ内容をルールとして守ります。</p>
+
+<p>つまり CLAUDE.md は<strong>「AIへの業務マニュアル」</strong>です。</p>
+
+<p>新しいスタッフに「うちではこうやって仕事してね」と渡すマニュアルと同じ。<br>
+ただし人間と違うのは、<strong>AIは毎回このマニュアルを完璧に読んでくれる</strong>こと。</p>
+
+<div class="callout blue">
+  <p><strong>ポイント：</strong> CLAUDE.md は毎回自動で読まれる。書いたことは毎回守られる。だからここにルールを書くのが最強。</p>
+</div>
+
+<h3>じゃあ問題は何？</h3>
+
+<p>CLAUDE.md に書いたルールは毎回読まれる。でも<strong>「会話の中で学んだこと」は毎回消える。</strong></p>
+
+<p>例えば：</p>
+<ul>
+  <li>「うちの担当は田中さんだよ」と教えた → 次のセッションでは忘れてる</li>
+  <li>「そのやり方ダメって言ったでしょ」と直した → 次のセッションでまた同じことする</li>
+  <li>「昨日ここまで進んだよね」 → 「何の話ですか？」</li>
+</ul>
+
+<p>CLAUDE.md だけでは解決しない。<strong>会話で生まれた知識を自動で保存する仕組み</strong>が必要。</p>
+
+<p><strong>それがこのスターターキットです。</strong></p>
+
+<!-- ===================== -->
+<h2 id="s2">2. このキットは何か</h2>
+
+<p>一言で言うと：<strong>「使うほど賢くなるAI」を実現するフォルダ一式</strong>です。</p>
+
+<p>仕組みはシンプル：</p>
+<ol>
+  <li>あなたが普通にClaude Codeを使う</li>
+  <li>セッション終了時に「ここまで」と言う</li>
+  <li>AIが学んだことをファイルに自動で書く（memory.md）</li>
+  <li>次回起動時にそのファイルを自動で読む</li>
+  <li>→ 前回の続きから始まる。同じミスをしない。</li>
+</ol>
+
+<div class="callout green">
+  <p><strong>あなたがやることは2つだけ：</strong></p>
+  <p>① フォルダを置いてClaude Codeを起動する</p>
+  <p>② セッションの終わりに「ここまで」と言う</p>
+  <p>残りは全部自動です。</p>
+</div>
+
+<h3>フォルダ構造</h3>
+
+<div class="tree">
+my-project/ <span class="comment">← 好きな名前に変えてOK</span><br>
+├── CLAUDE.md <span class="comment">← AIの業務マニュアル</span><br>
+├── ai-export-prompt.md <span class="comment">← 別AIから引き継ぐ時に使う</span><br>
+├── roles/<br>
+│&nbsp;&nbsp; └── assistant/<br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── mind.md <span class="comment">← AIの性格・行動原則</span><br>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; └── memory.md <span class="comment">← AIの記憶（自動で育つ）</span><br>
+├── knowledge/ <span class="comment">← 長期記憶（自動で育つ）</span><br>
+├── files/ <span class="comment">← 画像・参考資料の置き場</span><br>
+└── .claude/<br>
+&nbsp;&nbsp;&nbsp; └── skills/ <span class="comment">← 自動で動くスキル4つ</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── setup/ <span class="comment">← 初回セットアップ</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── session-wrap/ <span class="comment">← セッション終了時の記録</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ├── task-log/ <span class="comment">← 緊急セーブ</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; └── status/ <span class="comment">← 成長度チェック</span>
+</div>
+
+<!-- ===================== -->
+<h2 id="s3">3. 全ファイル解説</h2>
+
+<p>1つずつ、「何のためにあるか」「なぜ必要か」を説明します。</p>
+
+<div class="file-section">
+  <div class="file-name">CLAUDE.md</div>
+  <div class="file-role">AIの業務マニュアル</div>
+  <div class="file-why">なぜ必要？ → これがないとAIは何のルールも知らない状態で動く</div>
+  <div class="file-desc">
+    起動時に自動で読まれるファイル。中には以下が書いてある：
+    <ul>
+      <li><strong>初回起動ルール：</strong> mind.mdがまだ未設定なら /setup を自動実行する</li>
+      <li><strong>セッション開始ルール：</strong> 毎回 memory.md と knowledge/ を読んでから仕事を始める</li>
+      <li><strong>メモ魔ルール：</strong> 「こういう時は必ず記録しろ」という6つのトリガー</li>
+    </ul>
+    このファイルは基本的に触らなくてOK。仕組みの土台。
+  </div>
+</div>
+
+<div class="file-section">
+  <div class="file-name">roles/assistant/mind.md</div>
+  <div class="file-role">AIの性格・行動原則</div>
+  <div class="file-why">なぜ必要？ → 同じAIでも「簡潔に話せ」と「丁寧に説明して」では全然違う動きになる</div>
+  <div class="file-desc">
+    あなた好みのAIにするための設定ファイル。<br>
+    <strong>手書き不要。</strong>初回起動時の /setup で自動生成される。<br>
+    使い続けると「こう話せ」「これするな」が自動で追記されていき、あなた専用の性格に育つ。
+  </div>
+</div>
+
+<div class="file-section">
+  <div class="file-name">roles/assistant/memory.md</div>
+  <div class="file-role">AIの記憶（短期記憶）</div>
+  <div class="file-why">なぜ必要？ → これがないとAIは毎回全部忘れる。毎回同じ説明、毎回同じミス</div>
+  <div class="file-desc">
+    空の状態からスタート。セッション終了時に「ここまで」と言うと、AIが自動で以下を書き込む：
+    <ul>
+      <li>今回学んだこと（ダメ出しされたこと、新しくわかったこと）</li>
+      <li>タスクの進捗（何が終わって、何が途中で、次に何をすべきか）</li>
+      <li>次回への申し送り</li>
+    </ul>
+    次に起動した時に自動で読み込まれる。だから「前回の続き」から始まる。
+  </div>
+</div>
+
+<div class="file-section">
+  <div class="file-name">knowledge/</div>
+  <div class="file-role">AIの長期記憶</div>
+  <div class="file-why">なぜ必要？ → memory.mdは日々の記録で流れていく。何度も出るパターンは「確定知識」として永久保存すべき</div>
+  <div class="file-desc">
+    空フォルダからスタート。<br>
+    memory.md に同じパターンが3回出ると、AIが自動でここにファイルを作って移す。<br>
+    例：mistakes.md（やっちゃダメなこと集）、tips.md（うまくいくやり方集）。<br>
+    memory.md が「ノート」なら、knowledge/ は「教科書」。
+  </div>
+</div>
+
+<div class="file-section">
+  <div class="file-name">files/</div>
+  <div class="file-role">画像・参考資料の置き場</div>
+  <div class="file-why">なぜ必要？ → VS Codeのチャットでは画像を直接貼り付けできない</div>
+  <div class="file-desc">
+    スクリーンショットやPDF等をここに置いて、「files/の画像見て」と伝える。<br>
+    Claude Codeがファイルを読み取って対応してくれる。
+  </div>
+</div>
+
+<div class="file-section">
+  <div class="file-name">ai-export-prompt.md</div>
+  <div class="file-role">別AIからの引き継ぎ用プロンプト</div>
+  <div class="file-why">なぜ必要？ → ChatGPTやGeminiで育てた好み・ルールがあるなら、ゼロからやり直すのは無駄</div>
+  <div class="file-desc">
+    中にプロンプトが入ってる。それを今使ってるAIに貼り付けると、あなたの好みを要約してくれる。<br>
+    その出力を /setup に貼り付けると、最初から精度の高い mind.md が生成される。<br>
+    別のAIを使ってない人はスキップしてOK。
+  </div>
+</div>
+
+<hr>
+
+<h3>スキル（.claude/skills/）</h3>
+
+<p>スキルは「特定の言葉を言うと自動で動くプログラム」です。手動で呼び出す必要はありません。</p>
+
+<div class="file-section">
+  <div class="file-name">/setup</div>
+  <div class="file-role">初回セットアップ</div>
+  <div class="file-desc">
+    <strong>いつ動く：</strong> 初めてClaude Codeを起動した時に自動で始まる<br>
+    <strong>何をする：</strong> 4つの質問であなたの仕事・好み・ルールを聞いて、mind.md を自動生成する<br>
+    <strong>所要時間：</strong> 5分
+  </div>
+</div>
+
+<div class="file-section">
+  <div class="file-name">/session-wrap</div>
+  <div class="file-role">セッション終了時の記録</div>
+  <div class="file-desc">
+    <strong>いつ動く：</strong> 「ここまで」「まとめて」「振り返り」と言った時<br>
+    <strong>何をする：</strong> 学んだこと + タスク進捗を memory.md に記録。knowledge/ への昇格判定もやる<br>
+    <strong>これが「記憶する仕組み」の核心。</strong>
+  </div>
+</div>
+
+<div class="file-section">
+  <div class="file-name">/task-log</div>
+  <div class="file-role">緊急セーブ</div>
+  <div class="file-desc">
+    <strong>いつ動く：</strong> 「中断」「セーブ」と言った時<br>
+    <strong>何をする：</strong> 今やってることと再開手順だけを素早く記録する<br>
+    session-wrap の軽量版。急に止めなきゃいけない時用。
+  </div>
+</div>
+
+<div class="file-section">
+  <div class="file-name">/status</div>
+  <div class="file-role">成長度チェック</div>
+  <div class="file-desc">
+    <strong>いつ動く：</strong> 「/status」「育ち具合」と言った時<br>
+    <strong>何をする：</strong> 行動原則の数、記憶の件数、レベル（Lv.1新人 → Lv.5右腕）を表示<br>
+    育ってる実感が持てる。
+  </div>
+</div>
+
+<!-- ===================== -->
+<h2 id="s4">4. 使い始め方</h2>
+
+<h3><span class="step-num">1</span> フォルダ名を変える</h3>
+<p><code>my-project</code> を自分の仕事の名前に変える。<br>
+例：<code>sales-ops</code>、<code>accounting</code>、<code>blog-management</code></p>
+
+<h3><span class="step-num">2</span> Claude Code を起動する</h3>
+<p>そのフォルダの中で Claude Code を開く。<br>
+mind.md がまだ未設定なので、<strong>/setup が自動で始まる。</strong></p>
+
+<h3><span class="step-num">3</span> 4つの質問に答える</h3>
+<p>AIがこう聞いてくる：</p>
+<div class="chat-example">
+  <div class="chat-ai">AI</div>
+  <div class="chat-text">4つだけ教えてください。<br><br>
+    <strong>① お仕事は？</strong> Claudeに何を手伝って欲しいですか？<br>
+    <strong>② AIにイラッとしたことは？</strong> これが一番大事です。<br>
+    <strong>③ どんな感じで話して欲しい？</strong> 丁寧 / フランク / 簡潔 / 壁打ち<br>
+    <strong>④ これだけは絶対やるなってことある？</strong></div>
+</div>
+<p>答えるだけで mind.md が自動生成される。手書き不要。</p>
+
+<div class="callout">
+  <p><strong>② が一番大事な理由：</strong></p>
+  <p>「長い」「聞いてばっかり」「毎回忘れる」— あなたの不満は、あなたの「AIはこうあるべき」の裏返し。<br>
+  これが mind.md の行動原則（AIの性格）に変換される。</p>
+</div>
+
+<h3><span class="step-num">4</span> 何か1つ仕事をする</h3>
+<p>いつも通り何でもOK。普通に使う。</p>
+
+<h3><span class="step-num">5</span> 「ここまで」と言う</h3>
+<p>これだけ。AIが自動で memory.md に記録する。<br>
+<strong>次に起動した時、前回の続きから始まる。</strong></p>
+
+<!-- ===================== -->
+<h2 id="s5">5. AIが育つ話し方</h2>
+
+<p>特別なことは何もない。<strong>思ったことをそのまま言うだけ</strong>。<br>
+ただし、言い方によって育ち方が変わる。</p>
+
+<h3>ダメ出しする → 行動原則が増える</h3>
+<div class="chat-example">
+  <div class="chat-ai">AI</div>
+  <div class="chat-text">分析結果をまとめました。まず市場動向から説明すると...</div>
+  <div class="chat-you">あなた</div>
+  <div class="chat-text">長い。結論だけ先に言って</div>
+  <div class="chat-effect">→ mind.md に「結論ファーストで話せ」が追記される</div>
+</div>
+
+<h3>「覚えておいて」と言う → 即記録される</h3>
+<div class="chat-example">
+  <div class="chat-you">あなた</div>
+  <div class="chat-text">覚えておいて、A社の担当は田中さん。メールより電話が好き</div>
+  <div class="chat-effect">→ memory.md に即記録。次にA社の話が出たら自動で反映</div>
+</div>
+
+<h3>理由を添える → 深い学びになる</h3>
+<div class="chat-example">
+  <div class="chat-you">あなた</div>
+  <div class="chat-text">この提案ダメ。うちの業界ではそのやり方は法的にアウトだから</div>
+  <div class="chat-effect">→ 「なぜダメか」が knowledge/ に記録される。二度と同じ提案をしない</div>
+</div>
+
+<h3>「いいね」も言う → 刺さったポイントが記録される</h3>
+<div class="chat-example">
+  <div class="chat-you">あなた</div>
+  <div class="chat-text">この表形式いいね。次からもこの形式で出して</div>
+  <div class="chat-effect">→ 好みのフォーマットが記録される。次回から同じ形式で出してくる</div>
+</div>
+
+<div class="callout red">
+  <p><strong>育たない話し方：</strong></p>
+  <p>「うーん、まあいいか...」<br>
+  → 何も記録されない。違和感があったら遠慮なく言う。ダメ出しは最高の教育。</p>
+</div>
+
+<h3>覚えておきたい3つの言葉</h3>
+<table style="width:100%; border-collapse: collapse; margin: 1rem 0;">
+  <tr style="border-bottom: 1px solid #ddd;">
+    <td style="padding: 0.8rem; font-weight: 700;">「ここまで」</td>
+    <td style="padding: 0.8rem; color: #666;">セッション終了。学び + タスクを記録する</td>
+  </tr>
+  <tr style="border-bottom: 1px solid #ddd;">
+    <td style="padding: 0.8rem; font-weight: 700;">「覚えておいて」</td>
+    <td style="padding: 0.8rem; color: #666;">即記録。事実・ルール・好みなんでも</td>
+  </tr>
+  <tr>
+    <td style="padding: 0.8rem; font-weight: 700;">「/status」</td>
+    <td style="padding: 0.8rem; color: #666;">今どのくらい育ったか確認</td>
+  </tr>
+</table>
+
+<!-- ===================== -->
+<h2 id="s6">6. 育った先の姿</h2>
+
+<h3>1日目</h3>
+<p>/setup が完了。mind.md に行動原則が3〜5個。memory.md は空。<br>
+まだ何も知らない新人。でも「あなた好みの話し方」は最初からできる。</p>
+
+<h3>1週間後</h3>
+<p>memory.md に記録が溜まり始める。<br>
+「前回ここまでやりましたよね」「A社の田中さんですね」が自動で出てくる。<br>
+同じ説明を2回する必要がなくなる。</p>
+
+<h3>1ヶ月後</h3>
+<p>mind.md の行動原則が10個を超える。knowledge/ にファイルが生まれる。<br>
+あなたの仕事の癖、好み、NG を全部知ってるアシスタントが完成する。<br>
+<strong>「おはよう」と言うだけで、今日やるべきことを提案してくる。</strong></p>
+
+<div class="callout green">
+  <p><strong>最初から完璧にする必要はありません。</strong></p>
+  <p>フォルダを置いて、普通に使って、「ここまで」と言う。<br>
+  それだけで、AIは勝手に育ちます。</p>
+</div>
+
+<hr>
+
+<p style="text-align: center; color: #888; font-size: 0.85rem; margin-top: 3rem;">
+  Claude Code Starter Kit — by ren
+</p>
+
+</body>
+</html>
