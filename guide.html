@@ -350,7 +350,7 @@ my-project/ <span class="comment">← 好きな名前に変えてOK</span><br>
     <ul>
       <li><strong>初回起動ルール：</strong> mind.mdがまだ未設定なら /setup を自動実行</li>
       <li><strong>セッション開始ルール：</strong> 毎回 memory.md と knowledge/ を読んでから仕事開始</li>
-      <li><strong>メモ魔ルール：</strong> 「ダメ出しされたら記録」「覚えてと言われたら記録」等、6つの自動記録トリガー</li>
+      <li><strong>メモ魔ルール：</strong> 「ダメ出しされたら即記録」「事実を教わったら即記録」等、AIが自分で判断して記録するルール</li>
     </ul>
     <strong>あなたは触らなくてOK。</strong>仕組みの土台として最初から完成してる。
   </div>
@@ -372,14 +372,14 @@ my-project/ <span class="comment">← 好きな名前に変えてOK</span><br>
   <div class="file-role">AIの日記 — 「昨日こんなことがあった」</div>
   <div class="file-desc">
     <strong>このキットの核心。</strong>空の状態からスタート。<br><br>
-    「ここまで」と言うと、AIが自動でここに書き込む：
+    あなたが普通に会話するだけで、AIが<strong>自分で判断してここに書き込む</strong>：
     <ul>
-      <li>今回学んだこと（ダメ出し、新しい事実）</li>
-      <li>タスクの進捗（何が完了、何が途中、次にやること）</li>
-      <li>次回への申し送り</li>
+      <li>教えてもらった事実（「担当は田中さん」「納期は来週金曜」）</li>
+      <li>ダメ出しされたこと（「長い」→ 次から簡潔に）</li>
+      <li>タスクの進捗（何が終わって、次に何をすべきか）</li>
     </ul>
-    次回起動時に自動で読む → だから「前回の続き」から始まる。<br>
-    <strong>これがあるから「はじめまして」が消える。</strong>
+    <strong>特別なコマンドは不要。</strong>AIが会話の中で「これは記録すべき」と判断したら勝手に書く。<br>
+    次回起動時に自動で読む → だから「前回の続き」から始まる。
   </div>
 </div>
 
@@ -431,21 +431,21 @@ my-project/ <span class="comment">← 好きな名前に変えてOK</span><br>
 
 <div class="file-section">
   <div class="file-name">/session-wrap</div>
-  <div class="file-role">セッション終了時の記録</div>
+  <div class="file-role">振り返り（任意）</div>
   <div class="file-desc">
-    <strong>いつ動く：</strong> 「ここまで」「まとめて」「振り返り」と言った時<br>
-    <strong>何をする：</strong> 学んだこと + タスク進捗を memory.md に記録。knowledge/ への昇格判定もやる<br>
-    <strong>これが「記憶する仕組み」の核心。</strong>
+    <strong>いつ動く：</strong> 「まとめて」「振り返り」と言った時<br>
+    <strong>何をする：</strong> セッション全体を振り返って、記録漏れがないかチェック + knowledge/昇格判定<br>
+    <strong>普段の記録は自動。</strong>これは「ちゃんと振り返りたい時」のオプション。使わなくても記憶は溜まる。
   </div>
 </div>
 
 <div class="file-section">
   <div class="file-name">/task-log</div>
-  <div class="file-role">緊急セーブ</div>
+  <div class="file-role">緊急セーブ（任意）</div>
   <div class="file-desc">
     <strong>いつ動く：</strong> 「中断」「セーブ」と言った時<br>
     <strong>何をする：</strong> 今やってることと再開手順だけを素早く記録する<br>
-    session-wrap の軽量版。急に止めなきゃいけない時用。
+    急に止めなきゃいけない時用。普段は自動記録されてるから不要。
   </div>
 </div>
 
@@ -488,12 +488,16 @@ mind.md がまだ未設定なので、<strong>/setup が自動で始まる。</s
   これが mind.md の行動原則（AIの性格）に変換される。</p>
 </div>
 
-<h3><span class="step-num">4</span> 何か1つ仕事をする</h3>
-<p>いつも通り何でもOK。普通に使う。</p>
+<h3><span class="step-num">4</span> 普通に仕事する</h3>
+<p>いつも通り何でもOK。特別なコマンドも合言葉も不要。<br>
+<strong>会話の中でAIが自分で判断して、大事なことをmemory.mdに記録していく。</strong><br>
+次に起動した時、前回の続きから始まる。</p>
 
-<h3><span class="step-num">5</span> 「ここまで」と言う</h3>
-<p>これだけ。AIが自動で memory.md に記録する。<br>
-<strong>次に起動した時、前回の続きから始まる。</strong></p>
+<div class="callout green">
+  <p><strong>あなたがやることは：普通に仕事するだけ。</strong></p>
+  <p>ダメ出しすれば性格が育つ。事実を教えれば記憶が増える。<br>
+  全部自動。覚えることゼロ。</p>
+</div>
 
 <!-- ===================== -->
 <h2 id="s7">7. AIが育つ話し方</h2>
@@ -537,21 +541,14 @@ mind.md がまだ未設定なので、<strong>/setup が自動で始まる。</s
   → 何も記録されない。違和感があったら遠慮なく言う。ダメ出しは最高の教育。</p>
 </div>
 
-<h3>覚えておきたい3つの言葉</h3>
-<table style="width:100%; border-collapse: collapse; margin: 1rem 0;">
-  <tr style="border-bottom: 1px solid #ddd;">
-    <td style="padding: 0.8rem; font-weight: 700;">「ここまで」</td>
-    <td style="padding: 0.8rem; color: #666;">セッション終了。学び + タスクを記録する</td>
-  </tr>
-  <tr style="border-bottom: 1px solid #ddd;">
-    <td style="padding: 0.8rem; font-weight: 700;">「覚えておいて」</td>
-    <td style="padding: 0.8rem; color: #666;">即記録。事実・ルール・好みなんでも</td>
-  </tr>
-  <tr>
-    <td style="padding: 0.8rem; font-weight: 700;">「/status」</td>
-    <td style="padding: 0.8rem; color: #666;">今どのくらい育ったか確認</td>
-  </tr>
-</table>
+<div class="callout blue">
+  <p><strong>基本思想：</strong></p>
+  <p>リアルで自分が会社のオーナーになるのと同じ。<br>
+  初日から完璧な会社になるわけない。<br>
+  最初は「こいつら使えないな…」でいい。<br><br>
+  やらせたいこと、やらせたくないこと。あなたの哲学を浸透させていく。<br>
+  <strong>ダメ出しの数だけ、AIは強くなる。</strong></p>
+</div>
 
 <!-- ===================== -->
 <h2 id="s8">8. 育った先の姿</h2>
