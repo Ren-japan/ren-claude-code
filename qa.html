@@ -75,6 +75,10 @@
   .chat-msg:last-child { margin-bottom: 0; }
   .chat-user { font-weight: 700; font-size: 0.8rem; color: #1976d2; margin-bottom: 0.1rem; }
   .chat-user.ai { color: #7b1fa2; }
+  .chat-user.ceo { color: #c62828; }
+  .chat-user.cio { color: #1565c0; }
+  .chat-user.cmo { color: #e65100; }
+  .chat-user.cto { color: #2e7d32; }
   .chat-body { font-size: 0.88rem; color: #333; margin-left: 0.8rem; line-height: 1.8; }
   .chat-memo {
     background: #e8f5e9; border-left: 3px solid #388e3c; padding: 0.4rem 0.8rem;
@@ -162,12 +166,12 @@
     <div class="chat-body">医療ダイエットのCVR低いんだけど</div>
   </div>
   <div class="chat-msg">
-    <div class="chat-user ai">AI（CEO）</div>
+    <div class="chat-user ceo">AI（CEO）</div>
     <div class="chat-body">CIOにデータ分析を振ります。</div>
   </div>
   <div class="chat-memo">→ CEO自身はデータを触らない。CIOに振る</div>
   <div class="chat-msg">
-    <div class="chat-user ai">AI（CIO）</div>
+    <div class="chat-user cio">AI（CIO）</div>
     <div class="chat-body">分析結果：<br>
     ・診断開始率 82%（問題なし）<br>
     ・診断完了率 76%（問題なし）<br>
@@ -175,12 +179,12 @@
     → ボトルネック：診断後にLPに飛ばない</div>
   </div>
   <div class="chat-msg">
-    <div class="chat-user ai">AI（CEO）</div>
+    <div class="chat-user ceo">AI（CEO）</div>
     <div class="chat-body">MCV率がボトルネック。CMOに診断設計の見直しを振ります。</div>
   </div>
   <div class="chat-memo">→ CEOはCIOの分析結果を見て、CMOに次の指示を出す</div>
   <div class="chat-msg">
-    <div class="chat-user ai">AI（CMO）</div>
+    <div class="chat-user cmo">AI（CMO）</div>
     <div class="chat-body">診断結果ページの訴求を見直します。<br>
     改善案：結果タイプ別のLP導線を追加<br><br>
     ━━ 設計ブリーフ ━━<br>
@@ -200,6 +204,59 @@
   <p>CEO → CIO → CEO → CMO → ブリーフ生成。<br>
   この連携が自動で回る。renは「判断」と「GO」だけ。</p>
 </div>
+
+<h3>SEOの現場だとこうなる</h3>
+
+<p>SEOマーケターが1ロール（assistant）で使う場合の具体例：</p>
+
+<div class="chat">
+  <div class="chat-msg">
+    <div class="chat-user">あなた</div>
+    <div class="chat-body">「医療脱毛 おすすめ」の記事、順位落ちてるんだけど見て</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user ai">AI</div>
+    <div class="chat-body">SEOチェック結果：<br><br>
+    ⚠ タイトル: メインKWが32文字目 → 先頭に寄せるべき<br>
+    ⚠ 競合上位3記事にある「副作用」セクションがない<br>
+    ⚠ 内部リンク: 関連記事が1本しかない（競合平均4本）<br>
+    ✅ H2にサジェストKW反映済み<br><br>
+    改善優先度：<br>
+    1. 「副作用」セクション追加（競合との差分で最大）<br>
+    2. 内部リンク3本追加<br>
+    3. タイトルKW位置調整</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user">あなた</div>
+    <div class="chat-body">副作用セクションの構成案出して</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user ai">AI</div>
+    <div class="chat-body">競合3記事を分析して構成案：<br><br>
+    H2: 医療脱毛の副作用・リスク<br>
+    &nbsp;&nbsp;H3: よくある副作用（赤み・腫れ）<br>
+    &nbsp;&nbsp;H3: まれに起こる副作用<br>
+    &nbsp;&nbsp;H3: 副作用が出た時の対処法<br>
+    &nbsp;&nbsp;H3: クリニック選びで副作用リスクを減らすには<br><br>
+    最後のH3でクリニック比較への自然な導線になります。</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user">あなた</div>
+    <div class="chat-body">いいね。あと前回タイトル変更したやつ、まだ2週間経ってないから触るなよ</div>
+  </div>
+  <div class="chat-memo">→ knowledge/mistakes.md: 「タイトル変更後2週間は触るな」が記録される</div>
+</div>
+
+<p>次に別の記事で「これチェックして」と言うだけで：</p>
+<ul>
+  <li>SEO観点でチェックする（文章の良し悪しじゃない）</li>
+  <li>競合比較もやる（言わなくても標準で）</li>
+  <li>タイトル変更2週間ルールも自動で警告してくれる</li>
+</ul>
+
+<p><strong>1ロールでも、使い込めばSEO専門家に育つ。</strong></p>
+
+<hr>
 
 <div class="callout blue">
   <p><strong>「でも最初からこんな組織作れないよ？」</strong></p>
