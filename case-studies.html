@@ -239,80 +239,106 @@
 </div>
 
 <!-- ===== CASE 2 ===== -->
-<h2>Case 2: 「見積もり作って」→ 先回りする担当者に化けた</h2>
-<p>Web制作会社の経理担当の例。</p>
+<h2>Case 2: 「ファイルまとめたいんだけど」→ 会社ができた</h2>
+<p>renの実例。たった一言の相談から、AIの組織構造が生まれた話。</p>
 
-<div class="day-label">Day 1</div>
+<div class="day-label">Day 1 — 相談</div>
 
 <div class="chat">
   <div class="chat-msg">
-    <div class="chat-user">あなた</div>
-    <div class="chat-body">A社の見積もり作って。Webサイトリニューアル、だいたい300万くらい</div>
+    <div class="chat-user">ren</div>
+    <div class="chat-body">相談なんだけどさ、今いろんなチャットでクロードコードでファイル作ってるけど、これ1つのファイルにまとめるのかのう？</div>
   </div>
   <div class="chat-msg">
     <div class="chat-user ai">AI</div>
-    <div class="chat-body">見積書を作成しました。<br><br>項目: Webサイトリニューアル一式 ¥3,000,000</div>
+    <div class="chat-body">今のファイル構成を見てみますね。<br><br>
+    pm-memory.md（105行）、marketer-memory.md（217行）、MEMORY.md（181行）...<br><br>
+    バラバラですね。役割ごとにフォルダ分けた方がいいと思います。<br><br>
+    例えば：<br>
+    ・roles/ceo/ — 判断・振り分け担当<br>
+    ・roles/cio/ — データ分析担当<br>
+    ・roles/cmo/ — マーケティング担当<br>
+    それぞれにmind.md（性格）とmemory.md（記憶）を持たせる。</div>
   </div>
   <div class="chat-msg">
-    <div class="chat-user">あなた</div>
-    <div class="chat-body">いや、ちゃんと内訳分けて。デザイン、コーディング、ディレクション費は別立て。うちはいつもそうしてる</div>
+    <div class="chat-user">ren</div>
+    <div class="chat-body">お、いいね。やって</div>
   </div>
-  <div class="chat-memo">→ mind.md に自動追記: 「見積もりは必ず工程別に内訳を分ける」</div>
-  <div class="chat-msg">
-    <div class="chat-user ai">AI</div>
-    <div class="chat-body">修正しました。<br><br>
-    ・ディレクション費: ¥450,000<br>
-    ・デザイン: ¥1,200,000<br>
-    ・コーディング: ¥1,050,000<br>
-    ・テスト/検証: ¥300,000</div>
-  </div>
-  <div class="chat-msg">
-    <div class="chat-user">あなた</div>
-    <div class="chat-body">おけ</div>
-  </div>
+  <div class="chat-memo">→ この一言で、flat構造からroles/構造への大転換が始まった</div>
 </div>
 
-<div class="day-label">Day 5</div>
+<div class="day-label">Day 3 — ダメ出しの嵐</div>
 
 <div class="chat">
   <div class="chat-msg">
-    <div class="chat-user">あなた</div>
-    <div class="chat-body">B社の見積もりも作って。LP制作、150万</div>
+    <div class="chat-user ai">AI（CEO）</div>
+    <div class="chat-body">CMOの施策案ですが、PU文言を変更してみてはどうでしょうか？</div>
   </div>
   <div class="chat-msg">
-    <div class="chat-user ai">AI</div>
-    <div class="chat-body">前回の構成に合わせて内訳分けました：<br><br>
-    ・ディレクション費: ¥225,000<br>
-    ・デザイン: ¥600,000<br>
-    ・コーディング: ¥450,000<br>
-    ・テスト/検証: ¥225,000<br><br>
-    A社の時の比率を参考にしてます。金額調整ありますか？</div>
+    <div class="chat-user">ren</div>
+    <div class="chat-body">お前がマーケの中身語るな。CEOは判断だけ。CMOに聞いたか？</div>
   </div>
-  <div class="chat-memo">→ もう「一式」とは書かない。A社のデータを覚えてて参考にしてる</div>
+  <div class="chat-memo">→ mind.md に追記: 「CEO禁止事項: PU文言・診断設計への口出し。事業判断だけ」</div>
 </div>
 
-<div class="day-label">Day 20</div>
+<div class="chat">
+  <div class="chat-msg">
+    <div class="chat-user ai">AI（CEO）</div>
+    <div class="chat-body">データを修正しておきました。</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user">ren</div>
+    <div class="chat-body">お前がいじると壊す。CTOに振れ</div>
+  </div>
+  <div class="chat-memo">→ mind.md に追記: 「CEOは絶対に直接作業するな。コード改修・データ集計は全て禁止」</div>
+</div>
+
+<div class="day-label">Day 7 — 自律的に動き始める</div>
 
 <div class="chat">
   <div class="chat-msg">
-    <div class="chat-user">あなた</div>
-    <div class="chat-body">C社、ECサイト。見積もり</div>
+    <div class="chat-user ai">AI（CEO）</div>
+    <div class="chat-body">renさん、タスクの件ですが、これ進めていいですか？</div>
   </div>
   <div class="chat-msg">
-    <div class="chat-user ai">AI</div>
-    <div class="chat-body">ECサイトなので決済機能が入りますね。過去の見積もりにないので確認：<br><br>
-    ・決済システム連携の費用感は別途ですか？<br>
-    ・保守費用も入れますか？</div>
+    <div class="chat-user">ren</div>
+    <div class="chat-body">「振るか？」って聞くな。データで判断できるならお前が決めて「GOでいい？」で持ってこい</div>
   </div>
-  <div class="chat-memo">→ knowledge/tips.md: 「ECは決済・保守を必ず確認」が昇格済み → 聞かれる前に聞いてくる</div>
+  <div class="chat-memo">→ mind.md に追記: 「判断を投げるな。CEOが判断→実行→結果を持っていけ」</div>
+</div>
+
+<div class="day-label">Day 14 — 会社が動いてる</div>
+
+<div class="chat">
+  <div class="chat-msg">
+    <div class="chat-user">ren</div>
+    <div class="chat-body">おはよう</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user ai">AI（CEO）</div>
+    <div class="chat-body">
+    ━━ 本日の状況 ━━<br><br>
+    ⚠ 医療ダイエット: 今月CV3件（目標10件、達成率30%）<br>
+    → CIOに分析振り済み。原因: SEO記事の順位低下<br>
+    → CMOにリライト案を依頼中<br><br>
+    ✅ 包茎: PU差し替え効果あり。CVR回復<br>
+    ✅ AGA: 先週のタスク全完了<br><br>
+    GOALまで残り16日。医療ダイエットが最優先。<br>
+    CIOの分析結果が出次第、renにアクション提案します。</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user">ren</div>
+    <div class="chat-body">👍</div>
+  </div>
 </div>
 
 <div class="result-box">
-  <h3>20日間の変化</h3>
-  <p>Day 1: 「一式 300万」で出してきた<br>
-  Day 5: 内訳自動、過去データ参照<br>
-  Day 20: 初見のパターンを検知して先回りで確認</p>
-  <p style="margin-top: 0.8rem;"><strong>「雑な依頼の処理係」が「先回りして確認してくる担当者」に化けた。</strong></p>
+  <h3>14日間の変化</h3>
+  <p>Day 1: 「ファイルまとめたいんだけど」（雑な相談）<br>
+  Day 3: ダメ出しの嵐 → 行動原則が10個に<br>
+  Day 7: 「聞くな、自分で判断しろ」が浸透<br>
+  Day 14: CEOがCIO・CMOを自律的に動かして、renは👍だけ</p>
+  <p style="margin-top: 0.8rem;"><strong>たった一言の相談から、AIの「会社」ができた。</strong></p>
 </div>
 
 <!-- ===== CASE 3 ===== -->
@@ -389,13 +415,85 @@
   <p style="margin-top: 0.8rem;"><strong>「これ」の一言で全部わかるAIになった。</strong></p>
 </div>
 
+<!-- ===== CASE 4 ===== -->
+<h2>Case 4: 「勉強会やるんだけど」→ このキット全部できた</h2>
+<p>renの実例。今あなたが見ているこのスターターキットが、どう生まれたか。</p>
+
+<div class="day-label">Day 1 — 雑な相談</div>
+
+<div class="chat">
+  <div class="chat-msg">
+    <div class="chat-user">ren</div>
+    <div class="chat-body">社内で勉強会やるんだけどさ、俺のClaude Codeのフォルダ構造見せたいんだよね</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user ai">AI</div>
+    <div class="chat-body">showcaseページ作りましょうか？HTMLで、カード形式で各ファイルの役割と中身が見えるやつ</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user">ren</div>
+    <div class="chat-body">いいね。GitHub Pagesで公開したい</div>
+  </div>
+  <div class="chat-memo">→ showcase HTML + GitHubリポ作成が始まった</div>
+</div>
+
+<div class="day-label">Day 2 — 「見せる」から「渡す」へ</div>
+
+<div class="chat">
+  <div class="chat-msg">
+    <div class="chat-user">ren</div>
+    <div class="chat-body">これって中身を他の人に渡すにはどうすればいいのかって話だね。別のアカウント、別のPCになるからそれが前提で</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user ai">AI</div>
+    <div class="chat-body">スターターキットとして配布する形ですね。ren固有の内容を抜いて、「記憶が育つ仕組み」だけ渡す</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user">ren</div>
+    <div class="chat-body">そうそう。あとsetup試したけど抽象的で成果物ないし全然ダメ。メモリの仕組み自体を渡す方がいい</div>
+  </div>
+  <div class="chat-memo">→ /setup リニューアル + スターターキット構想が始まった</div>
+</div>
+
+<div class="day-label">Day 3 — こだわりの嵐</div>
+
+<div class="chat">
+  <div class="chat-msg">
+    <div class="chat-user">ren</div>
+    <div class="chat-body">ガイドカッコつけないで。GOALの旗のもとにこだわって作って</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user">ren</div>
+    <div class="chat-body">「ここまで」って何？ユーザーに覚えさせてる時点で自動じゃないじゃん</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user">ren</div>
+    <div class="chat-body">哲学を入れたいんだよね。AIへの不満から逆算すれば哲学出てくるよね</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user">ren</div>
+    <div class="chat-body">俺がmdを手書きしたことってないんだよね。だからそうなる仕様にしたい</div>
+  </div>
+  <div class="chat-memo">→ すべてダメ出しから設計が磨かれていった</div>
+</div>
+
+<div class="result-box">
+  <h3>3日間の変化</h3>
+  <p>Day 1: 「フォルダ構造見せたい」（ただの共有の話）<br>
+  Day 2: 「仕組みを渡したい」（スターターキットに進化）<br>
+  Day 3: 自動記録、哲学の抽出、ケーススタディ — 全部renのダメ出しから生まれた</p>
+  <p style="margin-top: 0.8rem;"><strong>今あなたが見ているこのキット、全部「雑な一言」の積み重ねでできた。</strong></p>
+</div>
+
 <hr>
 
 <div class="callout">
-  <p><strong>3つのケースに共通すること：</strong></p>
-  <p>最初はみんな雑。「見て」「作って」「これ」。<strong>それでいい。</strong><br>
+  <p><strong>4つのケースに共通すること：</strong></p>
+  <p>最初はみんな雑。「見て」「作って」「これ」「まとめたいんだけど」。<strong>それでいい。</strong><br>
   ダメ出しするたびに精度が上がる。それが「育つ」ということ。<br><br>
-  <strong>1ヶ月後には「この子たちやっぱ新人やなあ…」が「もう俺より詳しいな」に変わる。</strong></p>
+  大事なのは<strong>「何でもかんでもClaudeと仕事してみる」</strong>こと。<br>
+  ルーティン、相談、資料作成、組織設計 — ジャンルは関係ない。<br>
+  <strong>まずやらせてみて、違ったら「違う」と言う。それだけで育つ。</strong></p>
 </div>
 
 <hr>
