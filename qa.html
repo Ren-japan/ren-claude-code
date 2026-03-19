@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Q&A — よくある質問</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    background: #fafafa; color: #222; line-height: 2; max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem;
+  }
+  h1 { font-size: 1.6rem; font-weight: 800; margin: 0 0 0.3rem; color: #111; }
+  .subtitle { color: #888; font-size: 0.9rem; margin-bottom: 2rem; }
+  h2 { font-size: 1.2rem; font-weight: 700; margin: 3rem 0 0.8rem; color: #1976d2; }
+  h3 { font-size: 1.05rem; font-weight: 700; margin: 1.5rem 0 0.5rem; color: #333; }
+  p { margin-bottom: 1rem; color: #444; font-size: 0.95rem; }
+  strong { color: #111; }
+  hr { border: none; border-top: 1px solid #e0e0e0; margin: 2rem 0; }
+  ul, ol { margin: 0.5rem 0 1rem 1.5rem; }
+  li { margin-bottom: 0.3rem; font-size: 0.95rem; color: #444; }
+
+  .q-box {
+    background: #e3f2fd; border-left: 4px solid #1976d2; padding: 1rem 1.2rem;
+    margin: 2rem 0 1rem; border-radius: 0 8px 8px 0; font-weight: 700; color: #1565c0;
+  }
+
+  .callout {
+    background: #fff8e1; border-left: 4px solid #f9a825; padding: 1rem 1.2rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0;
+  }
+  .callout.blue { background: #e3f2fd; border-color: #1976d2; }
+  .callout.green { background: #e8f5e9; border-color: #388e3c; }
+  .callout p { margin-bottom: 0.3rem; }
+
+  .diagram {
+    background: #f5f5f5; border: 1px solid #ddd; border-radius: 12px;
+    padding: 1.5rem; margin: 1.5rem 0; text-align: center;
+  }
+  .diagram-title { font-size: 0.8rem; color: #888; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 1rem; }
+  .diagram-col { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; }
+  .diagram-row { display: flex; align-items: flex-start; justify-content: center; gap: 1rem; flex-wrap: wrap; margin: 0.5rem 0; }
+  .diagram-box {
+    background: #fff; border: 2px solid #ddd; border-radius: 10px;
+    padding: 0.7rem 1rem; font-size: 0.85rem; font-weight: 600; color: #333;
+    min-width: 140px; text-align: center;
+  }
+  .diagram-box.ceo { border-color: #c62828; background: #fce4ec; color: #b71c1c; }
+  .diagram-box.cio { border-color: #1976d2; background: #e3f2fd; color: #1565c0; }
+  .diagram-box.cmo { border-color: #f57f17; background: #fff8e1; color: #e65100; }
+  .diagram-box.cto { border-color: #388e3c; background: #e8f5e9; color: #2e7d32; }
+  .diagram-box small { display: block; font-weight: 400; font-size: 0.75rem; color: #888; margin-top: 2px; }
+  .diagram-arrow-down { color: #999; font-size: 1.2rem; text-align: center; padding: 0.2rem 0; }
+
+  .role-card {
+    background: #fff; border: 1px solid #e0e0e0; border-radius: 8px;
+    padding: 1.2rem 1.5rem; margin: 1rem 0;
+  }
+  .role-card h4 { font-size: 0.95rem; margin: 0 0 0.5rem; }
+  .role-card .tag {
+    display: inline-block; padding: 0.1rem 0.5rem; border-radius: 4px;
+    font-size: 0.75rem; font-weight: 600; margin-right: 0.3rem;
+  }
+  .role-card .tag.red { background: #fce4ec; color: #c62828; }
+  .role-card .tag.blue { background: #e3f2fd; color: #1976d2; }
+  .role-card .tag.orange { background: #fff8e1; color: #e65100; }
+  .role-card .tag.green { background: #e8f5e9; color: #388e3c; }
+  .role-card ul { margin: 0.5rem 0 0 1.2rem; }
+  .role-card li { font-size: 0.88rem; margin-bottom: 0.2rem; }
+
+  .chat {
+    background: #f5f5f5; border: 1px solid #ddd; border-radius: 8px;
+    padding: 1rem 1.2rem; margin: 0.5rem 0;
+  }
+  .chat-msg { margin-bottom: 0.8rem; }
+  .chat-msg:last-child { margin-bottom: 0; }
+  .chat-user { font-weight: 700; font-size: 0.8rem; color: #1976d2; margin-bottom: 0.1rem; }
+  .chat-user.ai { color: #7b1fa2; }
+  .chat-body { font-size: 0.88rem; color: #333; margin-left: 0.8rem; line-height: 1.8; }
+  .chat-memo {
+    background: #e8f5e9; border-left: 3px solid #388e3c; padding: 0.4rem 0.8rem;
+    margin: 0.3rem 0 0.5rem 0.8rem; font-size: 0.82rem; color: #2e7d32; border-radius: 0 4px 4px 0;
+  }
+</style>
+</head>
+<body>
+
+<h1>Q&A</h1>
+<p class="subtitle">勉強会で出た質問に、実例つきで答えます。</p>
+
+<!-- ===== Q1 ===== -->
+<div class="q-box">Q. ロールごとの役割分担は？どんな業務を任せてる？</div>
+
+<p>renの実例で説明します。4つのロールがあって、それぞれ<strong>専門分野が違う</strong>。</p>
+
+<div class="diagram">
+  <div class="diagram-title">renの組織構成</div>
+  <div class="diagram-col">
+    <div class="diagram-box ceo">👔 CEO<small>判断・振り分け・品質チェック</small></div>
+    <div class="diagram-arrow-down">↓ 指示を出す</div>
+    <div class="diagram-row">
+      <div class="diagram-box cio">📊 CIO<small>データ分析</small></div>
+      <div class="diagram-box cmo">📣 CMO<small>マーケティング</small></div>
+      <div class="diagram-box cto">🔧 CTO<small>システム・開発</small></div>
+    </div>
+  </div>
+</div>
+
+<h3>各ロールの詳細</h3>
+
+<div class="role-card">
+  <h4><span class="tag red">CEO</span> 判断・振り分け・品質チェック</h4>
+  <p style="font-size:0.88rem; color:#666;">「何を・誰に・なぜやらせるか」を決める人。<strong>自分では手を動かさない。</strong></p>
+  <ul>
+    <li>毎朝の状況把握 → 今日やるべきことの優先順位づけ</li>
+    <li>CIO/CMO/CTOへの指示出し</li>
+    <li>各ロールのアウトプットの品質チェック</li>
+    <li>GOALから逆算して「今これやらないと間に合わない」を判断</li>
+  </ul>
+  <p style="font-size:0.82rem; color:#c62828; margin:0.5rem 0 0;"><strong>禁止事項：</strong>コード書くな、データ集計するな、マーケの中身語るな。判断だけ。</p>
+</div>
+
+<div class="role-card">
+  <h4><span class="tag blue">CIO</span> データサイエンティスト</h4>
+  <p style="font-size:0.88rem; color:#666;">データを見て「何が起きてるか」「なぜか」を分析する人。</p>
+  <ul>
+    <li>毎朝のKPIレポート（morning-report）</li>
+    <li>異常検知（「この数字おかしくない？」）</li>
+    <li>ボトルネック特定（「CVRが落ちてるのはここが原因」）</li>
+    <li>施策の効果検証（「先週の変更、効いた？」）</li>
+  </ul>
+</div>
+
+<div class="role-card">
+  <h4><span class="tag orange">CMO</span> マーケティング専門家</h4>
+  <p style="font-size:0.88rem; color:#666;">「ユーザーの頭の中」から施策を設計する人。</p>
+  <ul>
+    <li>LINE診断の設計（設問・結果・導線）</li>
+    <li>記事トリアージ（どの記事を優先的に改善するか）</li>
+    <li>PU（ポップアップ）の訴求設計</li>
+    <li>デザイナー向けブリーフ（設計書）の生成</li>
+  </ul>
+</div>
+
+<div class="role-card">
+  <h4><span class="tag green">CTO</span> テクニカルアーキテクト</h4>
+  <p style="font-size:0.88rem; color:#666;">システムとインフラを管理する人。コードを書く唯一のロール。</p>
+  <ul>
+    <li>アプリ開発・コード修正</li>
+    <li>システム障害対応</li>
+    <li>データパイプライン管理</li>
+    <li>環境構築・デプロイ</li>
+  </ul>
+</div>
+
+<h3>実際の連携イメージ</h3>
+
+<p>例えば「医療ダイエットのCVRが低い」という課題が出た時：</p>
+
+<div class="chat">
+  <div class="chat-msg">
+    <div class="chat-user">ren</div>
+    <div class="chat-body">医療ダイエットのCVR低いんだけど</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user ai">AI（CEO）</div>
+    <div class="chat-body">CIOにデータ分析を振ります。</div>
+  </div>
+  <div class="chat-memo">→ CEO自身はデータを触らない。CIOに振る</div>
+  <div class="chat-msg">
+    <div class="chat-user ai">AI（CIO）</div>
+    <div class="chat-body">分析結果：<br>
+    ・診断開始率 82%（問題なし）<br>
+    ・診断完了率 76%（問題なし）<br>
+    ・MCV率 1.8%（他ジャンルの半分）<br>
+    → ボトルネック：診断後にLPに飛ばない</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user ai">AI（CEO）</div>
+    <div class="chat-body">MCV率がボトルネック。CMOに診断設計の見直しを振ります。</div>
+  </div>
+  <div class="chat-memo">→ CEOはCIOの分析結果を見て、CMOに次の指示を出す</div>
+  <div class="chat-msg">
+    <div class="chat-user ai">AI（CMO）</div>
+    <div class="chat-body">診断結果ページの訴求を見直します。<br>
+    改善案：結果タイプ別のLP導線を追加<br><br>
+    ━━ 設計ブリーフ ━━<br>
+    ジャンル: 医療ダイエット<br>
+    ボトルネック: MCV率 1.8%<br>
+    改善案: 結果ページCTAの訴求変更<br>
+    ━━━━━━━━━━━</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user">ren</div>
+    <div class="chat-body">👍 これデザイナーに渡す</div>
+  </div>
+</div>
+
+<div class="callout">
+  <p><strong>ポイント：renがやったのは最初の一言と最後の👍だけ。</strong></p>
+  <p>CEO → CIO → CEO → CMO → ブリーフ生成。<br>
+  この連携が自動で回る。renは「判断」と「GO」だけ。</p>
+</div>
+
+<div class="callout blue">
+  <p><strong>「でも最初からこんな組織作れないよ？」</strong></p>
+  <p>その通り。renも最初は1ロール（assistant）だけだった。<br>
+  使ってるうちに「データ分析とマーケ施策は分けた方がいいな」と気づいて、ロールを増やした。<br>
+  <strong>最初は1人でいい。仕事が増えたら「もう1人雇う」感覚で増やす。</strong></p>
+</div>
+
+<hr>
+
+<p style="text-align: center;">
+  <a href="guide.html" style="color: #1976d2; text-decoration: none; font-weight: 600;">← ガイドに戻る</a>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="case-studies.html" style="color: #1976d2; text-decoration: none; font-weight: 600;">ケーススタディを見る →</a>
+</p>
+
+<p style="text-align: center; color: #888; font-size: 0.85rem; margin-top: 2rem;">
+  Claude Code Starter Kit — by ren
+</p>
+
+</body>
+</html>
