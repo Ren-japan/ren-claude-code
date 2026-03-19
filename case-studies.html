@@ -8,618 +8,402 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
-    background: #fafafa; color: #222; line-height: 1.9; max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem;
+    background: #fafafa; color: #222; line-height: 2; max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem;
   }
-  h1 { font-size: 1.5rem; font-weight: 800; margin: 0 0 0.3rem; color: #111; }
+  h1 { font-size: 1.6rem; font-weight: 800; margin: 0 0 0.3rem; color: #111; }
   .subtitle { color: #888; font-size: 0.9rem; margin-bottom: 2rem; }
-  h2 { font-size: 1.25rem; font-weight: 700; margin: 3rem 0 0.5rem; color: #111; }
-  h3 { font-size: 1rem; font-weight: 700; margin: 2rem 0 0.5rem; color: #555; }
-  p { margin-bottom: 1rem; color: #444; font-size: 0.93rem; }
-
-  .case-header {
-    background: #111; color: #fff; border-radius: 10px; padding: 1.2rem 1.5rem; margin: 2.5rem 0 1rem;
-  }
-  .case-header .case-num { font-size: 0.75rem; color: #888; letter-spacing: 0.1em; text-transform: uppercase; }
-  .case-header .case-title { font-size: 1.2rem; font-weight: 800; margin: 0.2rem 0; }
-  .case-header .case-desc { font-size: 0.85rem; color: #aaa; }
+  h2 { font-size: 1.3rem; font-weight: 700; margin: 3rem 0 0.8rem; color: #111; padding-bottom: 0.3rem; border-bottom: 2px solid #e0e0e0; }
+  h3 { font-size: 1.05rem; font-weight: 700; margin: 1.5rem 0 0.5rem; color: #333; }
+  p { margin-bottom: 1rem; color: #444; font-size: 0.95rem; }
+  strong { color: #111; }
+  hr { border: none; border-top: 1px solid #e0e0e0; margin: 2rem 0; }
 
   .day-label {
-    font-size: 0.8rem; font-weight: 700; color: #fff; background: #1976d2;
-    display: inline-block; padding: 2px 12px; border-radius: 20px; margin: 1.5rem 0 0.8rem;
+    background: #1976d2; color: white; display: inline-block; padding: 0.2rem 0.8rem;
+    border-radius: 4px; font-size: 0.8rem; font-weight: 700; margin: 1.5rem 0 0.5rem;
   }
 
   .chat {
-    background: #f5f5f5; border-radius: 10px; padding: 1rem 1.2rem; margin: 0.5rem 0;
-    border: 1px solid #e8e8e8;
+    background: #f5f5f5; border: 1px solid #ddd; border-radius: 8px;
+    padding: 1rem 1.2rem; margin: 0.5rem 0;
   }
-  .msg { margin-bottom: 0.8rem; }
-  .msg:last-child { margin-bottom: 0; }
-  .msg-who {
-    font-size: 0.75rem; font-weight: 700; margin-bottom: 2px;
-    text-transform: uppercase; letter-spacing: 0.03em;
-  }
-  .msg-who.user { color: #1976d2; }
-  .msg-who.ai { color: #7b1fa2; }
-  .msg-body { font-size: 0.88rem; color: #333; line-height: 1.7; margin-left: 0.2rem; }
-  .msg-body strong { color: #111; }
-
-  .effect {
-    background: #e8f5e9; border-left: 3px solid #388e3c; padding: 0.5rem 0.8rem;
-    margin: 0.5rem 0; border-radius: 0 6px 6px 0; font-size: 0.82rem; color: #2e7d32;
+  .chat-msg { margin-bottom: 0.8rem; }
+  .chat-msg:last-child { margin-bottom: 0; }
+  .chat-user { font-weight: 700; font-size: 0.8rem; color: #1976d2; margin-bottom: 0.1rem; }
+  .chat-user.ai { color: #7b1fa2; }
+  .chat-body { font-size: 0.88rem; color: #333; margin-left: 0.8rem; line-height: 1.8; }
+  .chat-body small { color: #888; }
+  .chat-memo {
+    background: #e8f5e9; border-left: 3px solid #388e3c; padding: 0.4rem 0.8rem;
+    margin: 0.3rem 0 0.5rem 0.8rem; font-size: 0.82rem; color: #2e7d32; border-radius: 0 4px 4px 0;
   }
 
   .result-box {
     background: #fff; border: 2px solid #1976d2; border-radius: 10px;
-    padding: 1.2rem 1.5rem; margin: 1.5rem 0;
+    padding: 1.2rem 1.5rem; margin: 1.5rem 0; text-align: center;
   }
-  .result-box .result-title { font-weight: 800; color: #1976d2; font-size: 0.9rem; margin-bottom: 0.5rem; }
-  .result-box ul { margin: 0.3rem 0 0 1.2rem; }
-  .result-box li { font-size: 0.88rem; color: #444; margin-bottom: 0.2rem; }
+  .result-box h3 { color: #1565c0; margin: 0 0 0.5rem; }
+  .result-box p { margin: 0; }
 
-  .takeaway {
-    background: #111; color: #fff; border-radius: 10px; padding: 1.5rem;
-    margin: 3rem 0; text-align: center;
+  .callout {
+    background: #fff8e1; border-left: 4px solid #f9a825; padding: 1rem 1.2rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0;
   }
-  .takeaway p { color: #ccc; font-size: 0.9rem; margin-bottom: 0.5rem; }
-  .takeaway strong { color: #fff; font-size: 1.1rem; }
-
-  .toc { background: #f5f5f5; border-radius: 8px; padding: 1rem 1.5rem; margin: 1rem 0 2rem; }
-  .toc a { color: #1976d2; text-decoration: none; font-size: 0.9rem; }
-  .toc a:hover { text-decoration: underline; }
-  .toc ol { margin: 0.3rem 0 0 1.2rem; }
-  .toc li { margin-bottom: 0.2rem; }
+  .callout p { margin-bottom: 0.3rem; }
 </style>
 </head>
 <body>
 
 <h1>ケーススタディ</h1>
-<p class="subtitle">雑な一言からツールが生まれるまで</p>
+<p class="subtitle">雑な一言から、ツールが生まれるまで。</p>
 
-<p>「すごい使い方」なんてない。最初はみんな雑。<br>
-<strong>ダメ出しの積み重ねが、あなた専用のAIを作る。</strong></p>
+<p>「AIを上手く使おう」と力む必要はない。<br>
+実際に育った3つの事例を、<strong>リアルなチャットのやりとり</strong>で見てみよう。</p>
 
-<div class="toc">
-  <strong>3つのケース</strong>
-  <ol>
-    <li><a href="#c1">朝のレポート — マーケティング担当の場合</a></li>
-    <li><a href="#c2">見積もり作成 — 制作会社の場合</a></li>
-    <li><a href="#c3">記事チェック — SEO担当の場合</a></li>
-  </ol>
-</div>
-
-<!-- ============ Case 1 ============ -->
-
-<div class="case-header" id="c1">
-  <div class="case-num">Case 1</div>
-  <div class="case-title">「データ見せて」が自律レポートに化けるまで</div>
-  <div class="case-desc">マーケティング担当 / LINE広告運用</div>
-</div>
+<!-- ===== CASE 1 ===== -->
+<h2>Case 1: 「データ見せて」→ 自律レポートに化けた</h2>
+<p>LINEマーケティングの現場での実話。</p>
 
 <div class="day-label">Day 1</div>
 
 <div class="chat">
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">スプシのデータ見て今月どんな感じか教えて</div>
+  <div class="chat-msg">
+    <div class="chat-user">ren</div>
+    <div class="chat-body">スプシのデータ見て今月どんな感じか教えて</div>
   </div>
-  <div class="msg">
-    <div class="msg-who ai">AI</div>
-    <div class="msg-body">
-      今月の実績をまとめました。<br><br>
-      <strong>■ 友だち追加数</strong><br>
-      ・SEO経由: 847人（先月比 +12%）<br>
-      ・アド経由: 403人（先月比 -3%）<br>
-      ・合計: 1,250人<br><br>
-      <strong>■ 診断完了数</strong><br>
-      ・全体: 892人<br>
-      ・診断率: 71.4%<br><br>
-      <strong>■ MCV</strong><br>
-      ・LP遷移数: 187回<br>
-      ・MCV率: 21.0%<br><br>
-      <strong>■ CV</strong><br>
-      ・CV数: 42件<br>
-      ・CVR: 3.4%<br><br>
-      <strong>■ ジャンル別内訳</strong><br>
-      ・医療脱毛: CV 15件（CVR 4.2%）<br>
-      ・包茎: CV 12件（CVR 3.1%）<br>
-      ・AGA: CV 8件（CVR 2.8%）<br>
-      ・医療ダイエット: CV 7件（CVR 2.9%）<br><br>
-      全体的に堅調な推移です。SEO経由の友だち追加が好調で、前月比12%増となっています。
-    </div>
+  <div class="chat-msg">
+    <div class="chat-user ai">AI</div>
+    <div class="chat-body">今月の実績をまとめました。<br><br>
+    ■ 友だち追加数<br>
+    ・SEO経由: 847人（先月比 +12%）<br>
+    ・アド経由: 403人（先月比 -3%）<br>
+    ・合計: 1,250人<br><br>
+    ■ 診断完了数<br>
+    ・全体: 892人<br>
+    ・診断率: 71.4%<br><br>
+    ■ MCV（マイクロコンバージョン）<br>
+    ・LP遷移数: 187回<br>
+    ・MCV率: 21.0%<br><br>
+    ■ CV（最終コンバージョン）<br>
+    ・CV数: 42件<br>
+    ・CVR: 3.4%<br><br>
+    ■ ジャンル別内訳<br>
+    ・医療脱毛: CV 15件（CVR 4.2%）<br>
+    ・包茎: CV 12件（CVR 3.1%）<br>
+    ・AGA: CV 8件（CVR 2.8%）<br>
+    ・医療ダイエット: CV 7件（CVR 2.9%）<br><br>
+    全体的に堅調な推移です。SEO経由の友だち追加が好調で…</div>
   </div>
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">長い<br>悪いとこだけでいい 全部出されても見る時間ないし</div>
+  <div class="chat-msg">
+    <div class="chat-user">ren</div>
+    <div class="chat-body">長い<br>悪いとこだけでいい 全部出されても見る時間ないし</div>
   </div>
-  <div class="msg">
-    <div class="msg-who ai">AI</div>
-    <div class="msg-body">
-      承知しました。悪化している指標のみ：<br><br>
-      ・アド経由の友だち追加: -3%（403人）<br>
-      ・MCV率が先月比で1.2pt低下
-    </div>
+  <div class="chat-memo">→ mind.md に自動追記: 「全指標を並べるな。悪化してるものだけ出せ」</div>
+  <div class="chat-msg">
+    <div class="chat-user ai">AI</div>
+    <div class="chat-body">承知しました。悪化している指標のみ：<br><br>
+    ・アド経由の友だち追加: -3%（403人）<br>
+    ・MCV率が先月比で1.2pt低下</div>
   </div>
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">なんで下がってんの</div>
+  <div class="chat-msg">
+    <div class="chat-user">ren</div>
+    <div class="chat-body">なんで下がってんの</div>
   </div>
-  <div class="msg">
-    <div class="msg-who ai">AI</div>
-    <div class="msg-body">申し訳ありません、原因まで分析していませんでした。スプレッドシートのデータを掘り下げます...</div>
+  <div class="chat-msg">
+    <div class="chat-user ai">AI</div>
+    <div class="chat-body">申し訳ありません、原因まで分析していませんでした。<br>スプレッドシートのデータを掘り下げて…</div>
   </div>
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">いや、最初からそこまで出してよ<br>数字だけ並べられても意味ないじゃん</div>
+  <div class="chat-msg">
+    <div class="chat-user">ren</div>
+    <div class="chat-body">いや、最初からそこまで出してよ<br>数字だけ並べられても意味ないじゃん</div>
   </div>
-  <div class="msg">
-    <div class="msg-who ai">AI</div>
-    <div class="msg-body">
-      おっしゃる通りです。<br><br>
-      MCV率低下の原因：<br>
-      ・医療ダイエットジャンルのMCV率が5.2%→2.8%に急落<br>
-      ・診断→LP遷移ボタンのCTRが低下<br>
-      ・3/5にボタンのデザイン変更があった時期と一致<br><br>
-      推奨：ボタンを3/5以前のデザインに戻す → ABテストで検証
-    </div>
+  <div class="chat-memo">→ mind.md に自動追記: 「数字だけ出すな。原因と対策をセットで」</div>
+  <div class="chat-msg">
+    <div class="chat-user ai">AI</div>
+    <div class="chat-body">おっしゃる通りです。<br><br>
+    MCV率低下の原因：<br>
+    ・医療ダイエットジャンルのMCV率が5.2%→2.8%に急落<br>
+    ・該当ジャンルの診断→LP遷移ボタンのCTRが低下<br>
+    ・3/5にボタンのデザイン変更があった時期と一致<br><br>
+    推奨アクション：<br>
+    ・ボタンを3/5以前のデザインに戻す<br>
+    ・ABテストで検証してから本適用</div>
   </div>
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">おけ</div>
+  <div class="chat-msg">
+    <div class="chat-user">ren</div>
+    <div class="chat-body">おけ</div>
   </div>
-</div>
-
-<div class="effect">
-  → mind.md に自動追記：「全指標ベタ出しNG。悪化のみ+原因+対策セットで出せ」
 </div>
 
 <div class="day-label">Day 3</div>
 
 <div class="chat">
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">またデータ見せて</div>
+  <div class="chat-msg">
+    <div class="chat-user">ren</div>
+    <div class="chat-body">またデータ見せて</div>
   </div>
-  <div class="msg">
-    <div class="msg-who ai">AI</div>
-    <div class="msg-body">
-      悪化指標（原因+対策セット）：<br><br>
-      ⚠ 医療ダイエット MCV率: 2.8%→2.4%（さらに悪化）<br>
-      原因: ボタン戻しがまだ反映されてない<br>
-      対策: 反映を確認<br><br>
-      ⚠ 包茎ジャンル 診断率: 78%→71%（-7pt）<br>
-      原因: 新記事経由の流入増 → 検索意図とのミスマッチ<br>
-      対策: 新記事のPU設定を確認<br><br>
-      好調指標もありますが出しますか？
-    </div>
+  <div class="chat-msg">
+    <div class="chat-user ai">AI</div>
+    <div class="chat-body">悪化指標のみ、原因と対策セットで出します。<br><br>
+    ⚠ 医療ダイエット MCV率: 2.8%→2.4%（さらに悪化）<br>
+    &nbsp;&nbsp;原因: ボタン戻しがまだ反映されてない<br>
+    &nbsp;&nbsp;対策: winut側の反映を確認<br><br>
+    ⚠ 包茎ジャンル 診断率: 78%→71%（-7pt）<br>
+    &nbsp;&nbsp;原因: 新記事経由のPUが増加 → 検索意図と診断テーマのミスマッチの可能性<br>
+    &nbsp;&nbsp;対策: 新記事のPU設定を確認<br><br>
+    好調指標もありますが出しますか？</div>
   </div>
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">好調は1行でいい</div>
+  <div class="chat-msg">
+    <div class="chat-user">ren</div>
+    <div class="chat-body">好調は1行でいい</div>
   </div>
-  <div class="msg">
-    <div class="msg-who ai">AI</div>
-    <div class="msg-body">✅ 好調: SEO友だち追加+15%推移、医療脱毛CVR 4.2%→4.8%</div>
+  <div class="chat-memo">→ mind.md に自動追記: 「好調指標は1行サマリーで十分」</div>
+  <div class="chat-msg">
+    <div class="chat-user ai">AI</div>
+    <div class="chat-body">✅ 好調: SEO友だち追加が引き続き+15%推移、医療脱毛CVRが4.2%→4.8%に改善</div>
   </div>
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">このフォーマットいいね<br>これ毎朝やるからコマンドにして</div>
+  <div class="chat-msg">
+    <div class="chat-user">ren</div>
+    <div class="chat-body">このフォーマットいいね<br>これ毎朝やるからスキルにして</div>
   </div>
-  <div class="msg">
-    <div class="msg-who ai">AI</div>
-    <div class="msg-body">
-      /morning-report を作成しました。<br><br>
-      ・悪化指標のみ抽出（原因+対策セット）<br>
-      ・好調は1行サマリー<br>
-      ・データソースはスプシから自動取得<br><br>
-      明日の朝から使えます。
-    </div>
-  </div>
-</div>
-
-<div class="effect">
-  → スキル自動生成。「コマンドにして」の一言だけ。
+  <div class="chat-memo">→ skills/morning-report/ が自動生成された</div>
 </div>
 
 <div class="day-label">Day 7</div>
 
 <div class="chat">
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">おはよう</div>
+  <div class="chat-msg">
+    <div class="chat-user">ren</div>
+    <div class="chat-body">おはよう</div>
   </div>
-  <div class="msg">
-    <div class="msg-who ai">AI</div>
-    <div class="msg-body">
-      おはようございます。<br><br>
-      <strong>━━ 異常検知 ━━</strong><br>
-      ⚠ 包茎ジャンル MCV率が3日連続低下<br>
-      &nbsp;&nbsp;2.1% → 1.9% → 1.7%<br>
-      &nbsp;&nbsp;原因: 結果ページのLP導線が先週の更新で崩れてる可能性<br>
-      &nbsp;&nbsp;対策: 結果ページのボタン表示を確認<br><br>
-      ⚠ AGA PU→友だち転換率が平均の半分（1.2% vs 2.4%）<br>
-      &nbsp;&nbsp;原因: PUクリエイティブがジャンルと合ってない<br>
-      &nbsp;&nbsp;対策: AGA用バナーに差し替え<br><br>
-      <strong>✅ 好調:</strong> 医療脱毛CVR 5.1%で過去最高更新<br><br>
-      今日のアクション提案：<br>
-      1. 包茎の結果ページ確認（緊急度：高）<br>
-      2. AGA PUバナー差し替え（緊急度：中）
-    </div>
+  <div class="chat-msg">
+    <div class="chat-user ai">AI</div>
+    <div class="chat-body">おはようございます。<br><br>
+    ━━ /morning-report ━━<br><br>
+    ⚠ 異常検知<br>
+    ・包茎ジャンル MCV率が3日連続低下<br>
+    &nbsp;&nbsp;2.1% → 1.9% → 1.7%<br>
+    &nbsp;&nbsp;原因: 診断結果ページのLP導線が先週の更新で崩れてる可能性<br>
+    &nbsp;&nbsp;対策: 結果ページのボタン表示を確認<br><br>
+    ⚠ 要注意<br>
+    ・AGA新記事のPU→友だち転換率が他ジャンルの半分（1.2% vs 平均2.4%）<br>
+    &nbsp;&nbsp;原因: PUのクリエイティブがジャンルと合ってない可能性<br>
+    &nbsp;&nbsp;対策: AGA用のPUバナーに差し替え<br><br>
+    ✅ 好調: 医療脱毛CVR 5.1%で過去最高更新<br><br>
+    今日のアクション提案：<br>
+    1. 包茎の結果ページ確認（緊急度：高）<br>
+    2. AGA PUバナー差し替え依頼（緊急度：中）</div>
   </div>
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">2は来週でいい。1だけ今日やる</div>
+  <div class="chat-msg">
+    <div class="chat-user">ren</div>
+    <div class="chat-body">2は来週でいい。1だけ今日やる</div>
   </div>
-  <div class="msg">
-    <div class="msg-who ai">AI</div>
-    <div class="msg-body">了解。2は来週タスクに入れておきます。</div>
+  <div class="chat-msg">
+    <div class="chat-user ai">AI</div>
+    <div class="chat-body">了解。2は来週タスクに入れておきます。</div>
   </div>
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">あとさ、毎回「おはようございます」いらない<br>データだけ出して</div>
+  <div class="chat-msg">
+    <div class="chat-user">ren</div>
+    <div class="chat-body">あとさ、毎回「おはようございます」いらない<br>データだけ出して</div>
   </div>
-</div>
-
-<div class="effect">
-  → mind.md に自動追記：「挨拶不要。データから始めろ」
+  <div class="chat-memo">→ mind.md に自動追記: 「挨拶不要。データから始めろ」</div>
 </div>
 
 <div class="day-label">Day 14</div>
 
 <div class="chat">
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">おはよう</div>
+  <div class="chat-msg">
+    <div class="chat-user">ren</div>
+    <div class="chat-body">おはよう</div>
   </div>
-  <div class="msg">
-    <div class="msg-who ai">AI</div>
-    <div class="msg-body">
-      <strong>━━ /morning-report ━━</strong><br><br>
-      ⚠ 異常検知: なし<br><br>
-      ⚠ 要注意<br>
-      ・医療ダイエット 今月CV3件（目標10件、達成率30%、残り16日）<br>
-      &nbsp;&nbsp;原因: 流入自体が少ない（SEO記事の順位低下）<br>
-      &nbsp;&nbsp;対策: 「医療ダイエット おすすめ」の記事リライト<br><br>
-      ✅ 好調: 包茎CVR回復、AGA PU差替え効果あり（1.2%→2.6%）<br><br>
-      先週入れたタスク：<br>
-      ・AGA PUバナー差し替え → ✅完了済み
-    </div>
-  </div>
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">いいね</div>
+  <div class="chat-msg">
+    <div class="chat-user ai">AI</div>
+    <div class="chat-body">━━ /morning-report ━━<br><br>
+    ⚠ 異常検知: なし<br><br>
+    ⚠ 要注意<br>
+    ・医療ダイエット 今月CV3件（目標10件に対して達成率30%、残り16日）<br>
+    &nbsp;&nbsp;原因: 診断→MCV導線は改善済み。流入自体が少ない（SEO記事の順位低下）<br>
+    &nbsp;&nbsp;対策: 「医療ダイエット おすすめ」の記事をリライト<br><br>
+    ✅ 好調: 包茎CVR回復、AGA PU差し替え効果あり（転換率 1.2%→2.6%）<br><br>
+    先週入れた来週タスク:<br>
+    ・AGA PUバナー差し替え → ✅完了済み</div>
   </div>
 </div>
 
 <div class="result-box">
-  <div class="result-title">14日間の変化</div>
-  <ul>
-    <li><strong>Day 1:</strong> 全指標ベタ出し、原因なし、20行の長文</li>
-    <li><strong>Day 3:</strong> 悪化のみ+原因+対策。好調1行。スキル化</li>
-    <li><strong>Day 7:</strong> 異常検知が自動。アクション提案つき</li>
-    <li><strong>Day 14:</strong> 挨拶すら消えた。未完了タスクの追跡もしてる</li>
-  </ul>
+  <h3>14日間の変化</h3>
+  <p>Day 1: 全指標ベタ出し、原因なし、20行<br>
+  Day 3: 悪化のみ+原因+対策、好調1行<br>
+  Day 7: 異常検知が自動、アクション提案つき<br>
+  Day 14: 挨拶すら消えた。未完了タスクの追跡もしてる</p>
+  <p style="margin-top: 0.8rem;"><strong>renがやったことは「ダメ出し」だけ。</strong></p>
 </div>
 
-<!-- ============ Case 2 ============ -->
-
-<div class="case-header" id="c2">
-  <div class="case-num">Case 2</div>
-  <div class="case-title">「見積もり作って」が先回り確認まで育つまで</div>
-  <div class="case-desc">Web制作会社 / ディレクター</div>
-</div>
+<!-- ===== CASE 2 ===== -->
+<h2>Case 2: 「見積もり作って」→ 先回りする担当者に化けた</h2>
+<p>Web制作会社の経理担当の例。</p>
 
 <div class="day-label">Day 1</div>
 
 <div class="chat">
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">A社の見積もり作って<br>Webサイトリニューアル、300万くらい</div>
+  <div class="chat-msg">
+    <div class="chat-user">あなた</div>
+    <div class="chat-body">A社の見積もり作って。Webサイトリニューアル、だいたい300万くらい</div>
   </div>
-  <div class="msg">
-    <div class="msg-who ai">AI</div>
-    <div class="msg-body">
-      見積書を作成しました。<br><br>
-      <strong>項目: Webサイトリニューアル一式 ¥3,000,000</strong>
-    </div>
+  <div class="chat-msg">
+    <div class="chat-user ai">AI</div>
+    <div class="chat-body">見積書を作成しました。<br><br>項目: Webサイトリニューアル一式 ¥3,000,000</div>
   </div>
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">いや一式ってなに<br>ちゃんと内訳分けて。デザイン、コーディング、ディレクション費は別立て<br>うちはいつもそうしてる</div>
+  <div class="chat-msg">
+    <div class="chat-user">あなた</div>
+    <div class="chat-body">いや、ちゃんと内訳分けて。デザイン、コーディング、ディレクション費は別立て。うちはいつもそうしてる</div>
   </div>
-  <div class="msg">
-    <div class="msg-who ai">AI</div>
-    <div class="msg-body">
-      修正しました。<br><br>
-      ・ディレクション費: ¥450,000<br>
-      ・デザイン: ¥1,200,000<br>
-      ・コーディング: ¥1,050,000<br>
-      ・テスト/検証: ¥300,000<br>
-      ──────────<br>
-      合計: ¥3,000,000
-    </div>
+  <div class="chat-memo">→ mind.md に自動追記: 「見積もりは必ず工程別に内訳を分ける」</div>
+  <div class="chat-msg">
+    <div class="chat-user ai">AI</div>
+    <div class="chat-body">修正しました。<br><br>
+    ・ディレクション費: ¥450,000<br>
+    ・デザイン: ¥1,200,000<br>
+    ・コーディング: ¥1,050,000<br>
+    ・テスト/検証: ¥300,000</div>
   </div>
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">テストは「検収」って書いて。うちそう呼んでるから</div>
+  <div class="chat-msg">
+    <div class="chat-user">あなた</div>
+    <div class="chat-body">おけ</div>
   </div>
-  <div class="msg">
-    <div class="msg-who ai">AI</div>
-    <div class="msg-body">了解です。「検収」に変更しました。</div>
-  </div>
-</div>
-
-<div class="effect">
-  → mind.md:「見積もりは工程別内訳必須。一式NG」「テスト→検収と呼ぶ」
 </div>
 
 <div class="day-label">Day 5</div>
 
 <div class="chat">
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">B社の見積もりも。LP制作、150万</div>
+  <div class="chat-msg">
+    <div class="chat-user">あなた</div>
+    <div class="chat-body">B社の見積もりも作って。LP制作、150万</div>
   </div>
-  <div class="msg">
-    <div class="msg-who ai">AI</div>
-    <div class="msg-body">
-      A社の比率を参考に内訳分けました：<br><br>
-      ・ディレクション費: ¥225,000（15%）<br>
-      ・デザイン: ¥600,000（40%）<br>
-      ・コーディング: ¥525,000（35%）<br>
-      ・検収: ¥150,000（10%）<br>
-      ──────────<br>
-      合計: ¥1,500,000<br><br>
-      金額調整ありますか？
-    </div>
+  <div class="chat-msg">
+    <div class="chat-user ai">AI</div>
+    <div class="chat-body">前回の構成に合わせて内訳分けました：<br><br>
+    ・ディレクション費: ¥225,000<br>
+    ・デザイン: ¥600,000<br>
+    ・コーディング: ¥450,000<br>
+    ・テスト/検証: ¥225,000<br><br>
+    A社の時の比率を参考にしてます。金額調整ありますか？</div>
   </div>
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">LPはコーディング軽いからデザイン多めにして<br>デザイン50%、コーディング25%</div>
-  </div>
-  <div class="msg">
-    <div class="msg-who ai">AI</div>
-    <div class="msg-body">
-      修正：<br><br>
-      ・ディレクション費: ¥225,000（15%）<br>
-      ・デザイン: ¥750,000（50%）<br>
-      ・コーディング: ¥375,000（25%）<br>
-      ・検収: ¥150,000（10%）
-    </div>
-  </div>
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">おけ</div>
-  </div>
+  <div class="chat-memo">→ もう「一式」とは書かない。A社のデータを覚えてて参考にしてる</div>
 </div>
 
-<div class="effect">
-  → memory.md:「LP案件はデザイン比率高め（50%）、コーディング低め（25%）」<br>
-  → もう一式とは書かない。前回のデータも覚えてる。
-</div>
-
-<div class="day-label">Day 12</div>
+<div class="day-label">Day 20</div>
 
 <div class="chat">
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">C社、ECサイト。見積もり</div>
+  <div class="chat-msg">
+    <div class="chat-user">あなた</div>
+    <div class="chat-body">C社、ECサイト。見積もり</div>
   </div>
-  <div class="msg">
-    <div class="msg-who ai">AI</div>
-    <div class="msg-body">
-      ECサイトなので通常のサイト制作に加えて確認です：<br><br>
-      ・決済システム連携は入れますか？（Stripe? GMOペイメント?）<br>
-      ・商品点数はどのくらい？（テンプレ構成が変わる）<br>
-      ・保守/運用費は見積もりに入れますか？<br>
-      ・前回のA社みたいに検収まで含めますか？<br><br>
-      あとC社ってクレジットカード扱いますよね。PCI DSS対応の費用は別途にした方がいいかもしれません。
-    </div>
+  <div class="chat-msg">
+    <div class="chat-user ai">AI</div>
+    <div class="chat-body">ECサイトなので決済機能が入りますね。過去の見積もりにないので確認：<br><br>
+    ・決済システム連携の費用感は別途ですか？<br>
+    ・保守費用も入れますか？</div>
   </div>
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">お前いつの間にそんな気が利くようになったの</div>
-  </div>
-</div>
-
-<div class="effect">
-  → knowledge/tips.md に昇格済み:「EC案件は決済・保守・PCI DSS対応を必ず確認」
+  <div class="chat-memo">→ knowledge/tips.md: 「ECは決済・保守を必ず確認」が昇格済み → 聞かれる前に聞いてくる</div>
 </div>
 
 <div class="result-box">
-  <div class="result-title">12日間の変化</div>
-  <ul>
-    <li><strong>Day 1:</strong>「一式 300万」。何も知らない</li>
-    <li><strong>Day 5:</strong> 過去の比率を覚えてて自分で内訳を提案</li>
-    <li><strong>Day 12:</strong> 聞かれる前にECの注意点を先回り確認</li>
-  </ul>
+  <h3>20日間の変化</h3>
+  <p>Day 1: 「一式 300万」で出してきた<br>
+  Day 5: 内訳自動、過去データ参照<br>
+  Day 20: 初見のパターンを検知して先回りで確認</p>
+  <p style="margin-top: 0.8rem;"><strong>「雑な依頼の処理係」が「先回りして確認してくる担当者」に化けた。</strong></p>
 </div>
 
-<!-- ============ Case 3 ============ -->
-
-<div class="case-header" id="c3">
-  <div class="case-num">Case 3</div>
-  <div class="case-title">「これチェックして」が専属SEO担当に化けるまで</div>
-  <div class="case-desc">メディア運営 / SEO担当</div>
-</div>
+<!-- ===== CASE 3 ===== -->
+<h2>Case 3: 「記事チェックして」→ 「これ」だけで全部出る</h2>
+<p>SEO担当者の例。</p>
 
 <div class="day-label">Day 1</div>
 
 <div class="chat">
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">この記事レビューして<br>（files/に記事のスクショを配置）</div>
+  <div class="chat-msg">
+    <div class="chat-user">あなた</div>
+    <div class="chat-body">この記事レビューして（URL貼り付け）</div>
   </div>
-  <div class="msg">
-    <div class="msg-who ai">AI</div>
-    <div class="msg-body">
-      記事をレビューしました。<br><br>
-      ・文字数: 3,200字<br>
-      ・見出し構成は適切です<br>
-      ・誤字脱字は見つかりませんでした<br><br>
-      全体的に良い記事だと思います。
-    </div>
+  <div class="chat-msg">
+    <div class="chat-user ai">AI</div>
+    <div class="chat-body">記事をレビューしました。<br>
+    ・文字数: 3,200字<br>
+    ・見出し構成は適切です<br>
+    ・誤字脱字は見つかりませんでした<br>
+    全体的に良い記事だと思います。</div>
   </div>
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">いやいやいや<br>SEO的にどうなのよ<br>タイトルにKW入ってるか、H2の構成、内部リンク<br>文章の良し悪しとかどうでもいい そっちが見たいの</div>
+  <div class="chat-msg">
+    <div class="chat-user">あなた</div>
+    <div class="chat-body">いやいやSEO的にどうなのよ。タイトルにKW入ってるか、H2の構成、内部リンク。そっちが見たいの</div>
   </div>
-  <div class="msg">
-    <div class="msg-who ai">AI</div>
-    <div class="msg-body">
-      失礼しました。SEO観点でレビューし直します：<br><br>
-      ⚠ タイトル: メインKW「医療脱毛 おすすめ」が32文字目 → 先頭に寄せるべき<br>
-      ⚠ H2: サジェストKW「医療脱毛 安い」が見出しに入ってない<br>
-      ✅ 内部リンク: 関連記事3本に設置済み<br>
-      ✅ メタディスクリプション: KW含有OK
-    </div>
-  </div>
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">そうそう。最初からこれで頼む</div>
-  </div>
-</div>
-
-<div class="effect">
-  → mind.md:「記事レビュー = SEO観点。文章品質ではない。チェック項目: タイトルKW位置、H2構成、内部リンク、メタディスクリプション」
+  <div class="chat-memo">→ mind.md に自動追記: 「記事レビュー = SEO観点。文章の良し悪しじゃない」</div>
 </div>
 
 <div class="day-label">Day 4</div>
 
 <div class="chat">
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">これも見て<br>（files/に別の記事のスクショ）</div>
+  <div class="chat-msg">
+    <div class="chat-user">あなた</div>
+    <div class="chat-body">これもレビューして</div>
   </div>
-  <div class="msg">
-    <div class="msg-who ai">AI</div>
-    <div class="msg-body">
-      SEOチェック：<br><br>
-      ✅ タイトル: 「AGA おすすめ クリニック」先頭OK<br>
-      ⚠ H2: 「費用」セクションがない。サジェストに「AGA 費用」あり<br>
-      ⚠ 内部リンク: 関連記事が1本のみ → 最低3本推奨<br>
-      ✅ メタディスクリプション: OK
-    </div>
+  <div class="chat-msg">
+    <div class="chat-user ai">AI</div>
+    <div class="chat-body">SEOチェック結果：<br><br>
+    ⚠ タイトル: メインKW「医療脱毛 おすすめ」が後ろすぎる（32文字目）→ 先頭に寄せるべき<br>
+    ⚠ H2: サジェストKW「医療脱毛 安い」が見出しに入ってない<br>
+    ✅ 内部リンク: 関連記事3本に設置済み<br>
+    ✅ メタディスクリプション: KW含有OK</div>
   </div>
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">あとさ、上位の競合記事と比較して<br>うちに足りないトピックも出してよ</div>
+  <div class="chat-msg">
+    <div class="chat-user">あなた</div>
+    <div class="chat-body">競合の記事と比較して足りないトピックもチェックして</div>
   </div>
-  <div class="msg">
-    <div class="msg-who ai">AI</div>
-    <div class="msg-body">
-      上位3記事と比較しました。<br><br>
-      うちにないトピック：<br>
-      ・「AGA治療の副作用」セクション（上位3記事中3記事にあり）<br>
-      ・「オンライン診療対応」の比較表（上位2記事にあり）<br>
-      ・「治療期間の目安」セクション（上位2記事にあり）<br><br>
-      特に「副作用」は全記事にあるので追加推奨です。
-    </div>
-  </div>
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">いいねこのチェック<br>今後全部これでやって</div>
-  </div>
-</div>
-
-<div class="effect">
-  → mind.md に追記:「記事レビューには競合比較を標準で含める」
-</div>
-
-<div class="day-label">Day 8</div>
-
-<div class="chat">
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">医療脱毛の記事、タイトル変えたんだけど順位見て</div>
-  </div>
-  <div class="msg">
-    <div class="msg-who ai">AI</div>
-    <div class="msg-body">
-      確認しました。変更後3日ですが、まだ順位が安定してません（12位→18位→15位）。<br><br>
-      前回この記事のタイトルを変えた時も、安定まで2週間かかりました。もう少し様子見ましょうか？
-    </div>
-  </div>
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">だよね。もうちょい待つ</div>
-  </div>
-</div>
-
-<div class="day-label">Day 10</div>
-
-<div class="chat">
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">やっぱタイトル変えよう。「最新版」って入れたい</div>
-  </div>
-  <div class="msg">
-    <div class="msg-who ai">AI</div>
-    <div class="msg-body">
-      ちょっと待ってください。<br><br>
-      前回のタイトル変更からまだ5日です。前に2週間待った方がいいって話しましたよね？<br><br>
-      安定前に再変更すると順位が読めなくなります。あと9日待ちませんか？<br><br>
-      リマインダー入れておきましょうか？
-    </div>
-  </div>
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">あー確かに。待つ。リマインダー頼む</div>
-  </div>
-</div>
-
-<div class="effect">
-  → knowledge/mistakes.md に昇格済み:「タイトル変更後2週間は再変更NG。順位安定前に触ると逆効果」<br>
-  → ユーザーが自分で言ったルールを、ユーザー自身が破りそうな時に止めてくれる
+  <div class="chat-memo">→ mind.md に自動追記: 「競合比較も標準でやれ」</div>
 </div>
 
 <div class="day-label">Day 15</div>
 
 <div class="chat">
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">これ</div>
+  <div class="chat-msg">
+    <div class="chat-user">あなた</div>
+    <div class="chat-body">これ</div>
   </div>
-  <div class="msg">
-    <div class="msg-who ai">AI</div>
-    <div class="msg-body">
-      SEO + 競合分析：<br><br>
-      ⚠ 競合上位に「口コミ」セクションあり（3記事中2記事）→ 追加推奨<br>
-      ⚠ 内部リンク2本 → あと1本追加推奨（「AGA 費用」記事がある）<br>
-      ✅ タイトルKW位置: OK<br>
-      ✅ H2: サジェスト反映済み<br>
-      ✅ メタディスクリプション: OK<br><br>
-      ちなみに医療脱毛の記事、タイトル変更から12日経ちました。あと2日で2週間です。順位は15位→11位で回復傾向です。
-    </div>
+  <div class="chat-msg">
+    <div class="chat-user ai">AI</div>
+    <div class="chat-body">SEO + 競合分析結果：<br><br>
+    ⚠ 競合上位3記事にある「副作用」のセクションがない → 追加推奨<br>
+    ⚠ 前回のタイトル変更（記事B）はまだ2週間経ってません。順位安定前の再変更はNGでしたよね？<br>
+    ✅ タイトルKW位置: OK<br>
+    ✅ H2にサジェスト反映済み</div>
   </div>
-  <div class="msg">
-    <div class="msg-who user">あなた</div>
-    <div class="msg-body">「これ」だけで全部出てくるのやばいな</div>
-  </div>
+  <div class="chat-memo">→ knowledge/mistakes.md: 「タイトル変更後2週間は触るな」が適用された</div>
 </div>
 
 <div class="result-box">
-  <div class="result-title">15日間の変化</div>
-  <ul>
-    <li><strong>Day 1:</strong>「文章いいですね」。SEO関係ない。使えない</li>
-    <li><strong>Day 4:</strong> SEOチェック+競合比較が標準化</li>
-    <li><strong>Day 10:</strong> ユーザーの過去のルールを使って止めてくれる</li>
-    <li><strong>Day 15:</strong>「これ」の一言で全部。別件のリマインドも自動</li>
-  </ul>
+  <h3>15日間の変化</h3>
+  <p>Day 1: 「良い記事ですね」（使えない）<br>
+  Day 4: SEOチェック + 競合分析<br>
+  Day 15: 「これ」の一言で全部出る。過去の失敗を踏まえた警告まで</p>
+  <p style="margin-top: 0.8rem;"><strong>「これ」の一言で全部わかるAIになった。</strong></p>
 </div>
 
-<!-- ============ Takeaway ============ -->
+<hr>
 
-<div class="takeaway">
-  <p>3つのケースに共通すること</p>
-  <strong>ユーザーがやったのは「ダメ出し」だけ。</strong>
-  <p style="margin-top: 0.8rem;">設定ファイルを書いたわけでもない。<br>
-  特別なコマンドを覚えたわけでもない。<br>
-  普通に仕事して、違ったら「違う」と言っただけ。<br><br>
-  <strong>それだけで、2週間後には自分専用のAIができてる。</strong></p>
+<div class="callout">
+  <p><strong>3つのケースに共通すること：</strong></p>
+  <p>最初はみんな雑。「見て」「作って」「これ」。<strong>それでいい。</strong><br>
+  ダメ出しするたびに精度が上がる。それが「育つ」ということ。<br><br>
+  <strong>1ヶ月後には「この子たちやっぱ新人やなあ…」が「もう俺より詳しいな」に変わる。</strong></p>
 </div>
 
-<p style="text-align: center; color: #888; font-size: 0.85rem; margin-top: 3rem;">
-  Claude Code Starter Kit — Case Studies
+<hr>
+
+<p style="text-align: center;"><a href="guide.html" style="color: #1976d2; text-decoration: none; font-weight: 600;">← ガイドに戻る</a></p>
+
+<p style="text-align: center; color: #888; font-size: 0.85rem; margin-top: 2rem;">
+  Claude Code Starter Kit — by ren
 </p>
 
 </body>
