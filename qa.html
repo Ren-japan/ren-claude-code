@@ -402,6 +402,173 @@
   その時に増やせばいい。<strong>「もう1人雇おう」の感覚で。</strong></p>
 </div>
 
+<!-- ===== コミュニケーションリスト ===== -->
+<div class="q-box">Q. AIとどう話せばいい？使えるフレーズ集</div>
+
+<p>特別な言い方は不要。でも<strong>「こう言うと育ちが早い」パターン</strong>がある。<br>
+クリックで具体的な会話例が見れます。</p>
+
+<style>
+  details { margin: 0.8rem 0; }
+  summary {
+    background: #fff; border: 1px solid #e0e0e0; border-radius: 8px;
+    padding: 0.8rem 1.2rem; cursor: pointer; font-weight: 600; font-size: 0.92rem;
+    color: #333; list-style: none;
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::before { content: "▶ "; color: #1976d2; }
+  details[open] summary::before { content: "▼ "; }
+  details[open] summary { border-radius: 8px 8px 0 0; border-bottom: none; }
+  .detail-body {
+    background: #fff; border: 1px solid #e0e0e0; border-top: none;
+    border-radius: 0 0 8px 8px; padding: 1rem 1.2rem;
+  }
+  .phrase { color: #1976d2; font-weight: 700; font-size: 0.95rem; }
+  .detail-body .chat { margin: 0.8rem 0; }
+</style>
+
+<details>
+  <summary>うまくいった → 「次からこれデフォルトにして」</summary>
+  <div class="detail-body">
+    <p>良いアウトプットが出たら、それを<strong>次回以降の標準にさせる</strong>。黙ってると次回もゼロからやり直す。</p>
+    <div class="chat">
+      <div class="chat-msg">
+        <div class="chat-user ai">AI</div>
+        <div class="chat-body">（いい感じのレポートが出てくる）</div>
+      </div>
+      <div class="chat-msg">
+        <div class="chat-user">あなた</div>
+        <div class="chat-body"><span class="phrase">このフォーマットいいね。次からレポートはこの形式でデフォルトにして</span></div>
+      </div>
+      <div class="chat-memo">→ mind.md に「レポートは〇〇形式で出す」が追記される。次回から自動</div>
+    </div>
+  </div>
+</details>
+
+<details>
+  <summary>毎回同じ指示してる → 「次からどうするの？」</summary>
+  <div class="detail-body">
+    <p>同じことを2回言ったら、<strong>AIに自分で気づかせる</strong>。</p>
+    <div class="chat">
+      <div class="chat-msg">
+        <div class="chat-user">あなた</div>
+        <div class="chat-body">また内部リンク忘れてるじゃん。<span class="phrase">これ毎回言ってるけど、次からどうするの？</span></div>
+      </div>
+      <div class="chat-msg">
+        <div class="chat-user ai">AI</div>
+        <div class="chat-body">すみません。mind.mdに「記事チェック時は内部リンクを必ず確認する」を追記しました。</div>
+      </div>
+      <div class="chat-memo">→ 自分で学習ルールを書かせる。二度と忘れない</div>
+    </div>
+  </div>
+</details>
+
+<details>
+  <summary>的外れ → 「そうじゃなくて」+ 正解を教える</summary>
+  <div class="detail-body">
+    <p>「違う」だけだとAIは何が悪かったかわからない。<strong>正解をセットで教える</strong>と精度が上がる。</p>
+    <div class="chat">
+      <div class="chat-msg">
+        <div class="chat-user ai">AI</div>
+        <div class="chat-body">記事の文章力を改善するには、接続詞を減らして…</div>
+      </div>
+      <div class="chat-msg">
+        <div class="chat-user">あなた</div>
+        <div class="chat-body"><span class="phrase">そうじゃなくて、SEO的に見てほしいの。タイトル、H2、内部リンク。文章の良し悪しはどうでもいい</span></div>
+      </div>
+      <div class="chat-memo">→ mind.md: 「記事チェック = SEO観点。文章の良し悪しではない」</div>
+    </div>
+  </div>
+</details>
+
+<details>
+  <summary>長すぎる → 「3行で」「結論だけ」</summary>
+  <div class="detail-body">
+    <p>一番多いダメ出し。<strong>一度言えば次から短くなる。</strong></p>
+    <div class="chat">
+      <div class="chat-msg">
+        <div class="chat-user ai">AI</div>
+        <div class="chat-body">（長い分析が20行続く…）</div>
+      </div>
+      <div class="chat-msg">
+        <div class="chat-user">あなた</div>
+        <div class="chat-body"><span class="phrase">長い。結論だけ先に。詳細は聞かれたら出して</span></div>
+      </div>
+      <div class="chat-memo">→ mind.md: 「結論ファースト。詳細は要求されたら出す」</div>
+    </div>
+  </div>
+</details>
+
+<details>
+  <summary>自分で判断してほしい → 「聞くな、自分で判断して」</summary>
+  <div class="detail-body">
+    <p>AIが「どうしますか？」と聞いてばかりの時。<strong>判断基準を教えれば自分で動くようになる。</strong></p>
+    <div class="chat">
+      <div class="chat-msg">
+        <div class="chat-user ai">AI</div>
+        <div class="chat-body">タイトルを変更しますか？それとも現状のままでいいですか？</div>
+      </div>
+      <div class="chat-msg">
+        <div class="chat-user">あなた</div>
+        <div class="chat-body"><span class="phrase">そのくらい自分で判断して。順位下がってるなら変えるでしょ。迷ったら変えろ。明らかにダメな時だけ聞いて</span></div>
+      </div>
+      <div class="chat-memo">→ mind.md: 「判断できることは自分で判断。迷ったら変える。確認は致命的な時だけ」</div>
+    </div>
+  </div>
+</details>
+
+<details>
+  <summary>作業をコマンド化したい → 「これ毎回やるからスキルにして」</summary>
+  <div class="detail-body">
+    <p>繰り返しやる作業は、<strong>一言でスキル化できる。</strong></p>
+    <div class="chat">
+      <div class="chat-msg">
+        <div class="chat-user">あなた</div>
+        <div class="chat-body"><span class="phrase">このチェック、毎回やるからスキルにして。「/seo-check」で呼べるようにして</span></div>
+      </div>
+      <div class="chat-msg">
+        <div class="chat-user ai">AI</div>
+        <div class="chat-body">/seo-check スキルを作成しました。<br>タイトルKW・H2サジェスト・内部リンク・競合比較を自動でチェックします。</div>
+      </div>
+      <div class="chat-memo">→ 次から「/seo-check」の一言で全部動く</div>
+    </div>
+  </div>
+</details>
+
+<details>
+  <summary>事実を覚えさせたい → そのまま教えるだけ</summary>
+  <div class="detail-body">
+    <p>「覚えて」と言わなくてもいい。<strong>事実を教えればAIが自動で記録する。</strong></p>
+    <div class="chat">
+      <div class="chat-msg">
+        <div class="chat-user">あなた</div>
+        <div class="chat-body"><span class="phrase">A社の担当は田中さんね。あとうちの記事は3000字以上が基準</span></div>
+      </div>
+      <div class="chat-memo">→ memory.md に自動記録。次にA社や記事の話が出たら反映される</div>
+    </div>
+  </div>
+</details>
+
+<details>
+  <summary>禁止事項を追加 → 理由もセットで</summary>
+  <div class="detail-body">
+    <p>「やるな」だけより、<strong>理由をセットで教えると二度と繰り返さない。</strong></p>
+    <div class="chat">
+      <div class="chat-msg">
+        <div class="chat-user">あなた</div>
+        <div class="chat-body"><span class="phrase">タイトル変更した後は2週間触るな。順位が安定する前に再変更すると逆効果だから</span></div>
+      </div>
+      <div class="chat-memo">→ knowledge/mistakes.md: 「タイトル変更後2週間は再変更NG（順位安定前の変更は逆効果）」</div>
+    </div>
+  </div>
+</details>
+
+<div class="callout green">
+  <p><strong>共通ルール：思ったことをそのまま言うだけ。</strong></p>
+  <p>特別な言い方も、特別なコマンドもいらない。<br>
+  違和感があったら遠慮なく言う。<strong>ダメ出しは最高の教育。</strong></p>
+</div>
+
 <hr>
 
 <p style="text-align: center;">
