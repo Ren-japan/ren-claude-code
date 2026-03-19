@@ -84,6 +84,20 @@
     <p><strong>デスクトップ版とVS Code版、両方インストールしてください。</strong><br>
     勉強会ではVS Code版をメインで使いますが、デスクトップ版も入れておくと便利です。</p>
 
+    <div class="callout" style="background: #fce4ec; border-color: #c62828;">
+      <p><strong>⚠ Windowsの方は先にこれをやってください</strong></p>
+      <p>Claude Code は <strong>Git Bash</strong> が必須です。</p>
+      <ol style="margin: 0.5rem 0 0.3rem 1.2rem;">
+        <li><a href="https://git-scm.com/downloads/win" target="_blank">git-scm.com/downloads/win</a> から Git for Windows をダウンロード</li>
+        <li>インストール時に<strong>「Add to PATH」にチェック</strong>を入れる</li>
+        <li>インストール完了後、VS Code を再起動</li>
+      </ol>
+      <p style="margin-top: 0.5rem;"><strong>インストール済みなのにエラーが出る場合：</strong><br>
+      PATHに通ってない可能性あり。Windowsの「システム環境変数の編集」→「環境変数」→「新規」で以下を追加：<br>
+      <code>CLAUDE_CODE_GIT_BASH_PATH</code> = <code>C:\Program Files\Git\bin\bash.exe</code><br>
+      設定後、VS Code を再起動。</p>
+    </div>
+
     <div class="tab-container">
       <div class="tab active" onclick="switchTab('vscode')">VS Code版（おすすめ）</div>
       <div class="tab" onclick="switchTab('desktop')">デスクトップ版</div>
