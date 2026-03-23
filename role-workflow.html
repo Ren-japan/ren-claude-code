@@ -466,6 +466,72 @@
 <div class="flow-note">週次は全ロール使う。データ収集（CIO）→ 整形・判定（CEO）→ 来週アクション（CMO）→ 入力（CEO）。renは確認だけ。</div>
 </div>
 
+<!-- 裏側セクション -->
+<style>
+  .behind-grid {
+    display: grid; grid-template-columns: auto 1fr auto; gap: 0;
+    margin: 1.5rem 0; border: 1px solid #e0e0e0; border-radius: 10px; overflow: hidden;
+  }
+  .behind-row {
+    display: contents;
+  }
+  .behind-row:not(:last-child) .behind-need,
+  .behind-row:not(:last-child) .behind-said,
+  .behind-row:not(:last-child) .behind-who {
+    border-bottom: 1px solid #eee;
+  }
+  .behind-need {
+    background: #f5f5f5; padding: 0.8rem 1rem; font-size: 0.85rem; color: #666;
+    display: flex; align-items: center;
+  }
+  .behind-said {
+    background: #fff; padding: 0.8rem 1.2rem; font-size: 0.9rem; color: #333;
+    display: flex; align-items: center;
+  }
+  .behind-said strong { color: #1976d2; }
+  .behind-who {
+    padding: 0.8rem 1rem; font-size: 0.8rem; font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .behind-who.cto { background: #e8f5e9; color: #2e7d32; }
+  .behind-who.auto { background: #f3e5f5; color: #7b1fa2; }
+  .behind-arrow { text-align: center; color: #1976d2; font-size: 1.5rem; margin: 0.3rem 0; }
+</style>
+
+<h4 style="margin-top: 2rem;">裏側：これを実現するのに何が必要だった？</h4>
+
+<p>難しそうに見えるけど、<strong>renが技術的なことをやったことは一度もない。</strong><br>
+全部「〇〇して」と言っただけ。</p>
+
+<div class="behind-grid">
+  <div class="behind-row">
+    <div class="behind-need">📊 スプシの読み書き</div>
+    <div class="behind-said"><strong>「このスプシ読み書きできるようにして」</strong></div>
+    <div class="behind-who cto">→ CTO</div>
+  </div>
+  <div class="behind-row">
+    <div class="behind-need">🗄️ BQデータ取得</div>
+    <div class="behind-said"><strong>「BQのデータ使えるようにして」</strong></div>
+    <div class="behind-who cto">→ CTO</div>
+  </div>
+  <div class="behind-row">
+    <div class="behind-need">📋 レポートフォーマット</div>
+    <div class="behind-said"><strong>「前回と同じ形式で」</strong>（2回目から自動）</div>
+    <div class="behind-who auto">→ 自動記憶</div>
+  </div>
+  <div class="behind-row">
+    <div class="behind-need">🔄 毎週の定型作業</div>
+    <div class="behind-said"><strong>「これ毎週やるからスキルにして」</strong></div>
+    <div class="behind-who cto">→ CTO</div>
+  </div>
+</div>
+
+<div class="callout">
+  <p><strong>renがやったことは「〇〇して」と言っただけ。</strong></p>
+  <p>API連携もデータパイプラインもスキル化も、全部CTOが勝手にやった。<br>
+  技術的な知識はゼロでいい。「こうなったら嬉しい」を言えればいい。</p>
+</div>
+
 <div class="callout green">
   <p><strong>まとめ：振り方の判断基準</strong></p>
   <p>・データが必要 → <span class="tag blue">CIO</span><br>
