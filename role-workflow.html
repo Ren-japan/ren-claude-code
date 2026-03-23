@@ -430,6 +430,42 @@
 <div class="flow-note">CEOはコードを触らない。過去に触って壊した経験がある。</div>
 </div>
 
+<div class="flow-box">
+<h4>パターン6：週次資料 — 全ロール連携</h4>
+<div class="flow-trigger">ren：「週次資料入力して欲しい今週分」</div>
+<div class="flow">
+  <div class="flow-step">
+    <span class="flow-label ceo">CEO</span>
+    <div class="flow-content">「報告フォーマットに今週のデータを埋める仕事」<br>→ まずCIOに今週のデータ全量を出させる</div>
+  </div>
+  <div class="flow-step">
+    <span class="flow-label cio">CIO</span>
+    <div class="flow-content">今週分のデータ収集・集計<br><strong>友だち数・売上・CVR・ジャンル別内訳・施策効果を全量出す</strong></div>
+  </div>
+  <div class="flow-step">
+    <span class="flow-label ceo">CEO</span>
+    <div class="flow-content">CIOのデータを受け取り、報告フォーマットに整形<br>→ 前週比・GOAL進捗率を計算<br>→ 「好調/悪化」の判定をつける</div>
+  </div>
+  <div class="flow-step">
+    <span class="flow-label ceo">CEO</span>
+    <div class="flow-content">来週のアクションプランが必要 → CMOに施策提案を依頼<br>「悪化してるジャンルの改善案出して」</div>
+  </div>
+  <div class="flow-step">
+    <span class="flow-label cmo">CMO</span>
+    <div class="flow-content">悪化ジャンルの改善施策を提案<br><strong>「医療ダイエットのMCV改善案 + 来週の優先アクション」</strong></div>
+  </div>
+  <div class="flow-step">
+    <span class="flow-label ceo">CEO</span>
+    <div class="flow-content">データ + 分析 + 来週アクションをまとめてスプシに入力<br><strong>→ renに「入力完了。確認お願いします」</strong></div>
+  </div>
+  <div class="flow-step">
+    <span class="flow-label ren">ren</span>
+    <div class="flow-content">スプシ確認 → 「OK」or 修正指示</div>
+  </div>
+</div>
+<div class="flow-note">週次は全ロール使う。データ収集（CIO）→ 整形・判定（CEO）→ 来週アクション（CMO）→ 入力（CEO）。renは確認だけ。</div>
+</div>
+
 <div class="callout green">
   <p><strong>まとめ：振り方の判断基準</strong></p>
   <p>・データが必要 → <span class="tag blue">CIO</span><br>
@@ -437,7 +473,8 @@
   ・コード/システムの問題 → <span class="tag green">CTO</span><br>
   ・データだけで完結する判断 → CIOだけ。CMO不要<br>
   ・独立した作業 → 並列で動かす<br>
-  ・データが施策の前提 → 直列（CIO先→CMO後）</p>
+  ・データが施策の前提 → 直列（CIO先→CMO後）<br>
+  ・週次等の大きいタスク → 全ロール連携（CIO→CEO→CMO→CEO）</p>
 </div>
 
 <h3>品質をどう上げてるか</h3>
