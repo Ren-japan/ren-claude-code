@@ -268,16 +268,85 @@
   </div>
 </div>
 
-<p><strong>具体的な振り方：</strong></p>
+<h3 style="font-size:1.15rem; color:#1976d2; border-left: 4px solid #1976d2; padding-left: 0.8rem; margin-top: 2rem;">具体的な振り方 — renの一言からどう動くか</h3>
 
-<table>
-  <tr><th>renが言うこと</th><th>CEOが判断すること</th><th>振り先と指示内容</th></tr>
-  <tr><td>「今月の調子は？」</td><td>GOAL進捗の数字が必要</td><td>CIO：「GOAL vs 現状のGAP出せ。ジャンル別で」</td></tr>
-  <tr><td>「この記事どうにかしたい」</td><td>まず原因特定、その後施策</td><td>CIO：「記事のファネルデータ出せ」→ CMO：「CIOのデータ踏まえて改善案」</td></tr>
-  <tr><td>「PU設置した後の効果は？」</td><td>効果判定データが必要</td><td>CIO：「設置前後の比較データ出せ」→ CEOが判定</td></tr>
-  <tr><td>「新しい診断作りたい」</td><td>検索意図の分析が先</td><td>CIO：「流入KW分析」→ CMO：「CIOデータ踏まえて設計ブリーフ」</td></tr>
-  <tr><td>「ダッシュボードの数字おかしい」</td><td>システム障害</td><td>CTO：「原因特定して直せ」</td></tr>
-</table>
+<p>一番聞かれるのがここ。<strong>renの雑な一言を、CEOがどう分解して、誰にどんな指示を出すか。</strong></p>
+
+<div class="callout blue">
+  <p><strong>原則：renは「何がしたいか」だけ言う。「誰にやらせるか」「どんなデータが必要か」はCEOが判断する。</strong></p>
+</div>
+
+<h4>パターン1：状況確認系</h4>
+<div class="role-card">
+  <p><strong>ren：「今月の調子は？」</strong></p>
+  <p style="font-size:0.88rem; color:#666;">CEOの頭の中：「renが知りたいのはGOALに間に合うペースかどうか。数字が要る」</p>
+  <ul>
+    <li>→ <span class="tag blue">CIO</span> 「GOAL vs 現状のGAP出せ。友だち数・売上・CVR、ジャンル別で。ペース計算もつけて」</li>
+    <li>→ CIOのデータをCEOが受け取る</li>
+    <li>→ CEOが「GOAL到達圏内 / 危ない」の結論を出してrenに報告</li>
+  </ul>
+  <p style="font-size:0.82rem; color:#888;">ポイント：CIOにはデータだけ出させる。結論はCEOが出す。</p>
+</div>
+
+<h4>パターン2：改善系（CIO→CMOの直列）</h4>
+<div class="role-card">
+  <p><strong>ren：「この記事どうにかしたい」</strong></p>
+  <p style="font-size:0.88rem; color:#666;">CEOの頭の中：「まず何がボトルネックか特定して、それから改善案」</p>
+  <ul>
+    <li>→ <span class="tag blue">CIO</span> 「この記事のファネルデータ出せ。PV→PU→友だち→診断→MCV、どこで落ちてるか」</li>
+    <li>→ CIO結果：「MCV率が他ジャンルの半分。診断後にLPに飛ばない」</li>
+    <li>→ <span class="tag orange">CMO</span> 「CIOのデータ渡すから、MCV率改善の施策出して。ブリーフも作って」</li>
+    <li>→ CEOがCMOの施策を品質チェック → renに報告</li>
+  </ul>
+  <p style="font-size:0.82rem; color:#888;">ポイント：CIOが先、CMOが後。データなしで施策を作らせない。</p>
+</div>
+
+<h4>パターン3：効果検証系（CIOだけ）</h4>
+<div class="role-card">
+  <p><strong>ren：「PU設置した後の効果は？」</strong></p>
+  <p style="font-size:0.88rem; color:#666;">CEOの頭の中：「設置前後の比較データがあれば判定できる。CMOは不要」</p>
+  <ul>
+    <li>→ <span class="tag blue">CIO</span> 「〇〇PUの設置前5日間 vs 設置後5日間のデータ比較。友だち転換率・CTR・表示回数」</li>
+    <li>→ CIO結果：「転換率 1.2%→2.6%（+117%）。効果あり」</li>
+    <li>→ CEOが判定：効果ありなら継続、なしなら差し替え検討 → renに報告</li>
+  </ul>
+  <p style="font-size:0.82rem; color:#888;">ポイント：効果判定はデータだけで完結するからCIOだけ。CMOに振る必要がない。</p>
+</div>
+
+<h4>パターン4：新規作成系（CIO+CMO並列）</h4>
+<div class="role-card">
+  <p><strong>ren：「新しい診断作りたい。美容整形」</strong></p>
+  <p style="font-size:0.88rem; color:#666;">CEOの頭の中：「検索意図の分析と施策設計を同時に走らせたい」</p>
+  <ul>
+    <li>→ <span class="tag blue">CIO</span> 「美容整形ジャンルの流入KW上位10個を意図分類して。ボリュームも」<strong>（並列）</strong></li>
+    <li>→ <span class="tag orange">CMO</span> 「美容整形の診断設計ブリーフ準備して。CIOのKWデータ来たら反映して」<strong>（並列）</strong></li>
+    <li>→ 両方の結果が揃ったら、CEOが部門間MTGを設定（CIOデータ × CMO設計を突き合わせ）</li>
+    <li>→ 合意した内容をrenに報告</li>
+  </ul>
+  <p style="font-size:0.82rem; color:#888;">ポイント：独立した作業は並列で動かす。待ち時間を減らす。</p>
+</div>
+
+<h4>パターン5：障害系（CTOだけ）</h4>
+<div class="role-card">
+  <p><strong>ren：「ダッシュボードの数字おかしい」</strong></p>
+  <p style="font-size:0.88rem; color:#666;">CEOの頭の中：「システム障害。CEOが触ったら壊す。CTOの仕事」</p>
+  <ul>
+    <li>→ <span class="tag green">CTO</span> 「ダッシュボードの〇〇の数字が合ってない。原因特定して直せ」</li>
+    <li>→ CTO：「data_loader.pyのnormalize処理が原因。修正完了」</li>
+    <li>→ CEOが確認 → renに「直った」と報告</li>
+  </ul>
+  <p style="font-size:0.82rem; color:#888;">ポイント：CEOは絶対にコードを触らない。触ると壊す（実際に壊したことがある）。</p>
+</div>
+
+<div class="callout green">
+  <p><strong>まとめ：振り方の判断基準</strong></p>
+  <p>・データが必要 → <span class="tag blue">CIO</span><br>
+  ・施策/設計が必要 → <span class="tag orange">CMO</span>（ただしCIOのデータが先）<br>
+  ・コード/システムの問題 → <span class="tag green">CTO</span><br>
+  ・データだけで完結する判断 → CIOだけ。CMO不要<br>
+  ・独立した作業 → 並列で動かす<br>
+  ・データが施策の前提 → 直列（CIO先→CMO後）</p>
+</div>
 
 <h3>品質をどう上げてるか</h3>
 
