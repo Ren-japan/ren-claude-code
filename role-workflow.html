@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ロール活用ガイド — リアル業務フロー</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    background: #fafafa; color: #222; line-height: 2; max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem;
+  }
+  h1 { font-size: 1.6rem; font-weight: 800; margin: 0 0 0.3rem; color: #111; }
+  .subtitle { color: #888; font-size: 0.9rem; margin-bottom: 2rem; }
+  h2 { font-size: 1.3rem; font-weight: 700; margin: 3rem 0 0.8rem; color: #111; padding-bottom: 0.3rem; border-bottom: 2px solid #e0e0e0; }
+  h3 { font-size: 1.05rem; font-weight: 700; margin: 1.5rem 0 0.5rem; color: #333; }
+  h4 { font-size: 0.95rem; font-weight: 700; margin: 1.2rem 0 0.4rem; color: #444; }
+  p { margin-bottom: 1rem; color: #444; font-size: 0.95rem; }
+  strong { color: #111; }
+  hr { border: none; border-top: 1px solid #e0e0e0; margin: 2rem 0; }
+  ul { margin: 0.5rem 0 1rem 1.5rem; }
+  li { margin-bottom: 0.3rem; font-size: 0.95rem; color: #444; }
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+  th { text-align: left; padding: 0.6rem; font-size: 0.85rem; background: #f5f5f5; border-bottom: 2px solid #ddd; }
+  td { padding: 0.6rem; font-size: 0.88rem; border-bottom: 1px solid #eee; color: #444; }
+
+  .callout { background: #fff8e1; border-left: 4px solid #f9a825; padding: 1rem 1.2rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0; }
+  .callout.blue { background: #e3f2fd; border-color: #1976d2; }
+  .callout.green { background: #e8f5e9; border-color: #388e3c; }
+  .callout p { margin-bottom: 0.3rem; }
+
+  .diagram { background: #f5f5f5; border: 1px solid #ddd; border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; text-align: center; }
+  .diagram-title { font-size: 0.8rem; color: #888; font-weight: 600; letter-spacing: 0.05em; margin-bottom: 1rem; }
+  .diagram-col { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; }
+  .diagram-row { display: flex; align-items: flex-start; justify-content: center; gap: 1rem; flex-wrap: wrap; margin: 0.5rem 0; }
+  .diagram-box { background: #fff; border: 2px solid #ddd; border-radius: 10px; padding: 0.7rem 1rem; font-size: 0.85rem; font-weight: 600; color: #333; min-width: 140px; text-align: center; }
+  .diagram-box.ceo { border-color: #c62828; background: #fce4ec; color: #b71c1c; }
+  .diagram-box.cio { border-color: #1976d2; background: #e3f2fd; color: #1565c0; }
+  .diagram-box.cmo { border-color: #f57f17; background: #fff8e1; color: #e65100; }
+  .diagram-box small { display: block; font-weight: 400; font-size: 0.75rem; color: #888; margin-top: 2px; }
+  .diagram-arrow-down { color: #999; font-size: 1.2rem; text-align: center; padding: 0.2rem 0; }
+
+  .chat { background: #f5f5f5; border: 1px solid #ddd; border-radius: 8px; padding: 1rem 1.2rem; margin: 0.5rem 0; }
+  .chat-msg { margin-bottom: 0.8rem; }
+  .chat-msg:last-child { margin-bottom: 0; }
+  .chat-user { font-weight: 700; font-size: 0.8rem; color: #1976d2; margin-bottom: 0.1rem; }
+  .chat-body { font-size: 0.88rem; color: #333; margin-left: 0.8rem; line-height: 1.8; }
+  .chat-memo { background: #e8f5e9; border-left: 3px solid #388e3c; padding: 0.4rem 0.8rem; margin: 0.3rem 0 0.5rem 0.8rem; font-size: 0.82rem; color: #2e7d32; border-radius: 0 4px 4px 0; }
+
+  .result-box { background: #fff; border: 2px solid #1976d2; border-radius: 10px; padding: 1.2rem 1.5rem; margin: 1.5rem 0; text-align: center; }
+  .result-box h3 { color: #1565c0; margin: 0 0 0.5rem; }
+  .result-box p { margin: 0; }
+
+  .role-card { background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 1.2rem 1.5rem; margin: 1rem 0; }
+  .role-card h4 { font-size: 0.95rem; margin: 0 0 0.5rem; }
+  .role-card .tag { display: inline-block; padding: 0.1rem 0.5rem; border-radius: 4px; font-size: 0.75rem; font-weight: 600; margin-right: 0.3rem; }
+  .role-card .tag.red { background: #fce4ec; color: #c62828; }
+  .role-card .tag.blue { background: #e3f2fd; color: #1976d2; }
+  .role-card .tag.orange { background: #fff8e1; color: #e65100; }
+  .role-card ul { margin: 0.5rem 0 0 1.2rem; }
+  .role-card li { font-size: 0.88rem; margin-bottom: 0.2rem; }
+</style>
+</head>
+<body>
+
+<h1>ロール活用ガイド</h1>
+<p class="subtitle">リアル業務でどう使い分けてるか。コピーできるレベルで。</p>
+
+<div class="callout blue">
+  <p><strong>もくじ</strong></p>
+  <p>1. <a href="#ren" style="color:#1976d2;">renのリアル業務フロー</a>（LINEマーケティング）</p>
+  <p>2. <a href="#seo" style="color:#1976d2;">SEOマーケターに置き換えると？</a></p>
+</div>
+
+<!-- ===== リアル業務フロー ===== -->
+<div class="q-box">Q. 実際の業務でどう使い分けてるの？具体的なフローを教えて</div>
+
+<h2 id="ren">renのリアル業務フロー</h2>
+<h3>概要（LINE マーケティング）</h3>
+
+<p>renの1日の流れ。<strong>これがそのままコピーできるレベルで見せる。</strong></p>
+
+<div class="diagram">
+  <div class="diagram-title">ren の朝の流れ</div>
+  <div class="diagram-col">
+    <div class="diagram-box" style="border-color:#333;">ren：「おはよう」</div>
+    <div class="diagram-arrow-down">↓</div>
+    <div class="diagram-box ceo">CEO が自動起動<small>mind.md + memory.md + tasks.json 読み込み</small></div>
+    <div class="diagram-arrow-down">↓</div>
+    <div class="diagram-box cio">CEO → CIO にスキャン指示<small>「GOAL vs 現状のGAP出せ」「異常値チェック」「効果判定期限チェック」</small></div>
+    <div class="diagram-arrow-down">↓</div>
+    <div class="diagram-box ceo">CEO がCIOの結果を見て判断<small>「医療ダイエットが危ない。CMOに施策出させよう」</small></div>
+    <div class="diagram-arrow-down">↓</div>
+    <div class="diagram-box cmo">CEO → CMO に施策依頼<small>「CIOのデータ渡すから、改善案出して」</small></div>
+    <div class="diagram-arrow-down">↓</div>
+    <div class="diagram-box ceo">CEO が品質チェック → renに報告<small>「結論 + 推奨アクション + GOALへの影響」</small></div>
+    <div class="diagram-arrow-down">↓</div>
+    <div class="diagram-box" style="border-color:#333;">ren：「GO」or 修正指示</div>
+  </div>
+</div>
+
+<p><strong>renがやってること：「おはよう」と「GO」だけ。</strong><br>
+間のCEO→CIO→CEO→CMO→品質チェックは全部自動で回る。</p>
+
+<h4>具体的な指示の出し方（renの実際のやりとり）</h4>
+
+<div class="chat">
+  <div class="chat-msg">
+    <div class="chat-user">ren</div>
+    <div class="chat-body">おはよう</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user ai" style="color:#c62828;">AI（CEO）</div>
+    <div class="chat-body">
+    ━━ 本日の状況 ━━<br><br>
+    ⚠ 医療ダイエット: 今月CV3件（目標10件、残り16日）<br>
+    → CIOに分析済み。原因: SEO記事の順位低下<br>
+    → CMOにリライト案を依頼中<br><br>
+    ⚠ 包茎PU: 3/15に設置した新PU、効果観測期間終了<br>
+    → CIOに初動データの確認を振ります<br><br>
+    ✅ AGA: 先週のPU差し替え効果あり（転換率 1.2%→2.6%）<br><br>
+    ■ 本日やること（提案）<br>
+    1. 医療ダイエットのリライト案レビュー（CMOから上がり次第）<br>
+    2. 包茎PUの初動データ確認 → 効果判定<br><br>
+    GOで進めます。追加指示あれば。</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user">ren</div>
+    <div class="chat-body">2の結果出たら見せて。あと新しい記事の診断設計も今週やりたい</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user ai" style="color:#c62828;">AI（CEO）</div>
+    <div class="chat-body">了解。<br>
+    ・包茎PU初動データ → CIOに振りました。結果出次第報告します<br>
+    ・新記事の診断設計 → CMOに設計ブリーフの準備を指示します。ジャンルは？</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user">ren</div>
+    <div class="chat-body">美容整形</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user ai" style="color:#c62828;">AI（CEO）</div>
+    <div class="chat-body">CMOに美容整形の診断設計ブリーフ作成を依頼しました。<br>
+    CIOに美容整形ジャンルの既存データ（流入数・検索意図）の収集も並行で振ります。<br><br>
+    本日のタスク:<br>
+    1. 包茎PU初動データ確認 → CIO作業中<br>
+    2. 医療ダイエットリライト案 → CMO作業中<br>
+    3. 美容整形 診断設計 → CIO+CMO並行作業中</div>
+  </div>
+</div>
+
+<div class="callout">
+  <p><strong>ポイント：renは「何を」しか言ってない。</strong></p>
+  <p>「誰に振るか」「どんなデータが必要か」「並行で動かすか直列か」は全部CEOが判断してる。<br>
+  これがロール分けの最大のメリット。<strong>判断をAIに任せられる。</strong></p>
+</div>
+
+<h4>途中で差し戻すパターン</h4>
+
+<div class="chat">
+  <div class="chat-msg">
+    <div class="chat-user ai" style="color:#c62828;">AI（CEO）</div>
+    <div class="chat-body">CMOから美容整形の診断設計ブリーフが上がりました：<br><br>
+    ━━ 設計ブリーフ ━━<br>
+    テーマ: 美容整形の適性診断<br>
+    設問数: 5問<br>
+    結果タイプ: 3タイプ<br>
+    （中略）</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user">ren</div>
+    <div class="chat-body">検索意図見てる？「美容整形 おすすめ」で来る人と「二重整形 失敗」で来る人じゃ全然違うじゃん</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user ai" style="color:#c62828;">AI（CEO）</div>
+    <div class="chat-body">確かに。CMOに差し戻します。<br>
+    「検索意図別に診断の入り口を分けろ。CIOに流入キーワード上位10個の意図分類を出させてからやり直せ」</div>
+  </div>
+  <div class="chat-memo">→ mind.md: 「診断設計は検索意図の分類が先。いきなり設問から作るな」<br>
+  → この学びが次回以降ずっと適用される</div>
+</div>
+
+<hr>
+
+<h2 id="seo">SEOマーケターに置き換えると？</h2>
+
+<p>renのCEO/CIO/CMO構成を、SEOの現場に置き換えた例。<br>
+<strong>3ロール: manager（判断）/ analyst（分析）/ writer（執筆）</strong></p>
+
+<h4>日常業務①：毎朝の順位チェック</h4>
+
+<div class="chat">
+  <div class="chat-msg">
+    <div class="chat-user">あなた</div>
+    <div class="chat-body">おはよう</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user ai" style="color:#c62828;">AI（manager）</div>
+    <div class="chat-body">analystに順位チェックを振りました。</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user ai" style="color:#1976d2;">AI（analyst）</div>
+    <div class="chat-body">━━ 本日の順位変動 ━━<br><br>
+    ⚠ 急落<br>
+    ・「医療脱毛 おすすめ」5位 → 12位（-7）<br>
+    &nbsp;&nbsp;原因推定: 競合Aが3/20に大幅リライト（文字数倍増）<br><br>
+    ⚠ 要注意<br>
+    ・「AGA 費用」8位 → 11位（-3）3日連続低下中<br><br>
+    ✅ 好調<br>
+    ・「二重整形 ダウンタイム」圏外 → 14位（新記事、初ランクイン）</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user ai" style="color:#c62828;">AI（manager）</div>
+    <div class="chat-body">「医療脱毛」が緊急。writerにリライト構成案を依頼します。<br>
+    「AGA」は3日連続だから原因特定が先。analystに深堀り分析を追加で振ります。</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user">あなた</div>
+    <div class="chat-body">👍</div>
+  </div>
+</div>
+
+<h4>日常業務②：リライト依頼</h4>
+
+<div class="chat">
+  <div class="chat-msg">
+    <div class="chat-user ai" style="color:#c62828;">AI（manager）</div>
+    <div class="chat-body">writerから「医療脱毛 おすすめ」のリライト構成案が上がりました。</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user ai" style="color:#e65100;">AI（writer）</div>
+    <div class="chat-body">■ 追加セクション<br>
+    ・H2: 医療脱毛の副作用・リスク（競合にあって自記事にない）<br>
+    ・H2: 料金比較表【2026年最新】（検索意図に直結）<br><br>
+    ■ 内部リンク追加（3本）<br>
+    ・「医療脱毛 痛み」→ 副作用セクションに設置<br>
+    ・「医療脱毛 VIO」→ 料金比較に設置<br>
+    ・「医療脱毛 口コミ」→ まとめに設置<br><br>
+    ■ 共起語補完<br>
+    「施術回数」「照射範囲」「アフターケア」を本文に追加<br><br>
+    analystの分析: この構成で共起語カバー率 62%→86%（競合89%にほぼ並ぶ）</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user">あなた</div>
+    <div class="chat-body">料金表は最新データ使ってね。あと「おすすめクリニック」の順番は料金安い順じゃなくて口コミ評価順にして</div>
+  </div>
+  <div class="chat-memo">→ mind.md: 「クリニック比較は口コミ評価順。料金順にするな」</div>
+  <div class="chat-msg">
+    <div class="chat-user ai" style="color:#c62828;">AI（manager）</div>
+    <div class="chat-body">writerに修正指示出しました。修正版は30分後に上がります。</div>
+  </div>
+</div>
+
+<h4>日常業務③：新記事の企画</h4>
+
+<div class="chat">
+  <div class="chat-msg">
+    <div class="chat-user">あなた</div>
+    <div class="chat-body">来月の記事ネタ考えたい</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user ai" style="color:#c62828;">AI（manager）</div>
+    <div class="chat-body">analystにキーワード調査を振ります。</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user ai" style="color:#1976d2;">AI（analyst）</div>
+    <div class="chat-body">■ 未カバーで検索ボリュームが大きいKW<br>
+    ・「医療脱毛 学生」月間 2,400（競合少ない、難易度低い）<br>
+    ・「ヒゲ脱毛 何回」月間 1,900（既存記事で部分カバー可能）<br>
+    ・「VIO脱毛 恥ずかしい」月間 3,100（検索意図が明確）<br><br>
+    ■ 既存記事のリライトで狙えるKW<br>
+    ・「医療脱毛 安い」→ 既存記事に料金比較追加で狙える<br><br>
+    ■ おすすめ優先度<br>
+    1. VIO脱毛 恥ずかしい（ボリューム大 × 競合弱い）<br>
+    2. 医療脱毛 学生（新規記事 × 難易度低い）<br>
+    3. 医療脱毛 安い（リライトで対応可能）</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user ai" style="color:#c62828;">AI（manager）</div>
+    <div class="chat-body">analyst推奨の優先度で妥当だと思います。<br>
+    1と2の構成案をwriterに作らせますか？</div>
+  </div>
+  <div class="chat-msg">
+    <div class="chat-user">あなた</div>
+    <div class="chat-body">1だけ先にやって</div>
+  </div>
+</div>
+
+<div class="result-box">
+  <h3>SEO 3ロールの使い分けまとめ</h3>
+  <table>
+    <tr><th>場面</th><th>manager</th><th>analyst</th><th>writer</th></tr>
+    <tr><td><strong>朝の順位チェック</strong></td><td>優先度判断<br>「どれが緊急？」</td><td>順位変動+原因分析</td><td>—</td></tr>
+    <tr><td><strong>リライト</strong></td><td>品質チェック+GO判断</td><td>競合分析+共起語調査</td><td>構成案+本文執筆</td></tr>
+    <tr><td><strong>新記事企画</strong></td><td>優先度判断</td><td>KW調査+ボリューム分析</td><td>構成案作成</td></tr>
+    <tr><td><strong>効果検証</strong></td><td>次のアクション判断</td><td>データ収集+比較分析</td><td>—</td></tr>
+  </table>
+  <p style="margin-top: 0.8rem;"><strong>あなたがやること：最初の一言 + GO/修正 だけ。</strong></p>
+</div>
+
+<hr>
+
+
+<hr>
+
+<p style="text-align: center;">
+  <a href="qa.html" style="color: #1976d2; text-decoration: none; font-weight: 600;">← Q&Aに戻る</a>
+  &nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="case-studies.html" style="color: #1976d2; text-decoration: none; font-weight: 600;">ケーススタディを見る →</a>
+</p>
+
+<p style="text-align: center; color: #888; font-size: 0.85rem; margin-top: 2rem;">
+  Claude Code Starter Kit — by ren
+</p>
+
+</body>
+</html>
