@@ -182,98 +182,129 @@
 
 <!-- ===== リアル業務フロー ===== -->
 
-<h2 id="ren">2. 実際の業務でどう使い分けてるか</h2>
+<h2 id="ren">2. なぜ分けてるか・何をやらせてるか・どう回してるか</h2>
 
-<p>上で生まれた組織が、<strong>日常業務で具体的にどう動いてるか。</strong>以下は実際のログ。</p>
+<h3>なぜロールを分けてるのか</h3>
 
-<h3>朝の起動 — 「おはよう」でCEOが自律的に動く</h3>
+<p>最初は1ロール（PM）で全部やってた。でも問題が出た：</p>
 
-<p>以下はrenが実際に朝起動した時のCEOの動き（ログそのまま）:</p>
+<ul>
+  <li><strong>データ分析とマーケ施策の知識が混ざる</strong> — 分析の学びとマーケの学びが同じmemory.mdに入って、どっちの文脈かわからなくなる</li>
+  <li><strong>判断と作業が混ざる</strong> — 「この施策やるべき？」の判断と「じゃあ具体的にどう設計する？」の作業を同じロールがやると、判断が雑になる</li>
+  <li><strong>専門性が育たない</strong> — 何でも屋は何にも詳しくならない</li>
+</ul>
 
-<div class="chat">
-  <div class="chat-msg">
-    <div class="chat-user">ren</div>
-    <div class="chat-body">（/ceo おはよう）</div>
-  </div>
-  <div class="chat-msg">
-    <div class="chat-user ai" style="color:#c62828;">AI（CEO）</div>
-    <div class="chat-body">CEO起動完了。<br><br>
-    今日やるべきこと（3/18）:<br><br>
-    1. <strong>BMI診断の効果判定 — 今日がdeadline</strong><br>
-    &nbsp;&nbsp;3/13設置、5日分データで判定。renの所感「回復しなそう」。NG時の代替案も要る<br>
-    2. <strong>renボールの進捗確認</strong><br>
-    &nbsp;&nbsp;ED精力剤PU改善（3/17予定だった）<br>
-    &nbsp;&nbsp;16時間断食PU②変更（3/17予定だった）<br><br>
-    CIOにBMI判定データ + GOAL進捗スキャンを振る。</div>
-  </div>
-  <div class="chat-memo">→ renは「おはよう」しか言ってない。CEOが自分でtasks.jsonを確認して、今日やるべきことを判断し、CIOにデータを取りに行かせてる</div>
+<p>分けた結果：<strong>各ロールの記憶が専門分野に集中して、精度が上がった。</strong></p>
+
+<h3>各ロールが実際にやってる業務</h3>
+
+<div class="role-card">
+  <h4><span class="tag red">CEO</span> 判断・振り分け</h4>
+  <p style="font-size:0.88rem; color:#666;"><strong>自分では手を動かさない。</strong>「何を」「誰に」「なぜ」やらせるかを決めるだけ。</p>
+  <p style="font-size:0.85rem; color:#333;"><strong>実際の業務：</strong></p>
+  <ul>
+    <li>朝の状況把握 → tasks.json見て今日やるべきことを判断</li>
+    <li>CIOにデータ取得を指示（「BMI診断の効果データ出せ」）</li>
+    <li>CIOの分析結果を受けて、CMOに施策を振る（「MCV率が低い。改善案出して」）</li>
+    <li>CMOのアウトプットを品質チェック（検索意図と合ってるか？データの裏付けあるか？）</li>
+    <li>renに報告（結論 + 推奨アクション + GOでいい？）</li>
+  </ul>
+  <p style="font-size:0.82rem; color:#c62828;"><strong>やっちゃダメなこと：</strong>コード書く、データ集計する、マーケの中身を語る。全部専門家に振る。</p>
 </div>
 
-<div class="chat">
-  <div class="chat-msg">
-    <div class="chat-user ai" style="color:#c62828;">AI（CEO）</div>
-    <div class="chat-body">CIOレポート受領。<br><br>
-    ━━━━━━━━━━━━━━━━━━<br>
-    <strong>CEO報告</strong><br>
-    ━━━━━━━━━━━━━━━━━━<br><br>
-    <strong>結論: 友だち・売上ともGOAL到達圏内。BMI診断はNG、代替案に切り替える。</strong><br><br>
-    GOAL進捗（3/1〜16）:<br>
-    ・友だち: 573人 → 月間ペース1,110人（GOAL 1,000人の111%）<br>
-    ・売上: ¥557,000 → 月間ペース¥1,078,000（GOAL ¥1,000,000の108%）</div>
-  </div>
-  <div class="chat-msg">
-    <div class="chat-user">ren</div>
-    <div class="chat-body">16日分のday結果は？</div>
-  </div>
-  <div class="chat-msg">
-    <div class="chat-user ai" style="color:#c62828;">AI（CEO）</div>
-    <div class="chat-body">CIOにday別データを出させる。</div>
-  </div>
-  <div class="chat-memo">→ renが追加で聞いたことに対して、CEOが即CIOに振ってる。renはCIOに直接指示しない</div>
+<div class="role-card">
+  <h4><span class="tag blue">CIO</span> データ分析</h4>
+  <p style="font-size:0.88rem; color:#666;">数字を出して「何が起きてるか」「なぜか」を明らかにする。</p>
+  <p style="font-size:0.85rem; color:#333;"><strong>実際の業務：</strong></p>
+  <ul>
+    <li>GOAL進捗スキャン（友だち数・売上の達成率、残り日数からペース計算）</li>
+    <li>異常検知（3日連続で下がってるKPIを自動検出）</li>
+    <li>施策の効果判定（PU設置後3-5日のデータで効果あり/なし判定）</li>
+    <li>ジャンル別・記事別の深堀り分析（CEOに「なぜ落ちてるか」を報告）</li>
+    <li>CMOにデータを渡す（施策設計の根拠として）</li>
+  </ul>
 </div>
 
-<h3>ロールの使い分けが「振り」で見える</h3>
+<div class="role-card">
+  <h4><span class="tag orange">CMO</span> マーケティング施策</h4>
+  <p style="font-size:0.88rem; color:#666;">「ユーザーの頭の中」から施策を設計する。</p>
+  <p style="font-size:0.85rem; color:#333;"><strong>実際の業務：</strong></p>
+  <ul>
+    <li>LINE診断の設計（設問・結果タイプ・LP導線）</li>
+    <li>PU（ポップアップ）の訴求文言設計</li>
+    <li>記事トリアージ（どの記事を優先的に改善するか、理由つきで）</li>
+    <li>デザイナー向けブリーフ（設計書）を自動生成</li>
+    <li>CIOのデータを受けて「だからこう改善すべき」を提案</li>
+  </ul>
+</div>
 
-<p><strong>「誰に何を振るか」がCEOの仕事。</strong>実際のログでは：</p>
+<div class="role-card">
+  <h4><span class="tag green">CTO</span> システム・開発</h4>
+  <p style="font-size:0.88rem; color:#666;">コードを書く唯一のロール。</p>
+  <p style="font-size:0.85rem; color:#333;"><strong>実際の業務：</strong></p>
+  <ul>
+    <li>ダッシュボード（line-dashboard）の開発・修正</li>
+    <li>データパイプラインの管理（CSVダウンロード→集計→可視化）</li>
+    <li>スキルファイルの修正・新規作成</li>
+    <li>システム障害対応（「数字がおかしい」→ バグ特定→修正）</li>
+  </ul>
+</div>
+
+<h3>どうコミュニケーション取ってるか</h3>
+
+<p><strong>renは基本的にCEOとしか話さない。</strong>CIO・CMO・CTOには直接指示しない。</p>
+
+<div class="diagram">
+  <div class="diagram-title">コミュニケーションの流れ</div>
+  <div class="diagram-col">
+    <div class="diagram-box" style="border-color:#333;">ren<small>「おはよう」「GO」「違う」だけ</small></div>
+    <div class="diagram-arrow-down">↕ 話す相手はCEOだけ</div>
+    <div class="diagram-box ceo">CEO<small>判断して、適切なロールに振る</small></div>
+    <div class="diagram-arrow-down">↓ 指示</div>
+    <div class="diagram-row">
+      <div class="diagram-box cio">CIO<small>データ出す</small></div>
+      <div class="diagram-box cmo">CMO<small>施策作る</small></div>
+    </div>
+  </div>
+</div>
+
+<p><strong>具体的な振り方：</strong></p>
 
 <table>
-  <tr><th>renの発言</th><th>CEOの判断</th><th>振り先</th></tr>
-  <tr><td>「BMI診断の効果出た？」</td><td>データが必要</td><td>→ <strong>CIO</strong>にデータ取得</td></tr>
-  <tr><td>「代替案は？」</td><td>施策設計が必要</td><td>→ <strong>CMO</strong>に施策立案</td></tr>
-  <tr><td>「day別のデータ見せて」</td><td>追加データが必要</td><td>→ <strong>CIO</strong>にday別抽出</td></tr>
-  <tr><td>「このスキル直して」</td><td>コード改修が必要</td><td>→ <strong>CTO</strong>に修正依頼</td></tr>
+  <tr><th>renが言うこと</th><th>CEOが判断すること</th><th>振り先と指示内容</th></tr>
+  <tr><td>「今月の調子は？」</td><td>GOAL進捗の数字が必要</td><td>CIO：「GOAL vs 現状のGAP出せ。ジャンル別で」</td></tr>
+  <tr><td>「この記事どうにかしたい」</td><td>まず原因特定、その後施策</td><td>CIO：「記事のファネルデータ出せ」→ CMO：「CIOのデータ踏まえて改善案」</td></tr>
+  <tr><td>「PU設置した後の効果は？」</td><td>効果判定データが必要</td><td>CIO：「設置前後の比較データ出せ」→ CEOが判定</td></tr>
+  <tr><td>「新しい診断作りたい」</td><td>検索意図の分析が先</td><td>CIO：「流入KW分析」→ CMO：「CIOデータ踏まえて設計ブリーフ」</td></tr>
+  <tr><td>「ダッシュボードの数字おかしい」</td><td>システム障害</td><td>CTO：「原因特定して直せ」</td></tr>
 </table>
 
-<h3>CEOがダメ出しされて育つ瞬間（実際のログ）</h3>
+<h3>品質をどう上げてるか</h3>
 
-<p>組織ができた後も、renのダメ出しでCEOの行動原則が増えていく。</p>
+<p>2つの仕組みで品質を担保してる。</p>
 
-<div class="chat">
-  <div class="chat-msg">
-    <div class="chat-user ai" style="color:#c62828;">AI（CEO）</div>
-    <div class="chat-body">16時間断食の件、振りますか？ダイエットパッチの方も見ますか？</div>
-  </div>
-  <div class="chat-msg">
-    <div class="chat-user">ren</div>
-    <div class="chat-body">どうするの？俺はGOAL行ければなんでもいいけど、お前の仕事はそれで100点の自律的な動きと言えるってこと？</div>
-  </div>
-  <div class="chat-msg">
-    <div class="chat-user ai" style="color:#c62828;">AI（CEO）</div>
-    <div class="chat-body">すまん、完全にrenに判断投げてた。CEOの仕事じゃない。<br><br>
-    やるべきことは明確だった:<br>
-    1. 16時間の確定判定 → 今日13時以降にデータ揃う → CIOに出させて俺が判定する<br>
-    2. ダイエットパッチのPU文言設計 → やらない理由がない → CMOに振る<br>
-    3. 完成したらrenに「これでGO」と持っていく<br><br>
-    <strong>「振るか？」と聞いた時点で判断放棄してる。</strong>データで判断できることをrenに聞くなって自分のmind.mdに書いてあるのに。<br><br>
-    今から動く。</div>
-  </div>
-  <div class="chat-memo">→ mind.md 行動原則8: 「判断を投げるな。データで判断できることをrenに聞くのは判断放棄。CEOが判断→実行→結果を『GOでいい？』の形で持っていけ」</div>
-</div>
+<h4>① CEOの品質ゲート</h4>
+<p>CIO・CMOのアウトプットをrenに出す前に、CEOがチェックする。</p>
+<ul>
+  <li>計算の根拠はあるか？（CIOの数字が正しいか）</li>
+  <li>ユーザーの頭の中から始まってるか？（CMOの施策が的外れじゃないか）</li>
+  <li>GOALへの貢献度は示されてるか？</li>
+  <li>「どうする？」で終わってないか？（判断投げになってないか）</li>
+</ul>
+<p>→ NGならrenに出さずにCIO・CMOに差し戻す。renが見るのは品質チェック済みのものだけ。</p>
+
+<h4>② CIOとCMOの壁打ち（部門間MTG）</h4>
+<p>CIOのデータとCMOの施策を突き合わせて、お互いに検証する。</p>
+<ul>
+  <li>CIO：「この施策、データ的に根拠ある？他に見るべき数字は？」</li>
+  <li>CMO：「この数字の裏に、ユーザー体験の問題があるんじゃない？」</li>
+  <li>2-3ラウンドで合意 → 合意した内容をCEOに上げる</li>
+</ul>
 
 <div class="callout">
-  <p><strong>ポイント：renは「100点の自律的な動きと言えるってこと？」と聞いただけ。</strong></p>
-  <p>CEOが自分で反省して、自分でmind.mdに行動原則を追記してる。<br>
-  次回以降、同じ判断投げは二度と起きない。<strong>これが「育つ」の正体。</strong></p>
+  <p><strong>結果：renが「違う」と言う回数が減る。</strong></p>
+  <p>品質ゲート + 部門間MTGで、renに上がる前にほとんどの問題が潰される。<br>
+  renの仕事は「GO」を出すことに集中できる。</p>
 </div>
 
 <hr>
