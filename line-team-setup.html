@@ -18,7 +18,6 @@ p { margin-bottom: 1rem; color: #444; font-size: 0.95rem; }
 strong { color: #111; }
 code { background: #eee; padding: 2px 6px; border-radius: 4px; font-size: 0.85rem; font-family: 'SF Mono', monospace; }
 a { color: #1976d2; }
-
 ol, ul { margin: 0.5rem 0 1rem 1.5rem; }
 li { margin-bottom: 0.5rem; font-size: 0.95rem; color: #444; }
 
@@ -29,15 +28,8 @@ li { margin-bottom: 0.5rem; font-size: 0.95rem; color: #444; }
 .callout.gray { background: #f5f5f5; border-color: #9e9e9e; }
 .callout p { margin-bottom: 0.3rem; }
 
-.step-box {
-  background: #fff; border: 1px solid #e0e0e0; border-radius: 10px;
-  padding: 1.2rem 1.5rem; margin: 1rem 0;
-}
-.step-num {
-  display: inline-block; background: #1976d2; color: white; width: 28px; height: 28px;
-  border-radius: 50%; text-align: center; line-height: 28px; font-size: 0.8rem; font-weight: 700;
-  margin-right: 0.5rem; vertical-align: middle;
-}
+.step-box { background: #fff; border: 1px solid #e0e0e0; border-radius: 10px; padding: 1.2rem 1.5rem; margin: 1rem 0; }
+.step-num { display: inline-block; background: #1976d2; color: white; width: 28px; height: 28px; border-radius: 50%; text-align: center; line-height: 28px; font-size: 0.8rem; font-weight: 700; margin-right: 0.5rem; vertical-align: middle; }
 .step-title { font-weight: 700; font-size: 1rem; color: #111; }
 .step-time { color: #888; font-size: 0.8rem; margin-left: 0.5rem; }
 .step-detail { margin-top: 0.8rem; }
@@ -48,46 +40,29 @@ pre { background: #1e1e1e; color: #d4d4d4; border-radius: 6px; padding: 0.8rem 1
 pre .comment { color: #6a9955; }
 pre .highlight { color: #dcdcaa; }
 
-.tag-required {
-  display: inline-block; background: #c62828; color: white; font-size: 0.7rem;
-  padding: 1px 8px; border-radius: 4px; font-weight: 700; vertical-align: middle; margin-left: 0.5rem;
-}
-.tag-optional {
-  display: inline-block; background: #888; color: white; font-size: 0.7rem;
-  padding: 1px 8px; border-radius: 4px; font-weight: 700; vertical-align: middle; margin-left: 0.5rem;
-}
-.tag-recommended {
-  display: inline-block; background: #1976d2; color: white; font-size: 0.7rem;
-  padding: 1px 8px; border-radius: 4px; font-weight: 700; vertical-align: middle; margin-left: 0.5rem;
-}
+.tag-required { display: inline-block; background: #c62828; color: white; font-size: 0.7rem; padding: 1px 8px; border-radius: 4px; font-weight: 700; vertical-align: middle; margin-left: 0.5rem; }
+.tag-optional { display: inline-block; background: #888; color: white; font-size: 0.7rem; padding: 1px 8px; border-radius: 4px; font-weight: 700; vertical-align: middle; margin-left: 0.5rem; }
+.tag-recommended { display: inline-block; background: #1976d2; color: white; font-size: 0.7rem; padding: 1px 8px; border-radius: 4px; font-weight: 700; vertical-align: middle; margin-left: 0.5rem; }
 
 .tab-container { display: flex; gap: 0; margin-bottom: 0; }
-.tab {
-  padding: 0.6rem 1.2rem; border: 1px solid #ddd; border-bottom: none;
-  border-radius: 8px 8px 0 0; cursor: pointer; font-size: 0.85rem; font-weight: 600;
-  background: #f5f5f5; color: #888; user-select: none;
-}
+.tab { padding: 0.6rem 1.2rem; border: 1px solid #ddd; border-bottom: none; border-radius: 8px 8px 0 0; cursor: pointer; font-size: 0.85rem; font-weight: 600; background: #f5f5f5; color: #888; user-select: none; }
 .tab.active { background: #fff; color: #111; border-bottom: 1px solid #fff; margin-bottom: -1px; z-index: 1; }
-.tab-content {
-  border: 1px solid #ddd; border-radius: 0 8px 8px 8px; padding: 1.5rem;
-  background: #fff; display: none;
-}
+.tab-content { border: 1px solid #ddd; border-radius: 0 8px 8px 8px; padding: 1.5rem; background: #fff; display: none; }
 .tab-content.active { display: block; }
 
 .check-list { list-style: none; margin-left: 0; }
 .check-list li { padding: 0.3rem 0; font-size: 0.9rem; }
 .check-list li::before { content: "\2610  "; font-size: 1rem; }
 
+.prompt-box { background: #f5f5f5; border: 1px solid #ddd; border-radius: 8px; padding: 1.2rem 1.5rem; margin: 1rem 0; font-size: 0.9rem; line-height: 1.8; color: #333; }
+.copy-hint { color: #888; font-size: 0.8rem; font-style: italic; margin-top: 0.3rem; }
+
 .footer { text-align: center; color: #999; font-size: 0.78rem; margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0; }
 .sub-note { font-size: 0.85rem; color: #777; margin-left: 1.5rem; margin-top: -0.3rem; margin-bottom: 0.5rem; }
 
 /* OS切替 */
 .os-switcher { display: flex; gap: 8px; margin-bottom: 1.5rem; }
-.os-btn {
-  padding: 0.5rem 1.2rem; border-radius: 8px; border: 2px solid #e0e0e0;
-  background: #fff; font-size: 0.88rem; font-weight: 600; cursor: pointer;
-  color: #888; transition: all 0.2s;
-}
+.os-btn { padding: 0.5rem 1.2rem; border-radius: 8px; border: 2px solid #e0e0e0; background: #fff; font-size: 0.88rem; font-weight: 600; cursor: pointer; color: #888; transition: all 0.2s; }
 .os-btn.active { border-color: #1976d2; color: #1976d2; background: #e3f2fd; }
 .os-btn:hover { border-color: #1976d2; }
 .win-only { display: block; }
@@ -127,7 +102,6 @@ body.os-mac .mac-only { display: block; }
     <p><strong>デスクトップ版とVS Code版、両方インストールしてください。</strong><br>
     普段はVS Code版をメインで使いますが、デスクトップ版も入れておくと便利です。</p>
 
-    <!-- Windows: Git Bash 前提条件 -->
     <div class="win-only">
       <div class="callout red">
         <p><strong>⚠ 最初にこれをやってください</strong></p>
@@ -144,7 +118,6 @@ body.os-mac .mac-only { display: block; }
       </div>
     </div>
 
-    <!-- VS Code / Desktop タブ -->
     <div class="tab-container">
       <div class="tab active" onclick="switchTab('vscode')">VS Code版（おすすめ）</div>
       <div class="tab" onclick="switchTab('desktop')">デスクトップ版</div>
@@ -210,43 +183,30 @@ body.os-mac .mac-only { display: block; }
 </div>
 
 <!-- ======================================== -->
-<!-- Step 3: AIの使用傾向分析 -->
+<!-- Step 3: Chrome拡張 -->
 <!-- ======================================== -->
 <div class="step-box">
   <span class="step-num">3</span>
-  <span class="step-title">今使ってるAIから「自分の考え方」を抽出する</span>
-  <span class="tag-recommended">やっておくとスムーズ</span>
-  <span class="step-time">5分</span>
+  <span class="step-title">Chrome拡張「Claude in Chrome」を入れる</span>
+  <span class="tag-recommended">おすすめ</span>
+  <span class="step-time">2分</span>
 
   <div class="step-detail">
-    <p>ChatGPT / Gemini / Claudeチャット版 — <strong>どれか一番使い込んでるAI</strong>に、<br>
-    以下のプロンプトをコピーして貼り付けてください。</p>
-
-    <div class="prompt-box">
-今までの会話から、私の以下の傾向をまとめてください。<br><br>
-1. 仕事の内容と目的（何をしている人か）<br>
-2. AIへの修正依頼・不満で多かったこと（「長い」「違う」「それじゃない」等）<br>
-3. 好きな回答スタイル（長い/短い、丁寧/フランク、結論先/説明先）<br>
-4. 「これやるな」「こうしろ」と言ったルール・制約<br>
-5. よく頼む作業トップ3<br>
-6. 私が大事にしていそうな仕事の価値観・哲学（推測でOK）<br><br>
-箇条書きで簡潔にお願いします。
-    </div>
-    <p class="copy-hint">↑ これをそのままコピーして、今使ってるAIに貼り付け</p>
-
-    <p><strong>出力をコピーしてメモ帳やメモアプリに保存</strong>しておいてください。<br>
-    初日のセットアップで使います。</p>
-
-    <div class="callout blue">
-      <p><strong>なぜこれをやるの？</strong></p>
-      <p>あなたの考え方・哲学・好みを新しいAIに引き継ぐため。<br>
-      これがあると、初日からあなた好みのAIに近づきます。<br>
-      ゼロから教え直す手間が省ける。</p>
-    </div>
+    <p>Claude CodeがChromeブラウザを操作できるようになる拡張機能です。</p>
+    <ol>
+      <li>Chromeで <a href="https://chromewebstore.google.com/detail/claude-in-chrome/iebeoafjjkpogldliajminepjcomgnhk" target="_blank">Claude in Chrome</a> を開く</li>
+      <li>「Chromeに追加」をクリック</li>
+      <li>追加後、拡張機能アイコンをクリックして接続を確認</li>
+    </ol>
 
     <div class="callout gray">
-      <p><strong>AIを使い込んでない人は？</strong> スキップしてOK。<br>
-      初日のセットアップで質問に答えるだけでも十分です。</p>
+      <p><strong>なぜ入れるの？</strong></p>
+      <p>これがあると、Claude CodeがWebページを直接見に行ける。</p>
+      <ul style="margin-top:0.3rem;">
+        <li>「このURLの記事チェックして」→ 実際にページを開いて読む</li>
+        <li>「競合サイトの構成を調べて」→ ブラウザで開いて抽出</li>
+      </ul>
+      <p>ないとURLの中身が読めない。あると世界が変わります。</p>
     </div>
   </div>
 </div>
@@ -283,7 +243,7 @@ body.os-mac .mac-only { display: block; }
 </div>
 
 <!-- ======================================== -->
-<!-- Step 4: Git初期設定 -->
+<!-- Step 5: Git初期設定 -->
 <!-- ======================================== -->
 <div class="step-box">
   <span class="step-num">5</span>
@@ -292,7 +252,6 @@ body.os-mac .mac-only { display: block; }
   <span class="step-time">2分</span>
 
   <div class="step-detail">
-
     <div class="win-only">
       <div class="callout blue">
         <p><strong>ターミナルの開き方：</strong><br>
@@ -336,7 +295,7 @@ git config --global user.email "<span class="highlight">GitHubに登録したメ
 </div>
 
 <!-- ======================================== -->
-<!-- Step 5: リポジトリをダウンロード -->
+<!-- Step 6: リポジトリをダウンロード -->
 <!-- ======================================== -->
 <div class="step-box">
   <span class="step-num">6</span>
@@ -398,39 +357,10 @@ source ~/.zshrc</pre>
 </div>
 
 <!-- ======================================== -->
-<!-- Step 6: Chrome拡張 -->
-<!-- ======================================== -->
-<div class="step-box">
-  <span class="step-num">7</span>
-  <span class="step-title">Chrome拡張「Claude in Chrome」を入れる</span>
-  <span class="tag-recommended">おすすめ</span>
-  <span class="step-time">2分</span>
-
-  <div class="step-detail">
-    <p>Claude CodeがChromeブラウザを操作できるようになる拡張機能です。</p>
-    <ol>
-      <li>Chromeで <a href="https://chromewebstore.google.com/detail/claude-in-chrome/iebeoafjjkpogldliajminepjcomgnhk" target="_blank">Claude in Chrome</a> を開く</li>
-      <li>「Chromeに追加」をクリック</li>
-      <li>追加後、拡張機能アイコンをクリックして接続を確認</li>
-    </ol>
-
-    <div class="callout gray">
-      <p><strong>なぜ入れるの？</strong></p>
-      <p>これがあると、Claude CodeがWebページを直接見に行ける。</p>
-      <ul style="margin-top:0.3rem;">
-        <li>「このURLの記事チェックして」→ 実際にページを開いて読む</li>
-        <li>「競合サイトの構成を調べて」→ ブラウザで開いて抽出</li>
-      </ul>
-      <p>ないとURLの中身が読めない。あると世界が変わります。</p>
-    </div>
-  </div>
-</div>
-
-<!-- ======================================== -->
 <!-- Step 7: 動作確認 -->
 <!-- ======================================== -->
 <div class="step-box">
-  <span class="step-num">8</span>
+  <span class="step-num">7</span>
   <span class="step-title">動作確認</span>
   <span class="tag-required">必須</span>
   <span class="step-time">1分</span>
@@ -465,31 +395,43 @@ python3 manage.py list</pre>
 </div>
 
 <!-- ======================================== -->
-<!-- Step 9: 業務テーマを考えておく -->
+<!-- Step 8: AIの使用傾向分析 -->
 <!-- ======================================== -->
 <div class="step-box">
-  <span class="step-num">9</span>
-  <span class="step-title">「AIにやらせたい仕事」を1つ考えておく</span>
-  <span class="tag-optional">できれば</span>
-  <span class="step-time">考えるだけ</span>
+  <span class="step-num">8</span>
+  <span class="step-title">今使ってるAIから「自分の考え方」を抽出する</span>
+  <span class="tag-recommended">やっておくとスムーズ</span>
+  <span class="step-time">5分</span>
 
   <div class="step-detail">
-    <p>初日に、実際にその仕事をAIと一緒にやります。<br>
-    何でもOK。普段やってる仕事の中から1つ。</p>
+    <p>ChatGPT / Gemini / Claudeチャット版 — <strong>どれか一番使い込んでるAI</strong>に、<br>
+    以下のプロンプトをコピーして貼り付けてください。</p>
 
-    <p><strong>例：</strong></p>
-    <ul>
-      <li>データをまとめて報告する</li>
-      <li>記事の構成をチェックする</li>
-      <li>CSVを加工・整理する</li>
-      <li>リサーチして要点をまとめる</li>
-      <li>定型作業を自動化する</li>
-      <li>レポートのフォーマットを統一する</li>
-    </ul>
+    <div class="prompt-box">
+今までの会話から、私の以下の傾向をまとめてください。<br><br>
+1. 仕事の内容と目的（何をしている人か）<br>
+2. AIへの修正依頼・不満で多かったこと（「長い」「違う」「それじゃない」等）<br>
+3. 好きな回答スタイル（長い/短い、丁寧/フランク、結論先/説明先）<br>
+4. 「これやるな」「こうしろ」と言ったルール・制約<br>
+5. よく頼む作業トップ3<br>
+6. 私が大事にしていそうな仕事の価値観・哲学（推測でOK）<br><br>
+箇条書きで簡潔にお願いします。
+    </div>
+    <p class="copy-hint">↑ これをそのままコピーして、今使ってるAIに貼り付け</p>
 
-    <div class="callout">
-      <p><strong>ポイント：「めんどくさい」と思ってることがベスト。</strong><br>
-      毎回同じことやってるな、地味にだるいな — そういう仕事ほどAIが効く。</p>
+    <p><strong>出力をコピーしてメモ帳やメモアプリに保存</strong>しておいてください。<br>
+    初日のセットアップで使います。</p>
+
+    <div class="callout blue">
+      <p><strong>なぜこれをやるの？</strong></p>
+      <p>あなたの考え方・哲学・好みを新しいAIに引き継ぐため。<br>
+      これがあると、初日からあなた好みのAIに近づきます。<br>
+      ゼロから教え直す手間が省ける。</p>
+    </div>
+
+    <div class="callout gray">
+      <p><strong>AIを使い込んでない人は？</strong> スキップしてOK。<br>
+      初日のセットアップで質問に答えるだけでも十分です。</p>
     </div>
   </div>
 </div>
@@ -503,6 +445,7 @@ python3 manage.py list</pre>
   <ul class="check-list">
     <li>Claude Code をインストールした（VS Code版 + デスクトップ版）</li>
     <li>Claude Code にログインできた</li>
+    <li>（おすすめ）Chrome拡張を入れた</li>
     <li>GitHubアカウントを作成した</li>
     <li>ユーザー名をRenに伝えた</li>
     <li>招待メールを承認した</li>
@@ -510,21 +453,19 @@ python3 manage.py list</pre>
     <li>リポジトリを clone した</li>
     <li>自分の名前を登録した（STAR_TEAM_USER）</li>
     <li><code>python3 manage.py list</code> でタスクが表示された</li>
-    <li>（おすすめ）Chrome拡張を入れた</li>
-    <li>（できれば）AIにやらせたい仕事を1つ考えた</li>
+    <li>（やっておくとスムーズ）AIの使用傾向を抽出した</li>
   </ul>
 </div>
 
 <div class="callout green" style="margin-top: 2rem;">
-  <p><strong>ステップ1〜2、4〜6、8が終わっていればOKです。</strong><br>
-  ステップ3・7・9は余裕があればやっておくとスムーズです。<br>
+  <p><strong>ステップ1〜2、4〜7が終わっていればOKです。</strong><br>
+  ステップ3・8は余裕があればやっておくとスムーズです。<br>
   業務の進め方は初日にRenから説明します。</p>
 </div>
 
 <div class="footer">LINEチーム — 初期セットアップガイド</div>
 
 <script>
-// タブ切り替え（VS Code / Desktop）
 function switchTab(tab) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
@@ -537,7 +478,6 @@ function switchTab(tab) {
   }
 }
 
-// OS切り替え（Windows / Mac）
 function switchOS(os) {
   document.querySelectorAll('.os-btn').forEach(b => b.classList.remove('active'));
   if (os === 'mac') {
