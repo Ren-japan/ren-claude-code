@@ -124,13 +124,25 @@ body.os-mac .mac-only { display: block; }
     </div>
 
     <div class="tab-content active" id="tab-vscode">
-      <p><strong>前提：VS Code がインストール済みであること</strong><br>
-      まだの場合 → <a href="https://code.visualstudio.com/download" target="_blank">VS Code ダウンロード</a></p>
+      <h3>① VS Code をインストール</h3>
+      <p>まだの場合 → <a href="https://code.visualstudio.com/download" target="_blank">VS Code ダウンロード</a></p>
       <ol>
-        <li>VS Code を開く</li>
+        <li>ダウンロードしたインストーラーを実行</li>
+        <li>インストール完了後、VS Code を起動</li>
+      </ol>
+
+      <h3>② 日本語化する（初めての場合）</h3>
+      <ol>
         <li>キーボードで <code>Ctrl + Shift + X</code>（Macは <code>Cmd + Shift + X</code>）を押す
           <p class="sub-note">→ 左に「拡張機能」パネルが開く</p></li>
-        <li>上の検索バーに <strong>Claude Code</strong> と入力</li>
+        <li>検索バーに <strong>Japanese Language Pack</strong> と入力</li>
+        <li>「Japanese Language Pack for Visual Studio Code」（Microsoft公式）を<strong>インストール</strong></li>
+        <li>右下に「Restart」ボタンが出たらクリック → 日本語になる</li>
+      </ol>
+
+      <h3>③ Claude Code 拡張を入れる</h3>
+      <ol>
+        <li>同じく拡張機能パネル（<code>Ctrl + Shift + X</code>）で <strong>Claude Code</strong> と検索</li>
         <li>「Claude Code」（発行元: <strong>Anthropic</strong>、認証済みマーク付き）を見つける
           <p class="sub-note">→ 似た名前の拡張がありますが、Anthropic公式のものを選んでください</p></li>
         <li><strong>「インストール」</strong>をクリック</li>
@@ -138,10 +150,25 @@ body.os-mac .mac-only { display: block; }
           <p class="sub-note">→ 再起動後、右上に ✱ アイコンが表示されればOK</p></li>
         <li>✱ アイコンをクリック → ログイン画面が出る</li>
       </ol>
+
       <div class="callout blue">
         <p><strong>✱ アイコンが見つからない場合：</strong><br>
         <code>Ctrl + Shift + P</code>（Macは <code>Cmd + Shift + P</code>） → 「Claude Code」と入力 → 候補から選択</p>
       </div>
+
+      <h3>④ VS Code の基本操作（初めての人向け）</h3>
+      <div class="callout gray">
+        <p>VS Codeを使ったことがある人はスキップOK。</p>
+      </div>
+      <table style="font-size:0.82rem; margin-top:0.5rem;">
+        <tr><th>やりたいこと</th><th>操作</th></tr>
+        <tr><td>フォルダを開く</td><td>「ファイル」→「フォルダーを開く」</td></tr>
+        <tr><td>ターミナルを開く</td><td><code>Ctrl + `</code> または「ターミナル」→「新しいターミナル」</td></tr>
+        <tr><td>ファイルを保存</td><td><code>Ctrl + S</code>（Macは <code>Cmd + S</code>）</td></tr>
+        <tr><td>コマンドパレット</td><td><code>Ctrl + Shift + P</code>（Macは <code>Cmd + Shift + P</code>）</td></tr>
+        <tr><td>左サイドバーの切替</td><td><code>Ctrl + B</code>（Macは <code>Cmd + B</code>）</td></tr>
+      </table>
+      <p style="margin-top:0.8rem;"><strong>基本的にClaude Codeが全部やってくれるので、VS Codeの操作を覚える必要はほとんどありません。</strong> 困ったらClaude Codeに聞けばOK。</p>
     </div>
 
     <div class="tab-content" id="tab-desktop">
@@ -437,13 +464,92 @@ python3 manage.py list</pre>
 </div>
 
 <!-- ======================================== -->
+<!-- Step 9: 業務フォルダのセットアップ -->
+<!-- ======================================== -->
+<div class="step-box">
+  <span class="step-num">9</span>
+  <span class="step-title">業務フォルダをセットアップ</span>
+  <span class="tag-required">必須</span>
+  <span class="step-time">5分</span>
+
+  <div class="step-detail">
+    <p>Renから共有される <strong>ZIPファイル</strong> をダウンロードして、あなた専用のAI作業環境を作ります。</p>
+
+    <h3>① ZIPをダウンロード・解凍</h3>
+    <p>Renから共有されるリンクからZIPをダウンロードして解凍してください。<br>
+    <code>line-starter-kit</code> というフォルダができます。</p>
+
+    <h3>② フォルダ名を変更</h3>
+    <p><code>line-starter-kit</code> を <strong>自分の名前に変更</strong> してデスクトップに置いてください。</p>
+    <p>例:</p>
+    <ul>
+      <li>Noah → <code>project-noah</code></li>
+      <li>Kate → <code>project-kate</code></li>
+      <li>Rinon → <code>project-rinon</code></li>
+    </ul>
+
+    <h3>③ フォルダの中身</h3>
+    <p>このフォルダが、あなたとAIの作業場所になります。</p>
+
+    <div style="background:#1e1e1e; color:#d4d4d4; border-radius:8px; padding:1rem 1.2rem; margin:0.8rem 0; font-family:'SF Mono',monospace; font-size:0.78rem; line-height:1.9;">
+      <span style="color:#dcdcaa;">project-noah/</span><br>
+      ├── <span style="color:#6a9955;">CLAUDE.md</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← AIへの業務マニュアル<br>
+      ├── <span style="color:#569cd6;">roles/</span><br>
+      │&nbsp;&nbsp; ├── <span style="color:#569cd6;">assistant/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← <strong style="color:#e0ddd8;">あなた専用のAI人格</strong>（使うほど育つ）<br>
+      │&nbsp;&nbsp; │&nbsp;&nbsp; ├── mind.md &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← 行動原則・好み<br>
+      │&nbsp;&nbsp; │&nbsp;&nbsp; └── memory.md &nbsp;&nbsp;&nbsp;&nbsp;← 学び・進捗・申し送り<br>
+      │&nbsp;&nbsp; ├── <span style="color:#569cd6;">cio/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← データ分析の専門知識<br>
+      │&nbsp;&nbsp; └── <span style="color:#569cd6;">cmo/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← マーケ設計の専門知識<br>
+      ├── <span style="color:#569cd6;">knowledge/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← チーム共通のノウハウ集<br>
+      │&nbsp;&nbsp; ├── playbooks.md &nbsp;&nbsp;&nbsp;&nbsp;← 効いた施策パターン<br>
+      │&nbsp;&nbsp; ├── anti-patterns.md ← やっちゃダメ集<br>
+      │&nbsp;&nbsp; └── ... &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← その他の知識ファイル<br>
+      └── <span style="color:#569cd6;">files/</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;← 参考資料・画像の置き場
+    </div>
+
+    <div class="callout blue">
+      <p><strong>ポイント:</strong> <code>roles/assistant/</code> の中身は、あなたが使うほど自動で育ちます。<br>
+      AIがあなたの好み・やり方を学習してファイルに書き込んでいくので、使えば使うほど賢くなります。</p>
+    </div>
+
+    <h3>④ Claude Codeで初回セットアップ</h3>
+    <p>VS Codeでフォルダを開いて、Claude Codeを起動します。</p>
+    <ol>
+      <li>VS Codeで「ファイル」→「フォルダーを開く」→ デスクトップの <code>project-〇〇</code> を選択</li>
+      <li>Claude Codeを起動（右上の ✱ アイコン、または <code>Ctrl + Shift + P</code> → Claude Code）</li>
+      <li><strong>自動でセットアップが始まります</strong> — 4つの質問に答えるだけ:
+        <ul>
+          <li>名前</li>
+          <li>担当業務</li>
+          <li>AIの話し方の好み</li>
+          <li>AI傾向分析の結果（ステップ8でやった人だけ）</li>
+        </ul>
+      </li>
+    </ol>
+
+    <div class="callout green">
+      <p><strong>「セットアップ完了！」と表示されたら準備完了。</strong><br>
+      あとは普通に話しかけるだけで業務を始められます。</p>
+    </div>
+
+    <div class="callout gray">
+      <p><strong>自動セットアップが始まらない場合:</strong><br>
+      チャット欄に <code>/setup</code> と入力してEnterを押してください。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ======================================== -->
 <!-- チェックリスト -->
 <!-- ======================================== -->
 <h2>セットアップチェックリスト</h2>
 
 <div class="step-box">
   <ul class="check-list">
-    <li>Claude Code をインストールした（VS Code版 + デスクトップ版）</li>
+    <li>VS Code をインストールした</li>
+    <li>VS Code を日本語化した</li>
+    <li>Claude Code 拡張をインストールした</li>
+    <li>デスクトップ版もインストールした</li>
     <li>Claude Code にログインできた</li>
     <li>（おすすめ）Chrome拡張を入れた</li>
     <li>GitHubアカウントを作成した</li>
@@ -454,6 +560,7 @@ python3 manage.py list</pre>
     <li>自分の名前を登録した（STAR_TEAM_USER）</li>
     <li><code>python3 manage.py list</code> でタスクが表示された</li>
     <li>（やっておくとスムーズ）AIの使用傾向を抽出した</li>
+    <li>業務フォルダをセットアップした（ZIP解凍 → リネーム → /setup完了）</li>
   </ul>
 </div>
 
