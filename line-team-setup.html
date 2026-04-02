@@ -210,10 +210,52 @@ body.os-mac .mac-only { display: block; }
 </div>
 
 <!-- ======================================== -->
-<!-- Step 3: GitHubアカウント -->
+<!-- Step 3: AIの使用傾向分析 -->
 <!-- ======================================== -->
 <div class="step-box">
   <span class="step-num">3</span>
+  <span class="step-title">今使ってるAIから「自分の考え方」を抽出する</span>
+  <span class="tag-recommended">やっておくとスムーズ</span>
+  <span class="step-time">5分</span>
+
+  <div class="step-detail">
+    <p>ChatGPT / Gemini / Claudeチャット版 — <strong>どれか一番使い込んでるAI</strong>に、<br>
+    以下のプロンプトをコピーして貼り付けてください。</p>
+
+    <div class="prompt-box">
+今までの会話から、私の以下の傾向をまとめてください。<br><br>
+1. 仕事の内容と目的（何をしている人か）<br>
+2. AIへの修正依頼・不満で多かったこと（「長い」「違う」「それじゃない」等）<br>
+3. 好きな回答スタイル（長い/短い、丁寧/フランク、結論先/説明先）<br>
+4. 「これやるな」「こうしろ」と言ったルール・制約<br>
+5. よく頼む作業トップ3<br>
+6. 私が大事にしていそうな仕事の価値観・哲学（推測でOK）<br><br>
+箇条書きで簡潔にお願いします。
+    </div>
+    <p class="copy-hint">↑ これをそのままコピーして、今使ってるAIに貼り付け</p>
+
+    <p><strong>出力をコピーしてメモ帳やメモアプリに保存</strong>しておいてください。<br>
+    初日のセットアップで使います。</p>
+
+    <div class="callout blue">
+      <p><strong>なぜこれをやるの？</strong></p>
+      <p>あなたの考え方・哲学・好みを新しいAIに引き継ぐため。<br>
+      これがあると、初日からあなた好みのAIに近づきます。<br>
+      ゼロから教え直す手間が省ける。</p>
+    </div>
+
+    <div class="callout gray">
+      <p><strong>AIを使い込んでない人は？</strong> スキップしてOK。<br>
+      初日のセットアップで質問に答えるだけでも十分です。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ======================================== -->
+<!-- Step 4: GitHubアカウント -->
+<!-- ======================================== -->
+<div class="step-box">
+  <span class="step-num">4</span>
   <span class="step-title">GitHubアカウントを作成</span>
   <span class="tag-required">必須</span>
   <span class="step-time">5分</span>
@@ -244,7 +286,7 @@ body.os-mac .mac-only { display: block; }
 <!-- Step 4: Git初期設定 -->
 <!-- ======================================== -->
 <div class="step-box">
-  <span class="step-num">4</span>
+  <span class="step-num">5</span>
   <span class="step-title">Git の初期設定</span>
   <span class="tag-required">必須</span>
   <span class="step-time">2分</span>
@@ -297,7 +339,7 @@ git config --global user.email "<span class="highlight">GitHubに登録したメ
 <!-- Step 5: リポジトリをダウンロード -->
 <!-- ======================================== -->
 <div class="step-box">
-  <span class="step-num">5</span>
+  <span class="step-num">6</span>
   <span class="step-title">作業リポジトリをダウンロード</span>
   <span class="tag-required">必須</span>
   <span class="step-time">2分</span>
@@ -359,7 +401,7 @@ source ~/.zshrc</pre>
 <!-- Step 6: Chrome拡張 -->
 <!-- ======================================== -->
 <div class="step-box">
-  <span class="step-num">6</span>
+  <span class="step-num">7</span>
   <span class="step-title">Chrome拡張「Claude in Chrome」を入れる</span>
   <span class="tag-recommended">おすすめ</span>
   <span class="step-time">2分</span>
@@ -388,7 +430,7 @@ source ~/.zshrc</pre>
 <!-- Step 7: 動作確認 -->
 <!-- ======================================== -->
 <div class="step-box">
-  <span class="step-num">7</span>
+  <span class="step-num">8</span>
   <span class="step-title">動作確認</span>
   <span class="tag-required">必須</span>
   <span class="step-time">1分</span>
@@ -423,6 +465,36 @@ python3 manage.py list</pre>
 </div>
 
 <!-- ======================================== -->
+<!-- Step 9: 業務テーマを考えておく -->
+<!-- ======================================== -->
+<div class="step-box">
+  <span class="step-num">9</span>
+  <span class="step-title">「AIにやらせたい仕事」を1つ考えておく</span>
+  <span class="tag-optional">できれば</span>
+  <span class="step-time">考えるだけ</span>
+
+  <div class="step-detail">
+    <p>初日に、実際にその仕事をAIと一緒にやります。<br>
+    何でもOK。普段やってる仕事の中から1つ。</p>
+
+    <p><strong>例：</strong></p>
+    <ul>
+      <li>データをまとめて報告する</li>
+      <li>記事の構成をチェックする</li>
+      <li>CSVを加工・整理する</li>
+      <li>リサーチして要点をまとめる</li>
+      <li>定型作業を自動化する</li>
+      <li>レポートのフォーマットを統一する</li>
+    </ul>
+
+    <div class="callout">
+      <p><strong>ポイント：「めんどくさい」と思ってることがベスト。</strong><br>
+      毎回同じことやってるな、地味にだるいな — そういう仕事ほどAIが効く。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ======================================== -->
 <!-- チェックリスト -->
 <!-- ======================================== -->
 <h2>セットアップチェックリスト</h2>
@@ -439,12 +511,13 @@ python3 manage.py list</pre>
     <li>自分の名前を登録した（STAR_TEAM_USER）</li>
     <li><code>python3 manage.py list</code> でタスクが表示された</li>
     <li>（おすすめ）Chrome拡張を入れた</li>
+    <li>（できれば）AIにやらせたい仕事を1つ考えた</li>
   </ul>
 </div>
 
 <div class="callout green" style="margin-top: 2rem;">
-  <p><strong>ステップ1〜5、7が終わっていればOKです。</strong><br>
-  ステップ6は余裕があればやっておくと便利です。<br>
+  <p><strong>ステップ1〜2、4〜6、8が終わっていればOKです。</strong><br>
+  ステップ3・7・9は余裕があればやっておくとスムーズです。<br>
   業務の進め方は初日にRenから説明します。</p>
 </div>
 
