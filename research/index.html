@@ -52,6 +52,28 @@
   .tag { padding: 2px 8px; background: #f0f0f0; border-radius: 10px; font-size: 11px; color: #666; cursor: pointer; }
   .tag:hover { background: #e0e0e0; }
 
+  /* 武器庫セクション */
+  .picks-section { max-width: 900px; margin: 20px auto 0; padding: 0 16px; }
+  .picks-header { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+  .picks-subtext { font-size: 12px; color: #888; margin-bottom: 12px; }
+  .pick-card { background: white; border-radius: 12px; padding: 16px 20px; margin-bottom: 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+  .pick-header { margin-bottom: 6px; }
+  .pick-priority { padding: 3px 10px; border-radius: 12px; color: white; font-size: 11px; font-weight: 700; }
+  .pick-title { font-size: 16px; font-weight: 700; color: #1d1d1f; margin-bottom: 8px; }
+  .pick-why { font-size: 13px; color: #1a1a2e; background: #f0f7ff; padding: 8px 12px; border-radius: 8px; border-left: 3px solid #4fc3f7; margin-bottom: 6px; line-height: 1.5; }
+  .pick-action { font-size: 13px; color: #2e7d32; background: #e8f5e9; padding: 8px 12px; border-radius: 8px; margin-bottom: 6px; line-height: 1.5; }
+  .pick-impact { font-size: 13px; color: #e65100; background: #fff3e0; padding: 8px 12px; border-radius: 8px; line-height: 1.5; }
+
+  /* レポートセクション */
+  .reports-section { max-width: 900px; margin: 20px auto 0; padding: 0 16px; }
+  .reports-header { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+  .report-link { display: flex; align-items: center; gap: 12px; background: white; border-radius: 10px; padding: 12px 16px; margin-bottom: 8px; text-decoration: none; color: #1d1d1f; box-shadow: 0 1px 3px rgba(0,0,0,0.06); transition: all 0.2s; }
+  .report-link:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); transform: translateY(-1px); }
+  .report-date { font-size: 13px; font-weight: 600; color: #1976d2; white-space: nowrap; }
+  .report-title { font-size: 14px; font-weight: 600; white-space: nowrap; }
+  .report-count { font-size: 11px; background: #e3f2fd; color: #1565c0; padding: 2px 8px; border-radius: 10px; white-space: nowrap; }
+  .report-hl { font-size: 12px; color: #888; flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
   .footer { text-align: center; padding: 32px; font-size: 12px; color: #888; }
 </style>
 </head>
@@ -73,6 +95,50 @@
         <div class="stat-label">リサーチ日数</div>
       </div>
     </div>
+  </div>
+
+  <div class="picks-section">
+    <div class="picks-header">🎯 GOALから見た武器庫</div>
+    <div class="picks-subtext">リサーチの中からGOAL達成に直結するアクション候補を厳選</div>
+    
+      <div class="pick-card" style="border-left: 4px solid #FF4444;">
+        <div class="pick-header">
+          <span class="pick-priority" style="background:#FF4444">🔥 最優先</span>
+        </div>
+        <div class="pick-title">note LINE連携でPU導線をそのまま移植</div>
+        <div class="pick-why">💡 うちのPU→LINE導線と完全に同じ構造。月額9,800円で第2エンジンの友だち獲得チャネルが即座に立ち上がる</div>
+        <div class="pick-action">📋 note proアカウント開設 → GLP-1体験談記事を3本投稿 → LINE連携ボタン設置 → 1ヶ月で効果測定</div>
+        <div class="pick-impact">📈 月+50人の友だち獲得（CPA 196円）。SEO依存から脱却する最初の一手</div>
+      </div>
+      <div class="pick-card" style="border-left: 4px solid #FF4444;">
+        <div class="pick-header">
+          <span class="pick-priority" style="background:#FF4444">🔥 最優先</span>
+        </div>
+        <div class="pick-title">X自動投稿をClaude Code + MCPで月300円運用</div>
+        <div class="pick-why">💡 X API従量課金で1投稿1.5円。既存のClaude Code体制にMCP追加するだけで自動投稿が完結する</div>
+        <div class="pick-action">📋 X MCPセットアップ → GLP-1特化アカウント作成 → 1日3投稿で運用開始 → noteへの導線をプロフに設置</div>
+        <div class="pick-impact">📈 月300-600円でX→note→LINEの導線が完成。フォロワー1,000人到達でnoteへの流入が安定化</div>
+      </div>
+      <div class="pick-card" style="border-left: 4px solid #FF8800;">
+        <div class="pick-header">
+          <span class="pick-priority" style="background:#FF8800">⚡ 有力</span>
+        </div>
+        <div class="pick-title">ドライバー転職がSNS×LINE型で完全ブルーオーシャン</div>
+        <div class="pick-why">💡 2024年問題で需要急増なのに、SNS×LINE誘導をやってるプレイヤーがゼロ。ASP新規ジャンルとも合致</div>
+        <div class="pick-action">📋 ドライバー転職のKWボリューム調査 → note/X用コンテンツ案作成 → ASPと条件確認</div>
+        <div class="pick-impact">📈 競合ゼロのジャンルで先行者利益。既存の転職ノウハウが転用可能</div>
+      </div>
+  </div>
+
+  <div class="reports-section">
+    <div class="reports-header">📋 日次レポート</div>
+    
+      <a href="reports/2026-04-03.html" class="report-link">
+        <span class="report-date">2026-04-03</span>
+        <span class="report-title">初回リサーチ（4軸全体）</span>
+        <span class="report-count">33件</span>
+        <span class="report-hl">noteのLINE連携公式機能発見 / X API月300円で自動化可能 / 全ジャンルSNS×LINEがブルーオーシャン</span>
+      </a>
   </div>
 
   <div class="controls">
