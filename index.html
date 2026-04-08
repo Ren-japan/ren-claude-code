@@ -207,12 +207,39 @@
   <strong>この構造の考え方：</strong>AIを「毎回リセットされるチャットbot」ではなく「記憶を持つ組織」として設計。<br>
   <strong>🧠 脳</strong> = mind.md（性格）+ knowledge/（長期記憶）+ memory.md（短期記憶）<br>
   <strong>🏢 組織</strong> = CEO（判断）→ CIO（データ）/ CMO（マーケ）/ CTO（技術）の役割分担<br>
-  <strong>🔄 学習ループ</strong> = 失敗→記録→3回で昇格→ルール化。使うほど賢くなる。
+  <strong>🔄 学習ループ</strong> = 失敗→記録→3回で昇格→ルール化。使うほど賢くなる。<br>
+  <strong>⚡ 自動参照</strong> = rules/（path指定で自動読み込み）+ skills/（タスク関連時に自動参照）で毎回の読み込みコストを最小化。
 </div>
 
 <div class="tree"><span class="f">claude-projects/</span>
 ├── <span class="f">CLAUDE.md</span>           <span class="d">← 会社の定款。全員が毎回読む</span>
-├── <span class="f">roles/</span>              <span class="d">← 組織</span> <span class="to">[組織]</span>
+├── <span class="f">.claude/</span>             <span class="d">← Claude Code設定・スキル・ルール</span>
+│   ├── <span class="f">rules/</span>            <span class="d">← 自動読み込みルール（path指定）</span> <span class="tp">[脳]</span>
+│   │   ├── <span class="f">ceo-mind.md</span>     <span class="d">← CEO人格 → roles/ceo/mind.md を自動参照</span>
+│   │   ├── <span class="f">ceo-memory.md</span>   <span class="d">← CEO記憶 → roles/ceo/memory.md を自動参照</span>
+│   │   └── <span class="f">ceo-workflow.md</span> <span class="d">← CEOフロー → roles/ceo/tasks/ceo-flow.md を自動参照</span>
+│   ├── <span class="f">commands/</span>         <span class="d">← /ceo /cio /cmo 等のランチャー</span>
+│   └── <span class="f">skills/</span>           <span class="d">← 業務スキル + knowledge自動参照</span> <span class="ts">[スキル]</span>
+│       ├── <span class="d">── 業務スキル ──</span>
+│       ├── <span class="f">morning-standup/</span>  <span class="d">← 朝レポ（9時）</span>
+│       ├── <span class="f">midday-update/</span>    <span class="d">← 昼レポ（13時）</span>
+│       ├── <span class="f">evening-report/</span>   <span class="d">← 夕レポ（18時）</span>
+│       ├── <span class="f">weekly-report/</span>    <span class="d">← 週次レポート</span>
+│       ├── <span class="f">scan/</span>             <span class="d">← GOAL逆算GAPスキャン</span>
+│       ├── <span class="f">craft/</span>            <span class="d">← PU/診断設計</span>
+│       ├── <span class="f">order/</span>            <span class="d">← デザイナー発注</span>
+│       ├── <span class="f">session-wrap/</span>     <span class="d">← セッション終了時の学習記録</span>
+│       ├── <span class="f">task-log/</span>         <span class="d">← タスク進捗記録</span>
+│       ├── <span class="f">weekly-evolve/</span>    <span class="d">← 週次自己進化レビュー</span>
+│       ├── <span class="f">monthly-retro/</span>    <span class="d">← 月次レトロスペクティブ</span>
+│       ├── <span class="f">skill-creator/</span>    <span class="d">← スキル自動生成</span>
+│       ├── <span class="d">── knowledge自動参照 ──</span>
+│       ├── <span class="f">knowledge-anti-patterns/</span>  <span class="d">← やらかし集を自動参照</span>
+│       ├── <span class="f">knowledge-playbooks/</span>      <span class="d">← 効いた施策を自動参照</span>
+│       ├── <span class="f">knowledge-funnel-model/</span>   <span class="d">← ファネル定義を自動参照</span>
+│       ├── <span class="f">knowledge-genre-insights/</span> <span class="d">← ジャンル別知見を自動参照</span>
+│       └── <span class="f">knowledge-thinking-os/</span>    <span class="d">← 思考OSを自動参照</span>
+├── <span class="f">roles/</span>              <span class="d">← 組織（原本）</span> <span class="to">[組織]</span>
 │   ├── <span class="f">ceo/</span>            <span class="d">← 判断・ルーティング</span>
 │   │   ├── <span class="f">mind.md</span>       <span class="d">← 行動原則（性格）</span> <span class="tp">[脳]</span>
 │   │   ├── <span class="f">memory.md</span>     <span class="d">← 学び・失敗ログ</span> <span class="tp">[脳]</span>
@@ -228,14 +255,12 @@
 │   └── <span class="f">cto/</span>            <span class="d">← 技術基盤</span>
 │       ├── <span class="f">mind.md</span>       <span class="d">← 障害対応フロー</span>
 │       └── <span class="f">memory.md</span>     <span class="d">← インシデント履歴・環境の罠</span>
-├── <span class="f">knowledge/</span>          <span class="d">← 長期記憶（確定した事実）</span> <span class="tp">[脳]</span>
+├── <span class="f">knowledge/</span>          <span class="d">← 長期記憶（確定した事実・原本）</span> <span class="tp">[脳]</span>
 │   ├── <span class="f">funnel-model.md</span>   <span class="d">← ファネル定義・指標・基準値</span>
 │   ├── <span class="f">anti-patterns.md</span>  <span class="d">← やらかし集（二度とやらない）</span>
 │   ├── <span class="f">playbooks.md</span>      <span class="d">← 効いた施策パターン</span>
-│   └── <span class="f">genre-insights.md</span> <span class="d">← ジャンル別の学び</span>
-├── <span class="f">.claude/</span>             <span class="d">← スキル定義</span> <span class="ts">[スキル]</span>
-│   ├── <span class="f">commands/</span>         <span class="d">← /ceo /cio /cmo /morning-standup</span>
-│   └── <span class="f">skills/</span>           <span class="d">← session-wrap / weekly-evolve / monthly-retro</span>
+│   ├── <span class="f">genre-insights.md</span> <span class="d">← ジャンル別の学び</span>
+│   └── <span class="f">thinking-os.md</span>    <span class="d">← 思考OS（GOAL起点×構造把握）</span>
 └── <span class="f">projects/</span>            <span class="d">← 事業GOAL・ブリーフ</span>
     └── <span class="f">line-marketing/</span>
         └── <span class="f">goals.md</span>      <span class="d">← 短期GOAL・長期GOAL</span></div>
