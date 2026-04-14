@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>リテンション配信 8通設計 — 方法診断（GLP-1）</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    background: #fafafa; color: #222; line-height: 1.8; max-width: 760px; margin: 0 auto; padding: 2rem 1.5rem;
+  }
+  h1 { font-size: 1.5rem; font-weight: 800; margin: 0 0 0.3rem; color: #111; }
+  .subtitle { color: #888; font-size: 0.85rem; margin-bottom: 1.5rem; }
+  h2 { font-size: 1.15rem; font-weight: 700; margin: 2.5rem 0 0.6rem; color: #111; padding-bottom: 0.3rem; border-bottom: 2px solid #e0e0e0; }
+  h3 { font-size: 1rem; font-weight: 700; margin: 1.5rem 0 0.4rem; color: #333; }
+  p { margin-bottom: 0.8rem; color: #444; font-size: 0.93rem; }
+  strong { color: #111; }
+  .tag {
+    display: inline-block; font-size: 0.7rem; font-weight: 700; padding: 2px 8px;
+    border-radius: 4px; margin-right: 4px; vertical-align: middle;
+  }
+  .tag-trust { background: #dcfce7; color: #166534; }
+  .tag-proof { background: #dbeafe; color: #1e40af; }
+  .tag-resolve { background: #fef3c7; color: #92400e; }
+  .tag-empathy { background: #fce7f3; color: #9d174d; }
+  .tag-imagine { background: #ede9fe; color: #5b21b6; }
+  .tag-cta { background: #fee2e2; color: #991b1b; }
+
+  /* 心理階段 */
+  .ladder {
+    display: flex; gap: 0; margin: 1.5rem 0; border-radius: 10px; overflow: hidden;
+    border: 1px solid #e0e0e0; font-size: 0.75rem; font-weight: 600; text-align: center;
+  }
+  .ladder-step { flex: 1; padding: 10px 4px; }
+  .ladder-step .num { font-size: 1.1rem; font-weight: 800; }
+  .ladder-step .lbl { margin-top: 2px; }
+  .ladder-step .day { font-weight: 400; color: rgba(0,0,0,0.5); font-size: 0.65rem; }
+  .l1 { background: #dcfce7; color: #166534; }
+  .l2 { background: #dbeafe; color: #1e40af; }
+  .l3 { background: #fef3c7; color: #92400e; }
+  .l4 { background: #fce7f3; color: #9d174d; }
+  .l5 { background: #ede9fe; color: #5b21b6; }
+  .l6 { background: #fee2e2; color: #991b1b; }
+  .l7 { background: #fecaca; color: #991b1b; }
+  .l8 { background: #f3f4f6; color: #374151; }
+
+  /* メッセージカード */
+  .msg {
+    background: #fff; border: 1px solid #e0e0e0; border-radius: 12px;
+    margin: 1.5rem 0; overflow: hidden;
+  }
+  .msg-head {
+    padding: 12px 16px; font-weight: 700; font-size: 0.9rem;
+    display: flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .msg-head .day-badge {
+    background: #111; color: #fff; font-size: 0.65rem; font-weight: 700;
+    padding: 2px 8px; border-radius: 10px;
+  }
+  .msg-concept {
+    padding: 12px 16px; background: #f9fafb; font-size: 0.82rem; color: #666;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .msg-body {
+    padding: 16px; font-size: 0.88rem; line-height: 1.9; color: #333;
+  }
+  .msg-body .line-msg {
+    background: #e8f5e9; border-radius: 12px; padding: 16px 18px;
+    margin: 8px 0; font-size: 0.85rem; line-height: 1.85; color: #222;
+    position: relative;
+  }
+  .msg-body .line-msg::before {
+    content: ''; position: absolute; left: -8px; top: 14px;
+    border: 6px solid transparent; border-right-color: #e8f5e9;
+  }
+  .msg-foot {
+    padding: 10px 16px; background: #fafafa; border-top: 1px solid #f0f0f0;
+    font-size: 0.75rem; color: #888; display: flex; justify-content: space-between;
+  }
+  .msg-foot .format { font-weight: 600; }
+  .msg-why {
+    padding: 10px 16px; background: #fffbeb; border-top: 1px solid #fef3c7;
+    font-size: 0.78rem; color: #92400e;
+  }
+
+  /* テーブル */
+  table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.82rem; }
+  th { background: #f3f4f6; padding: 8px 10px; text-align: left; font-weight: 700; border-bottom: 2px solid #e0e0e0; }
+  td { padding: 8px 10px; border-bottom: 1px solid #f0f0f0; }
+  tr:last-child td { border-bottom: none; }
+
+  /* KPI */
+  .kpi-row { display: flex; gap: 10px; margin: 1rem 0; }
+  .kpi {
+    flex: 1; background: #fff; border: 1px solid #e5e7eb; border-radius: 8px;
+    padding: 12px; text-align: center;
+  }
+  .kpi .kpi-label { font-size: 0.7rem; color: #888; }
+  .kpi .kpi-value { font-size: 1.3rem; font-weight: 800; color: #111; margin: 4px 0; }
+  .kpi .kpi-note { font-size: 0.65rem; color: #999; }
+
+  /* 注意 */
+  .note-box {
+    background: #fffbeb; border-left: 4px solid #f59e0b; padding: 12px 16px;
+    margin: 1rem 0; border-radius: 0 8px 8px 0; font-size: 0.85rem;
+  }
+  .note-box.blue { background: #eff6ff; border-color: #3b82f6; }
+  .note-box.green { background: #f0fdf4; border-color: #22c55e; }
+  .note-box.red { background: #fef2f2; border-color: #ef4444; }
+  .note-box strong { display: block; margin-bottom: 4px; }
+
+  .divider { border: none; border-top: 1px dashed #e0e0e0; margin: 2rem 0; }
+
+  /* CTA button style */
+  .btn-preview {
+    display: inline-block; background: #22c55e; color: #fff; font-weight: 700;
+    padding: 10px 24px; border-radius: 8px; font-size: 0.85rem;
+    text-decoration: none; margin: 8px 0;
+  }
+</style>
+</head>
+<body>
+
+<h1>🟢 リテンション配信 8通設計</h1>
+<p class="subtitle">方法診断（GLP-1）｜14日間ステップ配信｜v3 心理階段原理</p>
+
+<div class="note-box blue">
+  <strong>元ネタ</strong>
+  齋藤（FUBAR）退職代行事例 — ステップ配信3通→8通で申込率12%→47%。<br>
+  「同じ情報でも、出す順番が違うだけでCVRは4倍変わる」を汎用化して適用。
+</div>
+
+<!-- ===== 前提 ===== -->
+<h2>前提</h2>
+<div class="kpi-row">
+  <div class="kpi">
+    <div class="kpi-label">対象</div>
+    <div class="kpi-value">96人/月</div>
+    <div class="kpi-note">方法診断経由の友だち</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">現状FCVR</div>
+    <div class="kpi-value" style="color:#ef4444;">0%</div>
+    <div class="kpi-note">何も送ってない</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">目標CVR</div>
+    <div class="kpi-value" style="color:#22c55e;">5%</div>
+    <div class="kpi-note">Lステップ基準</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">配信期間</div>
+    <div class="kpi-value">14日</div>
+    <div class="kpi-note">8通送りきり</div>
+  </div>
+</div>
+
+<!-- ===== 心理階段 ===== -->
+<h2>心理階段（この順番で踏ませる）</h2>
+<p>飛ばすとCVしない。順番を変えるだけでCVRが4倍変わる。</p>
+
+<div class="ladder">
+  <div class="ladder-step l1"><div class="num">1</div><div class="lbl">共感</div><div class="day">DAY 0</div></div>
+  <div class="ladder-step l2"><div class="num">2</div><div class="lbl">証明</div><div class="day">DAY 1</div></div>
+  <div class="ladder-step l3"><div class="num">3</div><div class="lbl">解消</div><div class="day">DAY 3</div></div>
+  <div class="ladder-step l4"><div class="num">4</div><div class="lbl">共感</div><div class="day">DAY 5</div></div>
+  <div class="ladder-step l5"><div class="num">5</div><div class="lbl">想像</div><div class="day">DAY 7</div></div>
+  <div class="ladder-step l6"><div class="num">6</div><div class="lbl">CTA</div><div class="day">DAY 9</div></div>
+  <div class="ladder-step l7"><div class="num">7</div><div class="lbl">特典</div><div class="day">DAY 11</div></div>
+  <div class="ladder-step l8"><div class="num">8</div><div class="lbl">背中押し</div><div class="day">DAY 14</div></div>
+</div>
+
+<p><strong>前半5通 = 信頼を積む（売り込みゼロ）。後半3通 = 行動に移す。</strong><br>
+CV導線は6通目以降。全体の62.5%が売り込み以外。</p>
+
+<hr class="divider">
+
+<!-- ===== 1通目 ===== -->
+<div class="msg">
+  <div class="msg-head">
+    <span class="day-badge">DAY 0</span>
+    <span>1通目</span>
+    <span class="tag tag-trust">①共感</span>
+  </div>
+  <div class="msg-concept">診断結果を返しながら「あなたの気持ち、わかってます」を伝える。売り込みゼロ。</div>
+  <div class="msg-body">
+    <div class="line-msg">
+診断おつかれさまでした！<br><br>
+あなたの結果は【◯◯タイプ】です。<br><br>
+<em>（※診断結果に応じたパーソナライズ文）</em><br><br>
+ところで、ここにたどり着いたということは…<br><br>
+「色々調べすぎて、結局どれが自分に合うかわからない」<br><br>
+そんな気持ち、ありませんか？<br><br>
+大丈夫です。<br>
+これから何回かに分けて、<br>
+あなたに合った情報だけお届けしますね。<br><br>
+売り込みはしません。<br>
+まずは「知る」ところから、一緒に整理していきましょう。
+    </div>
+  </div>
+  <div class="msg-foot">
+    <span class="format">形式：テキスト + 診断結果画像</span>
+    <span>CV導線：なし</span>
+  </div>
+  <div class="msg-why">💡「売り込みはしません」を明言 → 以降の配信を開封する動機になる</div>
+</div>
+
+<!-- ===== 2通目 ===== -->
+<div class="msg">
+  <div class="msg-head">
+    <span class="day-badge">DAY 1</span>
+    <span>2通目</span>
+    <span class="tag tag-proof">②証明</span>
+  </div>
+  <div class="msg-concept">同じ悩みだった人のリアル体験談。数値は出さない（薬機法）。感情の変化だけで構成。</div>
+  <div class="msg-body">
+    <div class="line-msg">
+昨日の診断、見ていただけましたか？<br><br>
+今日は、同じように悩んでいた方の<br>
+リアルな話をひとつだけ。<br><br>
+──────────<br><br>
+「40年間、何をやっても食欲に勝てなかった」<br><br>
+10代からずっとダイエットしてきた方の話です。<br><br>
+食事制限、置き換え、ジム、サプリ…<br>
+何をやっても続かない。<br><br>
+続かない自分を責める。<br>
+また新しい方法を試す。<br>
+また続かない。<br><br>
+その繰り返し。<br><br>
+「もう自分の意志が弱いんだ」と<br>
+本気で思ってたそうです。<br><br>
+でも、あることをきっかけに<br>
+「食欲との戦い」がなくなった。<br><br>
+「頑張ってる感がない。<br>
+これが一番びっくりした」<br><br>
+その方はこう言っていました。<br><br>
+──────────<br><br>
+意志力の問題じゃなかったんです。<br><br>
+明日、もう少し詳しくお話ししますね。
+    </div>
+  </div>
+  <div class="msg-foot">
+    <span class="format">形式：テキスト（ストーリー）</span>
+    <span>CV導線：なし</span>
+  </div>
+  <div class="msg-why">💡 まだGLP-1の名前すら出さない。「意志力じゃない」で3通目へ伏線。</div>
+</div>
+
+<!-- ===== 3通目 ===== -->
+<div class="msg">
+  <div class="msg-head">
+    <span class="day-badge">DAY 3</span>
+    <span>3通目</span>
+    <span class="tag tag-resolve">③解消</span>
+  </div>
+  <div class="msg-concept">不安TOP3（費用・副作用・リバウンド）を正直に潰す。②で信頼が積まれた状態だから効く。</div>
+  <div class="msg-body">
+    <div class="line-msg">
+前回の体験談、読んでいただけましたか？<br><br>
+「意志力じゃなかった」の正体、<br>
+今日はそこをお話しします。<br><br>
+実は、食欲ってホルモンで決まるんです。<br><br>
+GLP-1というホルモン、聞いたことありますか？<br>
+もともと体の中にあるもので、<br>
+食欲のブレーキの役割をしています。<br><br>
+このホルモンの量が少ない人は、<br>
+どれだけ頑張っても食欲が止まらない。<br>
+意志の問題じゃなく、体の仕組みの問題です。<br><br>
+──────────<br><br>
+で、気になることありますよね。<br>
+よく聞かれるTOP3、正直に答えます。<br><br>
+💰 <strong>費用は？</strong><br>
+→ リベルサス（飲み薬）で月7,920円〜。<br>
+ジムの月会費とほぼ同じです。<br><br>
+😰 <strong>副作用は？</strong><br>
+→ 最初の数日、軽い吐き気が出る人がいます。<br>
+ただ、1週間で慣れる人がほとんど。<br>
+※副作用で辞めた人＝失敗パターン。<br>
+続けた人はほぼ全員うまくいってます。<br><br>
+🔄 <strong>やめたらリバウンドする？</strong><br>
+→ 食習慣の改善を並行すれば防げます。<br>
+「食欲が落ち着いてる間に<br>
+正しい食習慣を体に覚えさせる」<br>
+これが成功してる人の共通パターンです。<br><br>
+──────────<br><br>
+隠しません。盛りません。<br>
+判断するのはあなたです。<br><br>
+次回は少し息抜き回です。お楽しみに。
+    </div>
+  </div>
+  <div class="msg-foot">
+    <span class="format">形式：テキスト + GLP-1図解画像</span>
+    <span>CV導線：なし</span>
+  </div>
+  <div class="msg-why">💡 2通目の伏線「意志力じゃない」を回収。信頼ある状態だから「教えてくれてる」感で入る。</div>
+</div>
+
+<!-- ===== 4通目 ===== -->
+<div class="msg">
+  <div class="msg-head">
+    <span class="day-badge">DAY 5</span>
+    <span>4通目</span>
+    <span class="tag tag-empathy">④共感あるある</span>
+  </div>
+  <div class="msg-concept">売り込みゼロ。完全に共感エンタメ。3通連続「情報」の後の息抜き。</div>
+  <div class="msg-body">
+    <div class="line-msg">
+今日はちょっと息抜き。<br><br>
+ダイエットあるある、何個当てはまりますか？<br><br>
+□ 「明日から本気出す」（389回目）<br><br>
+□ 夜中のポテチだけは意志力が効かない<br><br>
+□ 体重計に乗る前に服を全部脱ぐ<br><br>
+□ 「水飲んだだけで太る体質」と本気で思ってる<br><br>
+□ ジムの会費だけ毎月払い続けてる<br><br>
+□ 「痩せた？」って聞かれただけで1週間がんばれる<br><br>
+□ SNSで見たダイエット法を3日だけ試す<br><br>
+□ 結局、自分に合う方法が何なのか<br>
+わからないまま何年も経ってる<br><br>
+…最後のやつ、刺さりましたか？<br><br>
+実はここが一番大事なところかもしれません。<br><br>
+次回は「もし合う方法が見つかったら、<br>
+どんな毎日になるか」の話をしますね。
+    </div>
+  </div>
+  <div class="msg-foot">
+    <span class="format">形式：テキスト（リスト）</span>
+    <span>CV導線：なし</span>
+  </div>
+  <div class="msg-why">💡 最後の1つだけ刺す → 5通目への布石。開封率キープの仕掛け。</div>
+</div>
+
+<!-- ===== 5通目 ===== -->
+<div class="msg">
+  <div class="msg-head">
+    <span class="day-badge">DAY 7</span>
+    <span>5通目</span>
+    <span class="tag tag-imagine">⑤想像</span>
+  </div>
+  <div class="msg-concept">「やった後の自分」を見せる。CTAはまだ出さない。想像だけさせて終わる。</div>
+  <div class="msg-body">
+    <div class="line-msg">
+前回のあるある、けっこう反応いただきました。笑<br><br>
+今日は少し違う話を。<br><br>
+もし「自分に合う方法」が見つかったら、<br>
+毎日ってどう変わると思いますか？<br><br>
+実際に合う方法が見つかった人の<br>
+"ある1日"を紹介しますね。<br><br>
+──────────<br><br>
+🌅 <strong>朝</strong><br>
+普通に朝ごはんを食べる。<br>
+「これ食べたら太るかな」とか考えない。<br>
+食べたいものを、適量で。それだけ。<br><br>
+🌞 <strong>昼</strong><br>
+好きなものを食べる。<br>
+ランチに罪悪感がない。<br>
+「カロリー計算しなきゃ」がない。<br><br>
+🌙 <strong>夜</strong><br>
+「食べたい」に振り回されない夜。<br>
+冷蔵庫を開ける回数が減った。<br>
+寝る前に「今日も食べすぎた…」がない。<br><br>
+──────────<br><br>
+これ、特別な生活じゃないんです。<br><br>
+「食欲に振り回されない、普通の1日」<br><br>
+実はこれが一番変わったことだって<br>
+多くの人が言ってます。<br><br>
+ダイエットしてる感がない。<br>
+でも、体は変わっていく。<br><br>
+…気になりますよね。<br><br>
+次回、もう少し具体的な話をしますね。
+    </div>
+  </div>
+  <div class="msg-foot">
+    <span class="format">形式：テキスト + 日常イメージ画像</span>
+    <span>CV導線：なし</span>
+  </div>
+  <div class="msg-why">💡 数値ゼロ。体験の質感だけで描写。「普通の1日」= GLP-1の本質的価値。</div>
+</div>
+
+<!-- ===== 6通目 ===== -->
+<div class="msg" style="border-color: #fca5a5;">
+  <div class="msg-head" style="background: #fef2f2;">
+    <span class="day-badge" style="background: #ef4444;">DAY 9</span>
+    <span>6通目</span>
+    <span class="tag tag-cta">⑥CTA（初回CV導線）</span>
+  </div>
+  <div class="msg-concept">ここで初めてCV導線を出す。5通分の信頼があるから「広告」じゃなく「提案」に見える。</div>
+  <div class="msg-body">
+    <div class="line-msg">
+ここまで読んでいただいて<br>
+ありがとうございます。<br><br>
+5回にわたってお話ししてきましたが、<br>
+「ちょっと気になってきた」<br>
+という方もいるかもしれません。<br><br>
+もしそうなら、<br>
+まず話だけ聞いてみませんか？<br><br>
+DMMオンラインクリニックなら：<br><br>
+✅ 予約は30秒（スマホでOK）<br>
+✅ 診察はオンラインで5分<br>
+✅ 診察料 0円<br>
+✅ 薬は最短当日にお届け<br>
+✅ 合わないと思ったら、そこでやめてOK<br><br>
+「予約 = 契約」じゃないです。<br>
+聞くだけ聞いて、やめてもOK。<br><br>
+家から出なくていい。<br>
+5分だけ、話を聞いてみる。<br>
+それだけです。
+    </div>
+    <p style="text-align:center; margin: 12px 0;">
+      <span class="btn-preview">▼ 無料で相談してみる</span>
+    </p>
+    <div class="line-msg" style="background:#f0fdf4;">
+「まだ迷ってる」でも全然大丈夫。<br>
+次回以降もメッセージは届きますので、<br>
+タイミングが来たらいつでもどうぞ。
+    </div>
+  </div>
+  <div class="msg-foot">
+    <span class="format">形式：テキスト + 予約ボタン</span>
+    <span>CV導線：✅ DMMオンラインクリニック</span>
+  </div>
+  <div class="msg-why">💡「予約≠契約」「やめてもOK」「まだ迷ってる人もOK」= ハードル徹底排除 + ブロック防止</div>
+</div>
+
+<!-- ===== 7通目 ===== -->
+<div class="msg" style="border-color: #fca5a5;">
+  <div class="msg-head" style="background: #fef2f2;">
+    <span class="day-badge" style="background: #ef4444;">DAY 11</span>
+    <span>7通目</span>
+    <span class="tag tag-cta">⑦特典</span>
+  </div>
+  <div class="msg-concept">6通目でCVしなかった人への追い打ち。「今やる理由」を渡す。</div>
+  <div class="msg-body">
+    <div class="line-msg">
+前回のメッセージ、見ていただけましたか？<br><br>
+「気になるけど、もう少し考えたい」<br><br>
+…そうですよね。<br>
+焦る必要は全くありません。<br><br>
+ただ、1つだけお知らせです。<br><br>
+今ならクーポンが使えます。<br><br>
+💊 <strong>リベルサス（飲み薬）</strong><br>
+通常 月7,920円 → クーポンで <strong>月5,420円</strong><br>
+※初回限定<br><br>
+💊 <strong>マンジャロ（注射）</strong><br>
+初回 <strong>5,000円OFF</strong><br>
+※初回限定<br><br>
+「いつか始めるかも」と思ってるなら、<br>
+クーポンがあるうちが<br>
+一番お得に試せるタイミングです。
+    </div>
+    <p style="text-align:center; margin: 12px 0;">
+      <span class="btn-preview">▼ クーポンを使って相談する</span>
+    </p>
+    <div class="line-msg" style="background:#f0fdf4;">
+もちろん、相談だけでもOK。<br>
+「クーポンあるから聞いてみるか」<br>
+くらいの気持ちで大丈夫です。
+    </div>
+  </div>
+  <div class="msg-foot">
+    <span class="format">形式：テキスト + 予約ボタン</span>
+    <span>CV導線：✅ クーポン付き</span>
+  </div>
+  <div class="msg-why">💡 クーポン実価格で緊急性を出しつつ、トーンは「お知らせ」で押し売りにしない。</div>
+</div>
+
+<!-- ===== 8通目 ===== -->
+<div class="msg">
+  <div class="msg-head">
+    <span class="day-badge" style="background: #6b7280;">DAY 14</span>
+    <span>8通目（最終）</span>
+    <span class="tag" style="background:#f3f4f6; color:#374151;">⑧背中押し</span>
+  </div>
+  <div class="msg-concept">最後のメッセージ。売り込みゼロ。手紙トーン。</div>
+  <div class="msg-body">
+    <div class="line-msg">
+最後のメッセージです。<br><br>
+ここまで読んでくれて、<br>
+本当にありがとうございます。<br><br>
+8回もメッセージを開いてくれたということは、<br>
+少なくとも「気になってる」んだと思います。<br><br>
+自分に合う方法が見つかるかもしれない。<br>
+でも、もし合わなかったら？<br>
+お金がムダになるかも。<br>
+副作用が怖い。<br><br>
+…わかります。<br><br>
+ただ、1つだけ伝えたいことがあります。<br><br>
+<strong>「始めなくてもいい。<br>
+でも、知らないままでいるのは<br>
+もったいない。」</strong><br><br>
+診察は0円。<br>
+合わなければやめればいい。<br>
+5分だけ、話を聞いてみる。<br><br>
+それだけで、<br>
+「自分の意志が弱いんだ」が<br>
+終わるかもしれません。
+    </div>
+    <p style="text-align:center; margin: 12px 0;">
+      <span class="btn-preview">▼ まず話を聞いてみる</span>
+    </p>
+    <div class="line-msg" style="background:#f3f4f6;">
+もちろん、今じゃなくても大丈夫。<br>
+この先もたまにメッセージをお届けしますので、<br>
+タイミングが来たら、いつでも。<br><br>
+応援しています。
+    </div>
+  </div>
+  <div class="msg-foot">
+    <span class="format">形式：テキスト + 予約ボタン</span>
+    <span>CV導線：✅ 最後の1押し</span>
+  </div>
+  <div class="msg-why">💡「始めなくてもいい。知らないのがもったいない」= 最小限の背中押し。ここからは定期配信に移行。</div>
+</div>
+
+<hr class="divider">
+
+<!-- ===== スケジュール一覧 ===== -->
+<h2>配信スケジュール一覧</h2>
+<table>
+  <tr><th>通</th><th>DAY</th><th>階段</th><th>テーマ</th><th>CV</th></tr>
+  <tr><td>1</td><td>0</td><td><span class="tag tag-trust">共感</span></td><td>診断結果 + 寄り添い</td><td>—</td></tr>
+  <tr><td>2</td><td>1</td><td><span class="tag tag-proof">証明</span></td><td>体験談「40年食欲に勝てなかった」</td><td>—</td></tr>
+  <tr><td>3</td><td>3</td><td><span class="tag tag-resolve">解消</span></td><td>不安TOP3（費用/副作用/リバウンド）</td><td>—</td></tr>
+  <tr><td>4</td><td>5</td><td><span class="tag tag-empathy">共感</span></td><td>ダイエットあるある</td><td>—</td></tr>
+  <tr><td>5</td><td>7</td><td><span class="tag tag-imagine">想像</span></td><td>「こんな毎日になる」</td><td>—</td></tr>
+  <tr><td style="font-weight:700;">6</td><td style="font-weight:700;">9</td><td><span class="tag tag-cta">CTA</span></td><td style="font-weight:700;">無料カウンセリング案内</td><td style="font-weight:700;">✅</td></tr>
+  <tr><td style="font-weight:700;">7</td><td style="font-weight:700;">11</td><td><span class="tag tag-cta">特典</span></td><td style="font-weight:700;">クーポン案内</td><td style="font-weight:700;">✅</td></tr>
+  <tr><td style="font-weight:700;">8</td><td style="font-weight:700;">14</td><td><span class="tag" style="background:#f3f4f6;color:#374151;">背中</span></td><td style="font-weight:700;">「迷ってるあなたへ」</td><td style="font-weight:700;">✅</td></tr>
+</table>
+
+<!-- ===== 成功判定 ===== -->
+<h2>成功判定</h2>
+<div class="kpi-row">
+  <div class="kpi">
+    <div class="kpi-label">開封率</div>
+    <div class="kpi-value">50%+</div>
+    <div class="kpi-note">LINE配信基準</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">ステップCVR</div>
+    <div class="kpi-value">5%+</div>
+    <div class="kpi-note">Lステップ基準</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">ブロック率</div>
+    <div class="kpi-value">&lt;3%</div>
+    <div class="kpi-note">ステップ配信目標</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-label">6通目CTR</div>
+    <div class="kpi-value">15%+</div>
+    <div class="kpi-note">予約ボタンタップ率</div>
+  </div>
+</div>
+<p><strong>判定タイミング：</strong>50人以上がステップ完走した時点で初回判定。</p>
+
+<!-- ===== DMMオンラインクリニック情報 ===== -->
+<h2>CVリンク先：DMMオンラインクリニック</h2>
+<table>
+  <tr><th>項目</th><th>内容</th></tr>
+  <tr><td>リベルサス料金</td><td>月7,920円〜（6ヶ月定期便）</td></tr>
+  <tr><td>クーポン（リベルサス）</td><td>5,420円（コード: r73b7）</td></tr>
+  <tr><td>クーポン（マンジャロ）</td><td>初回5,000円OFF（コード: dietmounjaro）</td></tr>
+  <tr><td>診察料</td><td>0円</td></tr>
+  <tr><td>予約〜受取</td><td>予約30秒 → 問診5分 → 診察5分 → 最短当日配送</td></tr>
+</table>
+
+<!-- ===== 補足 ===== -->
+<h2>補足</h2>
+<div class="note-box">
+  <strong>薬機法配慮</strong>
+  体験談に具体的な体重変化（-Xkg）は使わない。感情の変化のみ。
+</div>
+<div class="note-box green">
+  <strong>ミニマム検証</strong>
+  まず方法診断だけ。結果を見てカロリー→薬に横展開。<br>
+  定期配信（第2層）は一旦やらない。8通で結果が出るか先に検証。
+</div>
+<div class="note-box blue">
+  <strong>タグ構造</strong>
+  シンプルに保つ。方法診断通過者 = このステップに入る。それだけ。
+</div>
+
+<hr class="divider">
+<p style="color:#aaa; font-size:0.75rem; text-align:center; margin-top:2rem;">
+  v3 — 心理階段原理 / 齋藤（FUBAR）退職代行事例を汎用化して適用 / 2026-04-14
+</p>
+
+</body>
+</html>
