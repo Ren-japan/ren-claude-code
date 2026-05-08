@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>リテンション配信 7通 v8.2 — デザイン依頼書（GLP-1 方法診断）</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    background: #fafafa; color: #222; line-height: 1.8; max-width: 820px; margin: 0 auto; padding: 2rem 1.5rem;
+  }
+  h1 { font-size: 1.5rem; font-weight: 800; margin: 0 0 0.3rem; color: #111; }
+  .subtitle { color: #888; font-size: 0.85rem; margin-bottom: 1.5rem; }
+  h2 { font-size: 1.15rem; font-weight: 700; margin: 2.5rem 0 0.8rem; color: #111; padding-bottom: 0.3rem; border-bottom: 2px solid #e0e0e0; }
+  h3 { font-size: 1rem; font-weight: 700; margin: 1.5rem 0 0.4rem; color: #333; }
+  p { margin-bottom: 0.8rem; color: #444; font-size: 0.92rem; }
+  strong { color: #111; }
+  ul, ol { margin: 0.5rem 0 1rem 1.5rem; }
+  li { margin-bottom: 0.3rem; font-size: 0.9rem; color: #444; }
+  .meta-box {
+    background: #fff; border: 1px solid #e0e0e0; border-radius: 8px;
+    padding: 16px; margin: 16px 0; font-size: 0.88rem;
+  }
+  .meta-box dt { font-weight: 700; color: #111; margin-top: 6px; }
+  .meta-box dd { margin: 2px 0 8px 0; color: #555; }
+
+  /* フェーズ図 */
+  .phase-flow {
+    display: flex; gap: 4px; margin: 1.5rem 0; border-radius: 10px; overflow: hidden;
+    border: 1px solid #e0e0e0; font-size: 0.72rem; font-weight: 600; text-align: center;
+  }
+  .phase-step { flex: 1; padding: 12px 4px; }
+  .phase-step .day { font-weight: 800; font-size: 0.95rem; }
+  .phase-step .lbl { margin-top: 4px; font-weight: 600; }
+  .phase-step .sub { font-weight: 400; color: rgba(0,0,0,0.5); font-size: 0.62rem; margin-top: 2px; }
+  .p1 { background: #fce7f3; color: #9d174d; }
+  .p2 { background: #ede9fe; color: #5b21b6; }
+  .p3 { background: #dbeafe; color: #1e40af; }
+  .p4 { background: #fef3c7; color: #92400e; }
+  .p5 { background: #dcfce7; color: #166534; }
+  .p6 { background: #fef3c7; color: #92400e; }
+  .p7 { background: #fee2e2; color: #991b1b; }
+
+  .phase-group-label {
+    display: flex; gap: 4px; font-size: 0.7rem; color: #666; margin-top: 4px;
+  }
+  .phase-group-label > span { padding: 4px 8px; border-radius: 4px; }
+  .pg-self { background: #fce7f3; color: #9d174d; }
+  .pg-drug { background: #dbeafe; color: #1e40af; }
+  .pg-cv { background: #fee2e2; color: #991b1b; }
+
+  /* LINE風 */
+  .line-sim {
+    background: #8eacbb; padding: 16px; border-radius: 12px; margin: 16px 0;
+  }
+  .line-text {
+    background: #fff; border-radius: 14px; padding: 12px 16px;
+    font-size: 0.82rem; max-width: 75%; margin: 6px 0;
+    color: #222; line-height: 1.6; white-space: pre-line;
+  }
+
+  /* 表紙画像プレースホルダー */
+  .cover {
+    border-radius: 12px; padding: 24px 18px 14px;
+    max-width: 280px; margin: 12px 0;
+    text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    position: relative;
+  }
+  .c1 { background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%); }
+  .c2 { background: linear-gradient(135deg, #ede9fe 0%, #ddd6fe 100%); }
+  .c3 { background: linear-gradient(135deg, #dbeafe 0%, #e0e7ff 100%); }
+  .c4 { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); }
+  .c5 { background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%); }
+  .c6 { background: linear-gradient(135deg, #fef3c7 0%, #fcd34d 100%); }
+  .c7 { background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); }
+  .cover .cover-badge {
+    display: inline-block; background: #fff; font-size: 0.65rem;
+    font-weight: 700; padding: 3px 10px; border-radius: 20px; margin-bottom: 6px;
+  }
+  .cover .cover-title {
+    font-size: 1.05rem; font-weight: 800; color: #333; margin: 8px 0 6px; line-height: 1.4;
+  }
+  .cover .cover-illust {
+    font-size: 2rem; margin: 8px 0;
+  }
+  .cover .cover-cta {
+    margin-top: 10px; padding: 8px 14px; background: rgba(255,255,255,0.85);
+    color: #333; font-weight: 700; font-size: 0.78rem;
+    border-radius: 22px; display: inline-block;
+  }
+
+  /* カード */
+  .card-list { background: #fff; border: 1px solid #e0e0e0; border-radius: 10px; padding: 16px; margin: 12px 0; }
+  .card { padding: 12px 14px; border-bottom: 1px dashed #e0e0e0; }
+  .card:last-child { border-bottom: none; }
+  .card-num { font-size: 0.75rem; font-weight: 700; color: #555; margin-bottom: 4px; }
+  .card-num .role { font-weight: 400; color: #888; margin-left: 6px; }
+  .card-body { font-size: 0.85rem; color: #222; white-space: pre-line; line-height: 1.7; }
+
+  /* PR / CTA */
+  .pr-box {
+    background: #f3f4f6; padding: 12px 14px; border-radius: 8px;
+    font-size: 0.82rem; color: #444; margin: 10px 0;
+  }
+  .pr-box .pr-label { font-weight: 700; color: #555; font-size: 0.7rem; margin-bottom: 4px; }
+  .cta-box {
+    background: #991b1b; color: #fff; padding: 14px; border-radius: 8px;
+    font-size: 0.92rem; font-weight: 700; text-align: center; margin: 12px 0;
+  }
+
+  /* 通セクション */
+  .day-section {
+    background: #fff; border: 1px solid #e5e5e5; border-radius: 12px;
+    padding: 20px; margin: 24px 0;
+  }
+  .day-section h3 { display: flex; align-items: center; gap: 8px; }
+  .day-pill {
+    display: inline-block; padding: 3px 10px; border-radius: 14px;
+    font-size: 0.72rem; font-weight: 700;
+  }
+  .blocker { font-size: 0.78rem; color: #666; margin-bottom: 8px; }
+  .factcheck-note {
+    background: #fff7ed; border-left: 3px solid #ea580c; padding: 6px 10px;
+    font-size: 0.72rem; color: #7c2d12; margin: 6px 0; border-radius: 3px;
+  }
+
+  /* 画像表 */
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.82rem; }
+  th, td { padding: 8px 10px; border: 1px solid #e0e0e0; text-align: left; }
+  th { background: #f5f5f5; font-weight: 700; font-size: 0.78rem; }
+
+  /* ren記入欄 */
+  .ren-input {
+    background: #fffbe6; border: 2px dashed #f59e0b; border-radius: 10px;
+    padding: 16px; margin: 20px 0;
+  }
+  .ren-input h3 { color: #92400e; margin-bottom: 8px; }
+  .ren-input ul { list-style: none; padding-left: 0; }
+  .ren-input li { padding: 6px 0; border-bottom: 1px dashed #fbbf24; }
+  .ren-input li::before { content: "□ "; color: #92400e; font-weight: 700; }
+
+  .footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0; color: #999; font-size: 0.8rem; text-align: center; }
+</style>
+</head>
+<body>
+
+<h1>リテンション配信 7通 — デザイン依頼書（v8.2）</h1>
+<p class="subtitle">方法診断（GLP-1）／ブロッカー潰し型・毎日連続7通／2026-05-08 / CMO作成・CEO品質ゲート通過 / CTOファクトチェック反映済み</p>
+
+<div class="meta-box">
+  <dt>目的</dt>
+  <dd>方法診断経由の友だちFCVR 0% → 5%（Lステップ基準）への引き上げ</dd>
+  <dt>対象</dt>
+  <dd>方法診断完走後CVしなかった準顕在層（月96人想定）</dd>
+  <dt>期待効果</dt>
+  <dd>月5人前後のCV創出（ゼロ運用からの底上げ）</dd>
+  <dt>配信構成</dt>
+  <dd>毎日連続7通（DAY1→DAY7）／各通カード3枚／表紙7枚 + カード21枚 = <strong>計28画像</strong></dd>
+  <dt>task_id</dt>
+  <dd>retention-7step-houhou-glp1-v8-2</dd>
+</div>
+
+<h2>v8.2 思想（デザイナー前提）</h2>
+<ul>
+  <li><strong>1通=1ブロッカー潰し。</strong>「教育」「ナーチャリング」ではなく、CVしなかった原因を1個ずつ事実で潰す</li>
+  <li><strong>ヘッドはシンプル誠実な質問形 or 提示形。</strong>認知変容を狙わず、本文と構成自体に語らせる</li>
+  <li><strong>物語型・架空人物・顔出しNG。</strong>イラストは抽象・シルエット・アイコンで匿名性を保つ</li>
+  <li><strong>v4.1トーン継続：</strong>女性向け・やさしい・親しみやすい・医療感は控えめ</li>
+  <li><strong>「次回」「明日」「また別のお便りで」等の予告NG。</strong>全通独立</li>
+</ul>
+
+<h2>全体フロー（フェーズ構造）</h2>
+
+<div class="phase-flow">
+  <div class="phase-step p1"><div class="day">DAY 1</div><div class="lbl">意志力</div><div class="sub">過去への許可</div></div>
+  <div class="phase-step p2"><div class="day">DAY 2</div><div class="lbl">リバウンド</div><div class="sub">解釈の更新</div></div>
+  <div class="phase-step p3"><div class="day">DAY 3</div><div class="lbl">信頼性</div><div class="sub">仕組み</div></div>
+  <div class="phase-step p4"><div class="day">DAY 4</div><div class="lbl">副作用</div><div class="sub">数字で実態</div></div>
+  <div class="phase-step p5"><div class="day">DAY 5</div><div class="lbl">費用</div><div class="sub">月額レンジ</div></div>
+  <div class="phase-step p6"><div class="day">DAY 6</div><div class="lbl">合うか</div><div class="sub">処方条件</div></div>
+  <div class="phase-step p7"><div class="day">DAY 7</div><div class="lbl">予約</div><div class="sub">強CTA</div></div>
+</div>
+<div class="phase-group-label">
+  <span class="pg-self" style="flex: 2 1 0;">DAY1-2 過去の自分の整理</span>
+  <span class="pg-drug" style="flex: 4 1 0;">DAY3-6 薬の理解と判断</span>
+  <span class="pg-cv" style="flex: 1 1 0;">DAY7 CV決断</span>
+</div>
+
+<h2>必要な画像一覧（合計 28枚）</h2>
+<table>
+  <thead><tr><th>通</th><th>DAY</th><th>表紙</th><th>カード</th><th>計</th><th>カラー</th><th>CV</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>1</td><td>1</td><td>3</td><td>4</td><td>ピンク</td><td>弱誘導</td></tr>
+    <tr><td>2</td><td>2</td><td>1</td><td>3</td><td>4</td><td>ラベンダー</td><td>弱誘導</td></tr>
+    <tr><td>3</td><td>3</td><td>1</td><td>3</td><td>4</td><td>ブルー</td><td>弱誘導</td></tr>
+    <tr><td>4</td><td>4</td><td>1</td><td>3</td><td>4</td><td>イエロー</td><td>弱誘導</td></tr>
+    <tr><td>5</td><td>5</td><td>1</td><td>3</td><td>4</td><td>グリーン</td><td>弱誘導</td></tr>
+    <tr><td>6</td><td>6</td><td>1</td><td>3</td><td>4</td><td>ベージュ</td><td>弱誘導</td></tr>
+    <tr><td>7</td><td>7</td><td>1</td><td>3</td><td>4</td><td>コーラル</td><td><strong>強CTA</strong></td></tr>
+    <tr><td colspan="2"><strong>合計</strong></td><td><strong>7</strong></td><td><strong>21</strong></td><td><strong>28</strong></td><td colspan="2"></td></tr>
+  </tbody>
+</table>
+
+<h2>テイスト・トンマナ（共通仕様）</h2>
+<ul>
+  <li><strong>トーン:</strong> 女性向け・やさしい・親しみやすい。医療感控えめ。手紙／お便りのような柔らかさ</li>
+  <li><strong>カラー:</strong> パステル系グラデーション。通ごとにアクセントカラーを変える（上記カラー欄）</li>
+  <li><strong>フォント:</strong> 丸ゴシック系</li>
+  <li><strong>イラスト:</strong> イラスト中心。リアル写真NG。顔は描かずシルエット or アイコンで匿名感</li>
+  <li><strong>画像サイズ:</strong> 表紙=1040×1040px / カード=1040×1040px（LINEカルーセル正方形推奨）</li>
+  <li><strong>納品形式:</strong> JPG/PNG（背景透過不要）／命名規則: <code>retention_v8_2_day{N}_{cover|c1|c2|c3}.jpg</code></li>
+</ul>
+
+<!-- ============ DAY 1 ============ -->
+<div class="day-section">
+<h3><span class="day-pill p1">DAY 1</span>意志力ブロッカー</h3>
+<div class="blocker">ユーザー本音: 「結局また自分が悪いって話でしょ。意志が弱いんだから何やっても続かない」</div>
+
+<h4>📩 LINE配信（テキスト吹き出し）</h4>
+<div class="line-sim">
+<div class="line-text">痩せられない理由、もしかしたら勘違いしているかもしれません🌸</div>
+</div>
+
+<h4>🎨 表紙画像</h4>
+<div class="cover c1">
+  <div class="cover-badge" style="color:#9d174d; border:2px solid #9d174d;">あなたへのおたより</div>
+  <div class="cover-illust">🌸</div>
+  <div class="cover-title">痩せられないのは、意志のせいじゃないかもしれません</div>
+  <div class="cover-cta">タップして見てみる ＞</div>
+</div>
+
+<h4>🃏 カルーセル本文（カード3枚）</h4>
+<div class="card-list">
+  <div class="card">
+    <div class="card-num">カード①<span class="role">事実</span></div>
+    <div class="card-body">食べたい、と感じる気持ちは
+性格でも意志でもなくて、
+「ホルモン」が動かしてます。
+
+専門用語だと食欲ホルモン
+（グレリン／GLP-1）と呼ばれます。</div>
+  </div>
+  <div class="card">
+    <div class="card-num">カード②<span class="role">その意味</span></div>
+    <div class="card-body">ホルモンの量や反応は、
+体質・睡眠・ストレスで人によって違います。
+
+つまり、同じ食事量でも
+お腹が空きやすい人と空きにくい人がいる。
+これは「弱さ」ではなく「個体差」です。</div>
+  </div>
+  <div class="card">
+    <div class="card-num">カード③<span class="role">着地</span></div>
+    <div class="card-body">もし今まで「自分が悪い」と
+思い続けていたなら、
+一旦その前提を置いてみてもいいかもしれません。</div>
+  </div>
+</div>
+
+<div class="pr-box">
+  <div class="pr-label">末尾PR弱誘導</div>
+  食欲ホルモンに直接アプローチする選択肢もあります。気になったらこちら。<br>
+  <strong>[GLP-1の話を見てみる]</strong> → 公式LP導線
+</div>
+</div>
+
+<!-- ============ DAY 2 ============ -->
+<div class="day-section">
+<h3><span class="day-pill p2">DAY 2</span>リバウンドブロッカー（新規書き直し）</h3>
+<div class="blocker">ユーザー本音: 「痩せても、やめたらまた戻るんでしょ。今までと同じ」</div>
+
+<h4>📩 LINE配信（テキスト吹き出し）</h4>
+<div class="line-sim">
+<div class="line-text">「戻った」のは、本当にあなたのせいですか？</div>
+</div>
+
+<h4>🎨 表紙画像</h4>
+<div class="cover c2">
+  <div class="cover-badge" style="color:#5b21b6; border:2px solid #5b21b6;">あなたへのおたより</div>
+  <div class="cover-illust">🌿</div>
+  <div class="cover-title">戻ったのは、努力が足りなかったからじゃないかもしれません</div>
+  <div class="cover-cta">タップして見てみる ＞</div>
+</div>
+
+<h4>🃏 カルーセル本文（カード3枚）</h4>
+<div class="card-list">
+  <div class="card">
+    <div class="card-num">カード①<span class="role">共感・事実</span></div>
+    <div class="card-body">一度痩せたのに戻った、
+という経験のある方は多いです。
+
+半年で10kg以上落としても、
+1〜2年でほぼ元通りになるケースは
+めずらしくありません。
+
+これは「努力不足」ではなく、
+体の側に理由があります。</div>
+  </div>
+  <div class="card">
+    <div class="card-num">カード②<span class="role">仕組み</span></div>
+    <div class="card-body">体重が落ちると、
+食欲ホルモンの出方が変わって
+「お腹が空きやすい状態」に戻ろうとします。
+
+体には元の体重に戻す
+強い仕組みがあるからです。
+
+食事量を抑え続ける根性勝負だと、
+ほとんどの人がここで負けます。</div>
+  </div>
+  <div class="card">
+    <div class="card-num">カード③<span class="role">着地・DAY3引き</span></div>
+    <div class="card-body">戻らない人に共通しているのは、
+「食習慣そのものが切り替わっている」こと。
+
+食べたい量が自然に減っていれば、
+我慢を解除しても急には戻りません。
+
+医療ダイエットが注目されているのは、
+ここに介入できるからです。</div>
+  </div>
+</div>
+
+<div class="pr-box">
+  <div class="pr-label">末尾PR弱誘導</div>
+  「我慢で痩せる」以外の選択肢を、まず知るところから。<br>
+  <strong>[医療ダイエットの仕組みを見てみる]</strong> → 公式LP導線
+</div>
+</div>
+
+<!-- ============ DAY 3 ============ -->
+<div class="day-section">
+<h3><span class="day-pill p3">DAY 3</span>信頼性ブロッカー</h3>
+<div class="blocker">ユーザー本音: 「食欲を薬で抑える？うまい話すぎない？怪しい」</div>
+
+<h4>📩 LINE配信（テキスト吹き出し）</h4>
+<div class="line-sim">
+<div class="line-text">GLP-1って結局なに？仕組みを一度ちゃんと知っておきませんか</div>
+</div>
+
+<h4>🎨 表紙画像</h4>
+<div class="cover c3">
+  <div class="cover-badge" style="color:#1e40af; border:2px solid #1e40af;">あなたへのおたより</div>
+  <div class="cover-illust">💊</div>
+  <div class="cover-title">GLP-1って、結局なんで効くの？</div>
+  <div class="cover-cta">タップして見てみる ＞</div>
+</div>
+
+<h4>🃏 カルーセル本文（カード3枚）</h4>
+<div class="card-list">
+  <div class="card">
+    <div class="card-num">カード①<span class="role">事実</span></div>
+    <div class="card-body">GLP-1は、もともと
+2型糖尿病の治療薬として
+日本で15年以上使われてきた成分です。
+
+厚労省が承認しています。</div>
+    <div class="factcheck-note">⚠️ CTO修正: 旧「日本で20年以上」→「日本で15年以上」（リラグルチド国内承認2010年起点・正確化）</div>
+  </div>
+  <div class="card">
+    <div class="card-num">カード②<span class="role">仕組み</span></div>
+    <div class="card-body">体内で出ている食欲ホルモンを
+補うかたちで働きます。
+
+結果、食事の途中で
+「もうお腹いっぱい」が早く来る。
+
+我慢ではなく、
+自然と量が減る感覚に近いです。</div>
+  </div>
+  <div class="card">
+    <div class="card-num">カード③<span class="role">補足</span></div>
+    <div class="card-body">ダイエット用途は適応外処方なので、
+自由診療のクリニックで扱われています。
+（だから保険が効かないだけで、薬自体は新しいものではありません）</div>
+  </div>
+</div>
+
+<div class="pr-box">
+  <div class="pr-label">末尾PR弱誘導</div>
+  どんな薬の選択肢があるか、まずは確認だけでもできます。<br>
+  <strong>[薬の種類を見てみる]</strong> → 公式LP導線
+</div>
+</div>
+
+<!-- ============ DAY 4 ============ -->
+<div class="day-section">
+<h3><span class="day-pill p4">DAY 4</span>副作用ブロッカー</h3>
+<div class="blocker">ユーザー本音: 「吐き気とか下痢って聞くけど、それ毎日続くなら無理」</div>
+
+<h4>📩 LINE配信（テキスト吹き出し）</h4>
+<div class="line-sim">
+<div class="line-text">「副作用が怖い」を、数字で確かめてみませんか</div>
+</div>
+
+<h4>🎨 表紙画像</h4>
+<div class="cover c4">
+  <div class="cover-badge" style="color:#92400e; border:2px solid #92400e;">あなたへのおたより</div>
+  <div class="cover-illust">🍋</div>
+  <div class="cover-title">吐き気って、どのくらい続くんですか？</div>
+  <div class="cover-cta">タップして見てみる ＞</div>
+</div>
+
+<h4>🃏 カルーセル本文（カード3枚）</h4>
+<div class="card-list">
+  <div class="card">
+    <div class="card-num">カード①<span class="role">数字</span></div>
+    <div class="card-body">添付文書ベースで、
+主な副作用は吐き気・便秘・下痢が10-20%程度。
+（薬剤や用量によって差があります）
+
+「全員に出る」わけでも
+「ずっと続く」わけでもありません。</div>
+    <div class="factcheck-note">⚠️ CTO修正: 旧「20-30%」→「10-20%程度」（リベルサス国内試験基準・正確化）</div>
+  </div>
+  <div class="card">
+    <div class="card-num">カード②<span class="role">期間</span></div>
+    <div class="card-body">多くの体験談で、
+開始から数週間で軽減することが多いです。
+
+体が慣れる過程で出やすく、
+用量を少しずつ増やす理由もここにあります。</div>
+    <div class="factcheck-note">⚠️ CTO修正: 旧「1-2週間で軽減・消失」→「数週間で軽減することが多い」（誇張排除）</div>
+  </div>
+  <div class="card">
+    <div class="card-num">カード③<span class="role">対処</span></div>
+    <div class="card-body">強く出た場合は
+用量調整・中止が可能です。
+我慢して続ける必要はありません。</div>
+  </div>
+</div>
+
+<div class="pr-box">
+  <div class="pr-label">末尾PR弱誘導</div>
+  副作用も含めて医師に確認できます。<br>
+  <strong>[相談できるクリニックを見る]</strong> → 公式LP導線
+</div>
+</div>
+
+<!-- ============ DAY 5 ============ -->
+<div class="day-section">
+<h3><span class="day-pill p5">DAY 5</span>費用ブロッカー</h3>
+<div class="blocker">ユーザー本音: 「医療ダイエットって月数万でしょ。そんな出せない」</div>
+
+<h4>📩 LINE配信（テキスト吹き出し）</h4>
+<div class="line-sim">
+<div class="line-text">「医療ダイエット＝高い」のイメージ、本当でしょうか？</div>
+</div>
+
+<h4>🎨 表紙画像</h4>
+<div class="cover c5">
+  <div class="cover-badge" style="color:#166534; border:2px solid #166534;">あなたへのおたより</div>
+  <div class="cover-illust">🪙</div>
+  <div class="cover-title">医療ダイエット、いくらかかるの？</div>
+  <div class="cover-cta">タップして見てみる ＞</div>
+</div>
+
+<h4>🃏 カルーセル本文（カード3枚）</h4>
+<div class="card-list">
+  <div class="card">
+    <div class="card-num">カード①<span class="role">実勢レンジ</span></div>
+    <div class="card-body">飲み薬（リベルサス等）：月5,000円〜
+注射（マンジャロ等）：月15,000円〜
+
+始めやすい飲み薬から
+選べるクリニックが多いです。</div>
+  </div>
+  <div class="card">
+    <div class="card-num">カード②<span class="role">比較</span></div>
+    <div class="card-body">パーソナルジム：月3-5万円
+痩身エステ：月2-3万円
+
+費用だけで比べると、
+飲み薬が一番低いケースもあります。</div>
+  </div>
+  <div class="card">
+    <div class="card-num">カード③<span class="role">補足</span></div>
+    <div class="card-body">「まず1ヶ月だけ」で試せる
+クリニックもあります。
+長期契約が前提ではありません。</div>
+  </div>
+</div>
+
+<div class="pr-box">
+  <div class="pr-label">末尾PR弱誘導</div>
+  価格を出してるクリニックを比較できます。<br>
+  <strong>[価格を見比べる]</strong> → 公式LP導線
+</div>
+</div>
+
+<!-- ============ DAY 6 ============ -->
+<div class="day-section">
+<h3><span class="day-pill p6">DAY 6</span>自分に合うかブロッカー</h3>
+<div class="blocker">ユーザー本音: 「私持病あるし、年齢も…そもそも処方されないんじゃ」</div>
+
+<h4>📩 LINE配信（テキスト吹き出し）</h4>
+<div class="line-sim">
+<div class="line-text">「私でも処方される？」を聞いてみる前にできる確認</div>
+</div>
+
+<h4>🎨 表紙画像</h4>
+<div class="cover c6">
+  <div class="cover-badge" style="color:#92400e; border:2px solid #92400e;">あなたへのおたより</div>
+  <div class="cover-illust">🌾</div>
+  <div class="cover-title">私でも、処方してもらえるんでしょうか？</div>
+  <div class="cover-cta">タップして見てみる ＞</div>
+</div>
+
+<h4>🃏 カルーセル本文（カード3枚）</h4>
+<div class="card-list">
+  <div class="card">
+    <div class="card-num">カード①<span class="role">条件</span></div>
+    <div class="card-body">自由診療の一般的な目安として、
+18歳以上・BMI23以上が対象になることが多いです。
+
+（クリニックによって基準差はあります）</div>
+    <div class="factcheck-note">⚠️ CTO修正: 「自由診療の一般的な目安として」を追記（保険適用基準BMI27以上との混同防止）</div>
+  </div>
+  <div class="card">
+    <div class="card-num">カード②<span class="role">不可ケース</span></div>
+    <div class="card-body">妊娠中・授乳中
+1型糖尿病
+甲状腺がんの既往・家族歴
+─ この場合は処方できません。</div>
+  </div>
+  <div class="card">
+    <div class="card-num">カード③<span class="role">それ以外</span></div>
+    <div class="card-body">持病があっても、服薬中でも、
+医師の判断で処方されるケースがあります。
+
+自己判断で諦める必要はなく、
+カウンセリングで聞けます。</div>
+  </div>
+</div>
+
+<div class="pr-box">
+  <div class="pr-label">末尾PR弱誘導</div>
+  オンラインで医師に確認できるクリニックもあります。<br>
+  <strong>[自分が対象か聞いてみる]</strong> → 公式LP導線
+</div>
+</div>
+
+<!-- ============ DAY 7 ============ -->
+<div class="day-section">
+<h3><span class="day-pill p7">DAY 7</span>予約ハードル（強CTA）</h3>
+<div class="blocker">ユーザー本音: 「相談行ったら契約させられそう。勧誘怖い」</div>
+
+<h4>📩 LINE配信（テキスト吹き出し）</h4>
+<div class="line-sim">
+<div class="line-text">最後に、予約のハードルだけ整理しておきますね</div>
+</div>
+
+<h4>🎨 表紙画像</h4>
+<div class="cover c7">
+  <div class="cover-badge" style="color:#991b1b; border:2px solid #991b1b;">あなたへのおたより</div>
+  <div class="cover-illust">🤍</div>
+  <div class="cover-title">予約しても、断っていいんです</div>
+  <div class="cover-cta">タップして見てみる ＞</div>
+</div>
+
+<h4>🃏 カルーセル本文（カード3枚）</h4>
+<div class="card-list">
+  <div class="card">
+    <div class="card-num">カード①<span class="role">事実</span></div>
+    <div class="card-body">無料カウンセリングは
+「話を聞くだけ」が前提です。
+
+その場で契約を強要するような勧誘は
+特定商取引法・消費者契約法で禁止されています。</div>
+    <div class="factcheck-note">⚠️ CTO修正: 旧「医療広告ガイドラインで禁止」→「特定商取引法・消費者契約法で禁止」（条文の誤引用修正）</div>
+  </div>
+  <div class="card">
+    <div class="card-num">カード②<span class="role">所要</span></div>
+    <div class="card-body">所要時間は15-30分。
+オンライン対応のクリニックも増えています。
+
+自宅から、顔出しなしで、
+話だけ聞く選択肢もあります。</div>
+  </div>
+  <div class="card">
+    <div class="card-num">カード③<span class="role">最後の整理</span></div>
+    <div class="card-body">副作用も、費用も、自分の体質も、
+一度プロに聞いてからでないと
+結局判断できません。
+
+聞くだけ聞いて、合わなければ断る。
+それで大丈夫です。</div>
+  </div>
+</div>
+
+<div class="cta-box">
+  💪 強CTA<br>
+  <span style="font-size: 1rem;">[話を聞ける無料カウンセリングを予約する]</span><br>
+  <span style="font-weight: 400; font-size: 0.78rem; opacity: 0.9;">→ 公式LP導線</span>
+</div>
+</div>
+
+<!-- ============ ren記入欄 ============ -->
+<h2>📝 ren最終記入欄（送信前に埋める5項目）</h2>
+<div class="ren-input">
+<h3>発注前にrenが埋める5項目</h3>
+<ul>
+  <li><strong>納期:</strong> （例: 2026-05-15）</li>
+  <li><strong>単価:</strong> （表紙7枚 + カード21枚 = 28枚分）</li>
+  <li><strong>デザイナー指定:</strong> （誰に出す？）</li>
+  <li><strong>LP遷移先URL:</strong> （[GLP-1の話を見てみる] 等のリンク先具体URL）</li>
+  <li><strong>配信開始日:</strong> （DAY1配信日 = 既存方法診断シナリオ完了の翌日）</li>
+</ul>
+</div>
+
+<!-- ============ 補足 ============ -->
+<h2>共通仕様（デザイナー向け）</h2>
+<ul>
+  <li><strong>サイズ:</strong> 表紙 1040×1040px / カード 1040×1040px / JPG or PNG</li>
+  <li><strong>納品形式:</strong> 命名規則 <code>retention_v8_2_day{N}_{cover|c1|c2|c3}.jpg</code></li>
+  <li><strong>本文の改変NG:</strong> v8.2のテキストは1文字も変更しない（CTOファクトチェック反映済みの確定値）</li>
+  <li><strong>顔NG:</strong> シルエット or アイコンで匿名性を保つ</li>
+  <li><strong>薬機法配慮:</strong> 効能効果の断定的表現は避ける／本依頼書のテキストはCMOで配慮済み・改変禁止</li>
+  <li><strong>法律名（特定商取引法・消費者契約法）の表記そのまま使用OK</strong></li>
+</ul>
+
+<h2>v8.2 までのバージョン履歴</h2>
+<table>
+  <thead><tr><th>版</th><th>変更内容</th><th>日付</th></tr></thead>
+  <tbody>
+    <tr><td>v1〜v7</td><td>教育/救い/心理階段ベース → ren再起動指示で全破棄</td><td>5/1〜5/8</td></tr>
+    <tr><td>v8</td><td>ブロッカー潰し型・7通毎日連続・各通独立に再構築</td><td>5/8 15:35</td></tr>
+    <tr><td>v8.1</td><td>ren違和感「DAY2でGLP-1の信頼性は早すぎる」→ A案で順序組み直し（DAY2=リバウンド）</td><td>5/8</td></tr>
+    <tr><td><strong>v8.2 (本書)</strong></td><td><strong>CTOファクトチェック反映: DAY3「15年以上」/ DAY4「10-20%・数週間で軽減」/ DAY6「自由診療の目安」/ DAY7「特定商取引法・消費者契約法」</strong></td><td><strong>2026-05-08</strong></td></tr>
+  </tbody>
+</table>
+
+<div class="footer">
+v8.2 / 2026-05-08 / CMO作成・CEO品質ゲート通過 / CTOファクトチェック5件反映済み<br>
+配信本文・順序・ファクト確定。ren最終記入5項目を埋めれば即発注可能な状態。
+</div>
+
+</body>
+</html>
