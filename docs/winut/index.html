@@ -57,6 +57,9 @@
   /* pill / menu path */
   .path{display:inline-block;background:var(--green-bg);border:1px solid var(--green-l);color:var(--green);
     border-radius:6px;padding:2px 10px;font-weight:700;font-size:14px}
+  a.doclink{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;text-decoration:none;
+    border-radius:8px;padding:10px 18px;font-weight:700;font-size:15px;margin:4px 0}
+  a.doclink:hover{background:#15602f}
   table.chk{border-collapse:collapse;width:100%;margin:16px 0;font-size:14px}
   table.chk td,table.chk th{border:1px solid var(--line);padding:8px 10px;text-align:left}
   table.chk th{background:var(--green-bg);color:var(--green)}
@@ -99,7 +102,7 @@
   <p class="lead">Winutでやることは、ざっくり3ステップ。この順番で作ると各パーツがキレイに連動します。</p>
 
   <div class="diagram">
-    <svg viewBox="0 0 820 300" width="100%" role="img" aria-label="タグ→流入経路→離脱防止タグの流れ図">
+    <svg viewBox="0 0 820 180" width="100%" role="img" aria-label="タグ→流入経路→離脱防止タグの流れ図">
       <defs>
         <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto">
           <path d="M0,0 L7,3 L0,6 Z" fill="#1B7A3D"/>
@@ -132,24 +135,18 @@
       <text class="dsc" x="600" y="100">離脱しそうな人に出す</text>
       <text class="dsc" x="600" y="120">ポップアップ。②のリンク</text>
       <text class="dsc" x="600" y="140">へ飛ばす＋貼付タグ発行。</text>
-      <!-- bottom note -->
-      <text class="dsc" x="20" y="210" style="font-style:italic">タグ＝荷物　／　流入経路＝荷物を運ぶ乗り物（リンク）　／　離脱防止ポップアップ＝乗り物を呼ぶ看板</text>
     </svg>
-  </div>
-
-  <div class="box point">
-    <div class="t">💡 3つのつながりを一言で</div>
-    「タグ」を運ぶ「乗り物」が流入経路（リンク）、その乗り物を呼び出す「呼び込み看板」が離脱防止ポップアップ。
   </div>
 
   <!-- ===== 1. ログイン ===== -->
   <h2 id="login">1. 前提：Winutにログインする</h2>
   <p>ブラウザで <a href="https://manage.winut.net/login" target="_blank" rel="noopener">manage.winut.net/login</a> を開きます。</p>
   <ol class="steps">
-    <li>ログインID・パスワードを入力する（担当アカウントのもの）。</li>
+    <li>ログインID・パスワードを入力する。<b>担当アカウントのID／パスワードは下記の一覧（社内Notion）を参照。</b></li>
     <li><b>「ログイン」</b>ボタンを押す。</li>
     <li>画面右上に担当アカウント名（例：【PLUS】包茎手術）が出ていればログイン成功。</li>
   </ol>
+  <p><a class="doclink" href="https://www.notion.so/9b09037922ce4726a684098bf1adc218" target="_blank" rel="noopener">📒 ログインアカウント一覧（ID・パスワード）／社内Notion ▶</a></p>
 
   <figure class="shot">
     <img src="images/01-login.png" alt="ログイン画面" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
@@ -167,7 +164,7 @@
     <div class="t">⚠ 注意</div>
     <ul>
       <li>Winutは「1アカウント＝1ログイン」。別ジャンルを触るときは一度ログアウトして入り直す。</li>
-      <li>友だちリストには個人情報が含まれる。CSV等は社内ルールに従って扱うこと。</li>
+      <li>友だちリストには個人情報が含まれる。CSV/スクリーンショット等は外部流出厳禁。</li>
     </ul>
   </div>
 
@@ -262,11 +259,10 @@
     <li><b>表示</b> を選ぶ：表示／SPのみ表示／PCのみ表示／非表示。スマホだけに出すなら「SPのみ表示」。</li>
     <li><b>画像クリック時の挙動</b> で <b>「流入経路URLに遷移する」</b> を選ぶ。すると下に「流入経路設定」ボタンが出る。</li>
     <li><b>「流入経路設定」</b> ボタンを押し、②で作った流入経路を選ぶ。</li>
-    <li>表示タイミングを決める（任意）：<b>経過時間（秒）</b>＝開いて何秒後に出すか（上限900秒）。<b>スクロール（pixel）</b>＝何px下げたら出すか。「ページ最下部のスクロール時に表示」もあり。</li>
+    <li><b>基本設定：</b>経過時間（秒）に <b>90</b> を入力。「別タブ遷移（ブラウザアプリ離脱も含む）」を <b>「使用」</b> にチェック。</li>
     <li><b>バナー用画像</b>（必須）を「ファイルを選択」でアップロード。サイズは <b>1000×1490px</b> 推奨。</li>
     <li>（任意）<b>画像上のテキスト1行目／2行目</b>（各15文字以内）で画像に文字を重ねられる。</li>
     <li>下部の <b>「ポップアップバナータグの登録/編集」</b> を押して保存。</li>
-    <li>一覧に戻ると、その行に <b>貼付用の&lt;script&gt;タグ</b> が表示される。<b>「copy」</b> でコピーし、LPの &lt;/body&gt; 直前などに貼る。</li>
   </ol>
 
   <figure class="shot">
@@ -287,19 +283,10 @@
     <figcaption>スクショ⑪：作成フォーム（下半分）</figcaption>
   </figure>
 
-  <figure class="shot">
-    <img src="images/12-popup-script.png" alt="発行された貼付タグ" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-    <div class="ph"><div class="cam">📷</div><div>ここに画像を貼る</div><div>撮るポイント：一覧の&lt;script&gt;タグと「copy」ボタン</div><div class="save">保存名：images/12-popup-script.png</div></div>
-    <figcaption>スクショ⑫：発行された貼付タグ</figcaption>
-  </figure>
-
-  <p>貼り付けるタグの例（<code>uqid</code>の部分は1つずつ違う）：</p>
-  <pre>&lt;script src='https://js.winut.net/winback.js?back_uqid=◯◯◯◯◯◯◯' async&gt;&lt;/script&gt;</pre>
-
   <div class="box warn">
     <div class="t">⚠ 注意</div>
     <ul>
-      <li>「表示」を“非表示”にしていると、タグをLPに貼ってもポップアップは出ない（先にタグだけ仕込む時用）。公開時は表示状態を確認。</li>
+      <li>「表示」を“非表示”にしていると、公開してもポップアップは出ない。設定後は表示状態を確認。</li>
       <li>クリック後の遷移先（流入経路）の設定を忘れると、ポップアップを押しても友だち追加に進まない。</li>
     </ul>
   </div>
@@ -322,8 +309,8 @@
     <tr><td>☐</td><td>②流入経路の「アクションの設定」で①のタグを「タグ追加」に指定した</td></tr>
     <tr><td>☐</td><td>②を保存して、t.winut.net/in/flow/◯◯ のURLが発行されている</td></tr>
     <tr><td>☐</td><td>③で「流入経路URLに遷移する」を選び、②の流入経路を紐付けた</td></tr>
-    <tr><td>☐</td><td>③のバナー画像をアップし、表示状態を「表示／SPのみ」等に設定した</td></tr>
-    <tr><td>☐</td><td>③の&lt;script&gt;タグをコピーして、対象LPに貼った</td></tr>
+    <tr><td>☐</td><td>③で経過時間90秒＋別タブ遷移「使用」を設定し、バナー画像をアップした</td></tr>
+    <tr><td>☐</td><td>③の表示状態を「表示／SPのみ」等にして公開状態にした</td></tr>
   </table>
 
   <hr>
