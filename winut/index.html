@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Winut 操作マニュアル｜タグ作成 → 流入経路 → 離脱防止タグ</title>
+<style>
+  :root{
+    --green:#1B7A3D; --green-l:#8FCBA6; --green-bg:#F2F8F4;
+    --ink:#222; --muted:#777; --line:#e3e3e3;
+    --amber:#8A6100; --amber-bg:#FFF4D6; --amber-line:#E8B84B;
+    --red:#9B2C2C; --red-bg:#FDE7E7; --red-line:#E5A0A0;
+    --blue:#1B4E84; --blue-bg:#E8F1FB; --blue-line:#9CC2E8;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Meiryo",sans-serif;
+    color:var(--ink);line-height:1.75;background:#fafafa}
+  .wrap{max-width:880px;margin:0 auto;padding:0 20px 80px}
+  header.hero{background:linear-gradient(135deg,#1B7A3D,#2EA85C);color:#fff;padding:48px 20px 40px;text-align:center}
+  header.hero h1{margin:0 0 8px;font-size:30px;letter-spacing:.02em}
+  header.hero .sub{font-size:17px;font-weight:700;opacity:.95}
+  header.hero .meta{font-size:13px;opacity:.85;margin-top:14px}
+  h2{color:var(--green);border-bottom:3px solid var(--green-l);padding-bottom:6px;margin-top:48px;font-size:23px;scroll-margin-top:16px}
+  h3{color:#333;margin-top:28px;font-size:18px}
+  .lead{font-size:15px;color:#444}
+  a{color:var(--green)}
+  code,.mono{font-family:"SF Mono",Menlo,Consolas,monospace}
+  /* TOC */
+  nav.toc{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 22px;margin:28px 0}
+  nav.toc b{display:block;color:var(--green);margin-bottom:8px}
+  nav.toc ol{margin:0;padding-left:20px}
+  nav.toc li{margin:3px 0}
+  /* steps */
+  ol.steps{counter-reset:s;list-style:none;padding-left:0}
+  ol.steps>li{counter-increment:s;position:relative;padding:8px 0 8px 44px;border-bottom:1px dashed var(--line)}
+  ol.steps>li::before{content:counter(s);position:absolute;left:0;top:8px;width:30px;height:30px;
+    background:var(--green);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+  ol.steps b{color:var(--green)}
+  /* callouts */
+  .box{border-radius:10px;padding:14px 18px;margin:18px 0;border:1px solid}
+  .box .t{font-weight:700;margin-bottom:4px}
+  .point{background:var(--blue-bg);border-color:var(--blue-line)} .point,.point .t{color:var(--blue)}
+  .warn{background:var(--red-bg);border-color:var(--red-line)} .warn,.warn .t{color:var(--red)}
+  .box ul{margin:6px 0 0;padding-left:20px}
+  /* code */
+  pre{background:#2b2b2b;color:#e6e6e6;padding:14px 16px;border-radius:8px;overflow:auto;font-size:13px}
+  /* screenshot slot */
+  figure.shot{margin:18px 0;border:2px solid var(--amber-line);border-radius:10px;overflow:hidden;background:#fff}
+  figure.shot img{display:block;width:100%;height:auto;border-bottom:1px solid var(--line)}
+  figure.shot .ph{display:none;min-height:150px;align-items:center;justify-content:center;flex-direction:column;
+    background:var(--amber-bg);color:var(--amber);padding:26px 18px;text-align:center;gap:6px}
+  figure.shot .ph .cam{font-size:30px}
+  figure.shot .ph .save{font-size:12px;background:#fff;border:1px dashed var(--amber-line);border-radius:6px;padding:3px 10px;margin-top:4px}
+  figure.shot figcaption{padding:8px 14px;font-size:13px;font-weight:700;color:var(--amber);background:#fffaf0}
+  /* flow diagram */
+  .diagram{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px;margin:22px 0}
+  /* pill / menu path */
+  .path{display:inline-block;background:var(--green-bg);border:1px solid var(--green-l);color:var(--green);
+    border-radius:6px;padding:2px 10px;font-weight:700;font-size:14px}
+  table.chk{border-collapse:collapse;width:100%;margin:16px 0;font-size:14px}
+  table.chk td,table.chk th{border:1px solid var(--line);padding:8px 10px;text-align:left}
+  table.chk th{background:var(--green-bg);color:var(--green)}
+  .tip{font-size:13px;color:var(--muted)}
+  hr{border:0;border-top:1px solid var(--line);margin:40px 0}
+</style>
+</head>
+<body>
+<header class="hero">
+  <h1>Winut 操作マニュアル</h1>
+  <div class="sub">タグ作成 → 流入経路作成 → 離脱防止タグ作成</div>
+  <div class="meta">業務委託メンバー向け オンボーディング資料　／　対象ツール：Winut（manage.winut.net）</div>
+</header>
+
+<div class="wrap">
+
+  <div class="box point">
+    <div class="t">💡 このマニュアルでできるようになること</div>
+    <ul>
+      <li>LINEの友だちを「どこから来たか」で分類する<b>タグ</b>を作る</li>
+      <li>そのタグを自動で付ける<b>友だち追加リンク（流入経路）</b>を作る</li>
+      <li>記事から離脱しそうな人にLINE登録を促す<b>ポップアップ（離脱防止タグ）</b>を設置する</li>
+    </ul>
+  </div>
+
+  <nav class="toc">
+    <b>目次</b>
+    <ol>
+      <li><a href="#zentai">まず全体像をつかむ</a></li>
+      <li><a href="#login">前提：Winutにログインする</a></li>
+      <li><a href="#tag">①タグを作成する</a></li>
+      <li><a href="#inflow">②流入経路を作成する</a></li>
+      <li><a href="#popup">③離脱防止タグ（ポップアップバナータグ）を作成する</a></li>
+      <li><a href="#matome">まとめ・公開前チェックリスト</a></li>
+    </ol>
+  </nav>
+
+  <!-- ===== 0. 全体像 ===== -->
+  <h2 id="zentai">0. まず全体像をつかむ</h2>
+  <p class="lead">Winutでやることは、ざっくり3ステップ。この順番で作ると各パーツがキレイに連動します。</p>
+
+  <div class="diagram">
+    <svg viewBox="0 0 820 300" width="100%" role="img" aria-label="タグ→流入経路→離脱防止タグの流れ図">
+      <defs>
+        <marker id="arrow" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto">
+          <path d="M0,0 L7,3 L0,6 Z" fill="#1B7A3D"/>
+        </marker>
+        <style>
+          .ttl{font:700 16px "Hiragino Kaku Gothic ProN",sans-serif;fill:#1B7A3D}
+          .dsc{font:13px "Hiragino Kaku Gothic ProN",sans-serif;fill:#444}
+          .card{fill:#F2F8F4;stroke:#8FCBA6;stroke-width:1.5;rx:12}
+        </style>
+      </defs>
+      <!-- card 1 -->
+      <rect class="card" x="20" y="40" width="240" height="120" rx="12"/>
+      <text class="ttl" x="40" y="74">① タグ</text>
+      <text class="dsc" x="40" y="100">友だちに貼る「ラベル」。</text>
+      <text class="dsc" x="40" y="120">どの記事・どの訴求から</text>
+      <text class="dsc" x="40" y="140">来た人かを区別する。</text>
+      <!-- arrow 1 -->
+      <line x1="262" y1="100" x2="296" y2="100" stroke="#1B7A3D" stroke-width="2.5" marker-end="url(#arrow)"/>
+      <!-- card 2 -->
+      <rect class="card" x="300" y="40" width="240" height="120" rx="12"/>
+      <text class="ttl" x="320" y="74">② 流入経路</text>
+      <text class="dsc" x="320" y="100">友だち追加リンク。①の</text>
+      <text class="dsc" x="320" y="120">タグを付ける設定で発行。</text>
+      <text class="dsc" x="320" y="140">URLが出る。</text>
+      <!-- arrow 2 -->
+      <line x1="542" y1="100" x2="576" y2="100" stroke="#1B7A3D" stroke-width="2.5" marker-end="url(#arrow)"/>
+      <!-- card 3 -->
+      <rect class="card" x="580" y="40" width="240" height="120" rx="12"/>
+      <text class="ttl" x="600" y="74">③ 離脱防止タグ</text>
+      <text class="dsc" x="600" y="100">離脱しそうな人に出す</text>
+      <text class="dsc" x="600" y="120">ポップアップ。②のリンク</text>
+      <text class="dsc" x="600" y="140">へ飛ばす＋貼付タグ発行。</text>
+      <!-- bottom note -->
+      <text class="dsc" x="20" y="210" style="font-style:italic">タグ＝荷物　／　流入経路＝荷物を運ぶ乗り物（リンク）　／　離脱防止ポップアップ＝乗り物を呼ぶ看板</text>
+    </svg>
+  </div>
+
+  <div class="box point">
+    <div class="t">💡 3つのつながりを一言で</div>
+    「タグ」を運ぶ「乗り物」が流入経路（リンク）、その乗り物を呼び出す「呼び込み看板」が離脱防止ポップアップ。
+  </div>
+
+  <!-- ===== 1. ログイン ===== -->
+  <h2 id="login">1. 前提：Winutにログインする</h2>
+  <p>ブラウザで <a href="https://manage.winut.net/login" target="_blank" rel="noopener">manage.winut.net/login</a> を開きます。</p>
+  <ol class="steps">
+    <li>ログインID・パスワードを入力する（担当アカウントのもの）。</li>
+    <li><b>「ログイン」</b>ボタンを押す。</li>
+    <li>画面右上に担当アカウント名（例：【PLUS】包茎手術）が出ていればログイン成功。</li>
+  </ol>
+
+  <figure class="shot">
+    <img src="images/01-login.png" alt="ログイン画面" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph"><div class="cam">📷</div><div>ここに画像を貼る</div><div>撮るポイント：ID・パスワード欄＋「ログイン」ボタン</div><div class="save">保存名：images/01-login.png</div></div>
+    <figcaption>スクショ①：ログイン画面</figcaption>
+  </figure>
+
+  <figure class="shot">
+    <img src="images/02-dashboard.png" alt="ダッシュボード" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph"><div class="cam">📷</div><div>ここに画像を貼る</div><div>撮るポイント：右上のアカウント名＋左メニュー全体</div><div class="save">保存名：images/02-dashboard.png</div></div>
+    <figcaption>スクショ②：ログイン後のダッシュボード</figcaption>
+  </figure>
+
+  <div class="box warn">
+    <div class="t">⚠ 注意</div>
+    <ul>
+      <li>Winutは「1アカウント＝1ログイン」。別ジャンルを触るときは一度ログアウトして入り直す。</li>
+      <li>友だちリストには個人情報が含まれる。CSV等は社内ルールに従って扱うこと。</li>
+    </ul>
+  </div>
+
+  <!-- ===== 2. タグ ===== -->
+  <h2 id="tag">2. ①タグを作成する</h2>
+  <h3>どこを開く？</h3>
+  <p>左メニュー <span class="path">友だち → タグ管理</span>（URL：manage.winut.net/tags/ta_list）</p>
+  <h3>手順</h3>
+  <ol class="steps">
+    <li>タグ管理を開く。左側にフォルダ一覧が並んでいる（未分類／流入経路／クリック／CV など）。</li>
+    <li>整理用にフォルダを分けたい場合は <b>「＋フォルダを追加」</b> で先に作る（任意）。</li>
+    <li>画面上部の <b>「＋タグを追加」</b> を押す。</li>
+    <li>「タグの追加・編集」ウィンドウが開く。</li>
+    <li><b>フォルダを選択</b>（どこに入れるか）と <b>タグ名</b> を入力する。</li>
+    <li><b>「確定する」</b> を押す。これでタグが1つ完成。</li>
+  </ol>
+
+  <figure class="shot">
+    <img src="images/03-tag-list.png" alt="タグ管理一覧" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph"><div class="cam">📷</div><div>ここに画像を貼る</div><div>撮るポイント：左のフォルダ一覧＋上部の「＋タグを追加」ボタン</div><div class="save">保存名：images/03-tag-list.png</div></div>
+    <figcaption>スクショ③：タグ管理の一覧画面</figcaption>
+  </figure>
+
+  <figure class="shot">
+    <img src="images/04-tag-modal.png" alt="タグの追加・編集ウィンドウ" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph"><div class="cam">📷</div><div>ここに画像を貼る</div><div>撮るポイント：フォルダ選択・タグ名の入力欄・「確定する」ボタン</div><div class="save">保存名：images/04-tag-modal.png</div></div>
+    <figcaption>スクショ④：「タグの追加・編集」ウィンドウ</figcaption>
+  </figure>
+
+  <div class="box point">
+    <div class="t">💡 タグ名の付け方のコツ</div>
+    後から見て「どこから来た友だちか」が分かる名前にする。流入経路名と揃えると管理がラク。<br>
+    例：<code>seo_phimo_houhien_自信</code>（〔ジャンル_記事_訴求〕で統一）
+  </div>
+
+  <!-- ===== 3. 流入経路 ===== -->
+  <h2 id="inflow">3. ②流入経路を作成する</h2>
+  <p class="lead">流入経路＝「友だち追加リンク」。このリンクから登録した人に、①で作ったタグが自動で付きます。</p>
+  <h3>どこを開く？</h3>
+  <p>左メニュー <span class="path">URL → 流入別経路管理</span>（URL：manage.winut.net/inflow_path/in_list）</p>
+  <h3>手順</h3>
+  <ol class="steps">
+    <li>右上の緑ボタン <b>「＋流入経路新規登録」</b> を押す。</li>
+    <li><b>流入経路名</b> を入力（必須・日本語OK）。タグ名と揃えると分かりやすい。</li>
+    <li>青い <b>「アクションの設定」</b> ボタンを押す。</li>
+    <li>開いた窓の <b>「タグ追加 → タグ選択」</b> で、①で作ったタグを選ぶ。</li>
+    <li>（任意）追加と同時に配信を始めたいなら「シナリオ」を選ぶ。パック・リッチメニューも必要なら設定。</li>
+    <li><b>「設定する」</b> で窓を閉じる。</li>
+    <li>（任意）<b>カテゴリ</b> を選ぶ（例：SEO）。分析のフィルタに使う。</li>
+    <li>下部の <b>「流入経路分析の登録・更新」</b> を押して保存。</li>
+    <li>一覧に戻ると、作った経路の行に <b>URL（t.winut.net/in/flow/◯◯◯）</b> が発行されている。これが友だち追加リンク。記事・LP・ボタンに設置する。</li>
+  </ol>
+
+  <figure class="shot">
+    <img src="images/05-inflow-list.png" alt="流入別経路管理一覧" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph"><div class="cam">📷</div><div>ここに画像を貼る</div><div>撮るポイント：「＋流入経路新規登録」ボタン＋既存経路のURL列</div><div class="save">保存名：images/05-inflow-list.png</div></div>
+    <figcaption>スクショ⑤：流入別経路管理の一覧</figcaption>
+  </figure>
+
+  <figure class="shot">
+    <img src="images/06-inflow-form.png" alt="流入経路登録フォーム" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph"><div class="cam">📷</div><div>ここに画像を貼る</div><div>撮るポイント：流入経路名・「アクションの設定」ボタン・「登録・更新」ボタン</div><div class="save">保存名：images/06-inflow-form.png</div></div>
+    <figcaption>スクショ⑥：流入経路の登録フォーム</figcaption>
+  </figure>
+
+  <figure class="shot">
+    <img src="images/07-action-modal.png" alt="アクションの設定ウィンドウ" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph"><div class="cam">📷</div><div>ここに画像を貼る</div><div>撮るポイント：「タグ追加 → タグ選択」で①のタグを選んでいるところ</div><div class="save">保存名：images/07-action-modal.png</div></div>
+    <figcaption>スクショ⑦：「アクションの設定」ウィンドウ</figcaption>
+  </figure>
+
+  <figure class="shot">
+    <img src="images/08-inflow-url.png" alt="発行された流入経路URL" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph"><div class="cam">📷</div><div>ここに画像を貼る</div><div>撮るポイント：一覧で t.winut.net/in/flow/◯◯ のURLが出ている行</div><div class="save">保存名：images/08-inflow-url.png</div></div>
+    <figcaption>スクショ⑧：発行された流入経路URL</figcaption>
+  </figure>
+
+  <div class="box point">
+    <div class="t">💡 ここが①と②のつなぎ目</div>
+    「アクションの設定 → タグ追加」で①のタグを指定する。これを忘れると、リンクから登録されてもタグが付かず分類できない。
+  </div>
+
+  <!-- ===== 4. 離脱防止 ===== -->
+  <h2 id="popup">4. ③離脱防止タグ（ポップアップバナータグ）を作成する</h2>
+  <p class="lead">記事を離脱しそうな人に出すポップアップ画像。クリックすると②の友だち追加リンクへ飛びます。</p>
+  <h3>どこを開く？</h3>
+  <p>左メニュー <span class="path">計測 → ポップアップバナータグ</span>（URL：manage.winut.net/back/ba_list）</p>
+  <h3>手順</h3>
+  <ol class="steps">
+    <li>緑ボタン <b>「＋ポップアップバナータグ新規登録」</b> を押す。</li>
+    <li><b>ポップアップバナータグ名</b> を入力する。</li>
+    <li><b>表示</b> を選ぶ：表示／SPのみ表示／PCのみ表示／非表示。スマホだけに出すなら「SPのみ表示」。</li>
+    <li><b>画像クリック時の挙動</b> で <b>「流入経路URLに遷移する」</b> を選ぶ。すると下に「流入経路設定」ボタンが出る。</li>
+    <li><b>「流入経路設定」</b> ボタンを押し、②で作った流入経路を選ぶ。</li>
+    <li>表示タイミングを決める（任意）：<b>経過時間（秒）</b>＝開いて何秒後に出すか（上限900秒）。<b>スクロール（pixel）</b>＝何px下げたら出すか。「ページ最下部のスクロール時に表示」もあり。</li>
+    <li><b>バナー用画像</b>（必須）を「ファイルを選択」でアップロード。サイズは <b>1000×1490px</b> 推奨。</li>
+    <li>（任意）<b>画像上のテキスト1行目／2行目</b>（各15文字以内）で画像に文字を重ねられる。</li>
+    <li>下部の <b>「ポップアップバナータグの登録/編集」</b> を押して保存。</li>
+    <li>一覧に戻ると、その行に <b>貼付用の&lt;script&gt;タグ</b> が表示される。<b>「copy」</b> でコピーし、LPの &lt;/body&gt; 直前などに貼る。</li>
+  </ol>
+
+  <figure class="shot">
+    <img src="images/09-popup-list.png" alt="ポップアップバナータグ一覧" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph"><div class="cam">📷</div><div>ここに画像を貼る</div><div>撮るポイント：「＋新規登録」ボタン＋既存行の&lt;script&gt;タグと「copy」ボタン</div><div class="save">保存名：images/09-popup-list.png</div></div>
+    <figcaption>スクショ⑨：ポップアップバナータグ一覧</figcaption>
+  </figure>
+
+  <figure class="shot">
+    <img src="images/10-popup-form-top.png" alt="作成フォーム上半分" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph"><div class="cam">📷</div><div>ここに画像を貼る</div><div>撮るポイント：タグ名・表示選択・「画像クリック時の挙動→流入経路URLに遷移する」＋「流入経路設定」ボタン</div><div class="save">保存名：images/10-popup-form-top.png</div></div>
+    <figcaption>スクショ⑩：作成フォーム（上半分）</figcaption>
+  </figure>
+
+  <figure class="shot">
+    <img src="images/11-popup-form-bottom.png" alt="作成フォーム下半分" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph"><div class="cam">📷</div><div>ここに画像を貼る</div><div>撮るポイント：バナー用画像の選択・画像上テキスト・経過時間・スクロール・「登録/編集」ボタン</div><div class="save">保存名：images/11-popup-form-bottom.png</div></div>
+    <figcaption>スクショ⑪：作成フォーム（下半分）</figcaption>
+  </figure>
+
+  <figure class="shot">
+    <img src="images/12-popup-script.png" alt="発行された貼付タグ" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph"><div class="cam">📷</div><div>ここに画像を貼る</div><div>撮るポイント：一覧の&lt;script&gt;タグと「copy」ボタン</div><div class="save">保存名：images/12-popup-script.png</div></div>
+    <figcaption>スクショ⑫：発行された貼付タグ</figcaption>
+  </figure>
+
+  <p>貼り付けるタグの例（<code>uqid</code>の部分は1つずつ違う）：</p>
+  <pre>&lt;script src='https://js.winut.net/winback.js?back_uqid=◯◯◯◯◯◯◯' async&gt;&lt;/script&gt;</pre>
+
+  <div class="box warn">
+    <div class="t">⚠ 注意</div>
+    <ul>
+      <li>「表示」を“非表示”にしていると、タグをLPに貼ってもポップアップは出ない（先にタグだけ仕込む時用）。公開時は表示状態を確認。</li>
+      <li>クリック後の遷移先（流入経路）の設定を忘れると、ポップアップを押しても友だち追加に進まない。</li>
+    </ul>
+  </div>
+
+  <!-- ===== 5. まとめ ===== -->
+  <h2 id="matome">5. まとめ：3つの関係と最終チェック</h2>
+  <div class="box point">
+    <div class="t">💡 完成イメージ</div>
+    <ul>
+      <li><b>①タグ</b> … 友だちに付くラベル</li>
+      <li><b>②流入経路</b> … ①のタグを付ける友だち追加リンク（URL発行）</li>
+      <li><b>③離脱防止タグ</b> … ②のリンクへ飛ばすポップアップ（LP貼付タグ発行）</li>
+    </ul>
+  </div>
+
+  <h3>公開前チェックリスト</h3>
+  <table class="chk">
+    <tr><th style="width:40px">✓</th><th>項目</th></tr>
+    <tr><td>☐</td><td>①タグを作った（流入経路名と揃った分かりやすい名前）</td></tr>
+    <tr><td>☐</td><td>②流入経路の「アクションの設定」で①のタグを「タグ追加」に指定した</td></tr>
+    <tr><td>☐</td><td>②を保存して、t.winut.net/in/flow/◯◯ のURLが発行されている</td></tr>
+    <tr><td>☐</td><td>③で「流入経路URLに遷移する」を選び、②の流入経路を紐付けた</td></tr>
+    <tr><td>☐</td><td>③のバナー画像をアップし、表示状態を「表示／SPのみ」等に設定した</td></tr>
+    <tr><td>☐</td><td>③の&lt;script&gt;タグをコピーして、対象LPに貼った</td></tr>
+  </table>
+
+  <hr>
+  <p class="tip">困ったら：画面の名前・URL・どのボタンで詰まったかをメモして、担当者に共有してください。</p>
+  <p class="tip">スクショの入れ方：このHTMLと同じ階層の <code>images/</code> フォルダに、各枠に書かれた保存名（例 <code>01-login.png</code>）でPNGを置くと、自動でその場所に表示されます。貼り込み作業は不要です。</p>
+
+</div>
+</body>
+</html>
