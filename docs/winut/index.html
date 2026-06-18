@@ -109,7 +109,7 @@
     <div class="arrow">▼</div>
     <div class="flow-step"><span class="n">4</span><div class="body"><b>Winutを設定</b><p>①タグ作成 → ②流入経路作成 → ③離脱防止タグ作成。流入経路URLと、ページ貼付用の&lt;script&gt;タグが発行される。</p><a class="toollink" href="#login">📘 このページの手順（1〜5）を見る ▼</a></div></div>
     <div class="arrow">▼</div>
-    <div class="flow-step"><span class="n">5</span><div class="body"><b>記事・LPに設置（GTM）</b><p>発行された流入経路URL／離脱防止の&lt;script&gt;タグを、<b>GTM（Googleタグマネージャー）</b>経由で対象ページに設置する。</p><span class="badge-todo">GTM操作手順：別途このページに追加予定</span></div></div>
+    <div class="flow-step"><span class="n">5</span><div class="body"><b>記事・LPに設置（GTM）</b><p>発行された流入経路URL／離脱防止の&lt;script&gt;タグを、<b>GTM（Googleタグマネージャー）</b>経由で対象記事に設置する（トリガー＋カスタムHTMLタグ→公開）。</p><a class="toollink" href="#gtm">📘 GTM設置の手順（手順5）を見る ▼</a></div></div>
   </div>
 
   <nav class="toc">
@@ -121,6 +121,7 @@
       <li><a href="#tag">①タグを作成する</a></li>
       <li><a href="#inflow">②流入経路を作成する</a></li>
       <li><a href="#popup">③離脱防止タグ（ポップアップバナータグ）を作成する</a></li>
+      <li><a href="#gtm">GTMで離脱防止タグを記事に配信する</a></li>
       <li><a href="#matome">まとめ・公開前チェックリスト</a></li>
     </ol>
   </nav>
@@ -332,14 +333,90 @@
     </ul>
   </div>
 
-  <!-- ===== 5. まとめ ===== -->
-  <h2 id="matome">5. まとめ：3つの関係と最終チェック</h2>
+  <!-- ===== 5. GTM ===== -->
+  <h2 id="gtm">5. GTMで離脱防止タグを記事に配信する</h2>
+  <p class="lead">Winutで作った離脱防止タグ（&lt;script&gt;）は、<b>GTM（Googleタグマネージャー）</b>経由で対象記事ページに出します。「トリガー（どの記事に出すか）」と「タグ（何を出すか）」を作って公開する流れです。</p>
+
+  <div class="box point">
+    <div class="t">💡 先に用意するもの</div>
+    Winutの離脱防止タグの <b>back_uqid</b>（例：<code>1C59XXU</code>）。Winutの「ポップアップバナータグ一覧」で各タグの&lt;script&gt;に入っている <code>back_uqid=◯◯◯</code> の値です。これをGTMのタグに設定します。
+  </div>
+
+  <h3>手順1：トリガーを作る（どの記事に出すか）</h3>
+  <ol class="steps">
+    <li>GTMで <b>「トリガー」→「新規」</b>。</li>
+    <li>トリガーのタイプ：<b>「ページビュー － ウィンドウの読み込み」</b>。</li>
+    <li>このトリガーの発生場所：<b>Page URL ／ 含む ／ PUを入れたい記事のパス</b>（例：<code>/datsumo-lp/doo/</code>）。</li>
+    <li>名前を付けて保存。タグと揃えると分かりやすい（例：<code>LINEPUタグ_BMI計算</code>）。</li>
+  </ol>
+  <figure class="shot">
+    <img src="images/gtm-01-trigger.png" alt="GTMトリガー設定" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph"><div class="cam">📷</div><div>ここに画像を貼る</div><div>撮るポイント：トリガーのタイプ＝ページビュー（ウィンドウの読み込み）＋発生場所 Page URL 含む /記事パス/</div><div class="save">保存名：images/gtm-01-trigger.png</div></div>
+    <figcaption>スクショ：GTM トリガーの設定</figcaption>
+  </figure>
+
+  <h3>手順2：タグを作る（何を出すか）</h3>
+  <ol class="steps">
+    <li>GTMで <b>「タグ」→「新規」</b>。</li>
+    <li>タグの種類：<b>「カスタムHTML」</b>。</li>
+    <li>下のコードを貼り付ける。<b><code>back_uqid=</code> の後ろを、Winutで作った離脱防止タグのIDに差し替える</b>。複数入れると表示のたびにランダムで1つ選ばれる（＝出し分け／A/Bテスト）。</li>
+    <li>トリガーに、手順1で作ったトリガーを指定。</li>
+    <li>名前を付けて保存（トリガーと同じ名前に揃える：<code>LINEPUタグ_BMI計算</code>）。</li>
+  </ol>
+  <p>貼り付けるコード（<code>back_uqid</code>の値は自分の離脱防止タグIDに差し替える）：</p>
+  <pre>&lt;style&gt;
+  img[src*="winut.net"] {
+    filter: none !important;
+  }
+&lt;/style&gt;
+
+&lt;script&gt;
+// スクリプトの配列を定義
+var scripts = [
+'https://js.winut.net/winback.js?back_uqid=1EZMNGG',
+'https://js.winut.net/winback.js?back_uqid=1C59XXU'
+];
+
+// ランダムにスクリプトを選択
+var selectedScript = scripts[Math.floor(Math.random() * scripts.length)];
+
+// 選択したスクリプトをページに挿入して実行
+var scriptElement = document.createElement('script');
+scriptElement.src = selectedScript;
+document.head.appendChild(scriptElement);
+&lt;/script&gt;</pre>
+  <div class="box point">
+    <div class="t">💡 back_uqid のポイント</div>
+    <code>back_uqid=</code> の後ろがWinutの離脱防止タグID。配列（<code>scripts = [ ... ]</code>）に複数入れると、ページ表示のたびにランダムで1つ選ばれる。1つだけでもOK。
+  </div>
+  <figure class="shot">
+    <img src="images/gtm-02-tag.png" alt="GTMタグ設定" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="ph"><div class="cam">📷</div><div>ここに画像を貼る</div><div>撮るポイント：タグの種類＝カスタムHTML＋HTML欄に上のコード（back_uqidが見える状態）</div><div class="save">保存名：images/gtm-02-tag.png</div></div>
+    <figcaption>スクショ：GTM タグの設定（カスタムHTML）</figcaption>
+  </figure>
+
+  <h3>手順3：公開する</h3>
+  <ol class="steps">
+    <li>右上の <b>「公開」</b> を押して反映。</li>
+    <li>プレビューで対象記事を開き、ポップアップが出るか確認する。</li>
+  </ol>
+  <div class="box warn">
+    <div class="t">⚠ 注意</div>
+    <ul>
+      <li>トリガーの発生場所（Page URL 含む）が間違っていると、別の記事に出たり・どこにも出なかったりする。対象記事のパスを正確に。</li>
+      <li>公開（バージョン公開）しないと本番に反映されない。プレビューだけで終わらせない。</li>
+    </ul>
+  </div>
+
+  <!-- ===== 6. まとめ ===== -->
+  <h2 id="matome">6. まとめ：全体の関係と最終チェック</h2>
   <div class="box point">
     <div class="t">💡 完成イメージ</div>
     <ul>
       <li><b>①タグ</b> … 友だちに付くラベル</li>
       <li><b>②流入経路</b> … ①のタグを付ける友だち追加リンク（URL発行）</li>
-      <li><b>③離脱防止タグ</b> … ②のリンクへ飛ばすポップアップ（LP貼付タグ発行）</li>
+      <li><b>③離脱防止タグ</b> … ②のリンクへ飛ばすポップアップ（&lt;script&gt;発行）</li>
+      <li><b>GTM</b> … ③の&lt;script&gt;を対象記事に配信（トリガー＋カスタムHTML→公開）</li>
     </ul>
   </div>
 
@@ -352,6 +429,8 @@
     <tr><td>☐</td><td>③で「流入経路URLに遷移する」を選び、②の流入経路を紐付けた</td></tr>
     <tr><td>☐</td><td>③で経過時間90秒＋別タブ遷移「使用」を設定し、バナー画像をアップした</td></tr>
     <tr><td>☐</td><td>③の表示状態を「表示／SPのみ」等にして公開状態にした</td></tr>
+    <tr><td>☐</td><td>GTMでトリガー（対象記事のURL含む）＋カスタムHTMLタグ（back_uqidに離脱防止タグID）を作った</td></tr>
+    <tr><td>☐</td><td>GTMを「公開」し、プレビューで対象記事にポップアップが出るのを確認した</td></tr>
   </table>
 
   <hr>
