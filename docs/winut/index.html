@@ -71,6 +71,15 @@
   .badge-todo{display:inline-block;background:#f1f1f1;color:#777;border:1px dashed #bbb;border-radius:6px;padding:2px 10px;font-size:12px}
   a.toollink{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1.5px solid var(--green);color:var(--green);text-decoration:none;border-radius:8px;padding:7px 14px;font-weight:700;font-size:14px}
   a.toollink:hover{background:var(--green-bg)}
+  /* 折りたたみセクション */
+  details.gtmfold{margin-top:48px;border:1px solid var(--green-l);border-radius:10px;overflow:hidden}
+  details.gtmfold>summary{list-style:none;cursor:pointer;background:var(--green);color:#fff;padding:14px 20px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+  details.gtmfold>summary::-webkit-details-marker{display:none}
+  details.gtmfold>summary .sumh{font-size:21px;font-weight:700}
+  details.gtmfold>summary .sumnote{font-size:13px;opacity:.9;font-weight:400;white-space:nowrap}
+  details.gtmfold[open]>summary .sumnote::before{content:"▲ "}
+  details.gtmfold:not([open])>summary .sumnote::before{content:"▼ "}
+  details.gtmfold>.foldbody{padding:8px 20px 20px}
   table.chk{border-collapse:collapse;width:100%;margin:16px 0;font-size:14px}
   table.chk td,table.chk th{border:1px solid var(--line);padding:8px 10px;text-align:left}
   table.chk th{background:var(--green-bg);color:var(--green)}
@@ -103,13 +112,13 @@
   <div class="flow">
     <div class="flow-step"><span class="n">1</span><div class="body"><b>新規記事が完成</b><p>対象の新規記事が公開された状態からスタート。</p></div></div>
     <div class="arrow">▼</div>
-    <div class="flow-step"><span class="n">2</span><div class="body"><b>診断PU推薦ツールにかける</b><p>記事本文を貼ってジャンルを選ぶと、おすすめの<b>診断タイプ</b>と<b>PU訴求軸</b>が出る。「この記事に何のPUを設置すべきか」をここで決める。</p><a class="toollink" href="https://diagnosis-pu-recommender.streamlit.app" target="_blank" rel="noopener">🔧 診断PU推薦ツールを開く ▶</a></div></div>
+    <div class="flow-step"><span class="n">2</span><div class="body"><b>診断PU推薦ツールにかける</b><p>記事本文を貼ってジャンルを選ぶと、おすすめの<b>診断タイプ・PU訴求軸・PU文言</b>が出る。「この記事に何のPUを設置すべきか／どんな文言にするか」をここで決める。</p><a class="toollink" href="https://diagnosis-pu-recommender.streamlit.app" target="_blank" rel="noopener">🔧 診断PU推薦ツールを開く ▶</a></div></div>
     <div class="arrow">▼</div>
     <div class="flow-step"><span class="n">3</span><div class="body"><b>バナー画像を用意</b><p>離脱防止ポップアップに使うバナー画像を作成（推奨サイズ 1000×1490px）。②で決めた訴求軸に合わせる。</p></div></div>
     <div class="arrow">▼</div>
     <div class="flow-step"><span class="n">4</span><div class="body"><b>Winutを設定</b><p>①タグ作成 → ②流入経路作成 → ③離脱防止タグ作成。流入経路URLと、ページ貼付用の&lt;script&gt;タグが発行される。</p><a class="toollink" href="#login">📘 このページの手順（1〜5）を見る ▼</a></div></div>
     <div class="arrow">▼</div>
-    <div class="flow-step"><span class="n">5</span><div class="body"><b>記事・LPに設置（GTM）</b><p>発行された流入経路URL／離脱防止の&lt;script&gt;タグを、<b>GTM（Googleタグマネージャー）</b>経由で対象記事に設置する（トリガー＋カスタムHTMLタグ→公開）。</p><a class="toollink" href="#gtm">📘 GTM設置の手順（手順5）を見る ▼</a></div></div>
+    <div class="flow-step"><span class="n">5</span><div class="body"><b>記事・LPに設置（GTM）</b><p>流入経路URLは記事・LP・ボタンに設置。離脱防止の&lt;script&gt;タグは<b>GTM（Googleタグマネージャー）</b>経由で対象記事に配信する（トリガー＋カスタムHTML→公開）。<br><span style="color:#777;font-size:13px">※GTM部分は社内対応になる可能性あり（手順5は折りたたみ）。</span></p><a class="toollink" href="#gtm">📘 GTM配信の手順（手順5）を見る ▼</a></div></div>
   </div>
 
   <nav class="toc">
@@ -171,7 +180,7 @@
   <h2 id="login">1. 前提：Winutにログインする</h2>
   <p>ブラウザで <a href="https://manage.winut.net/login" target="_blank" rel="noopener">manage.winut.net/login</a> を開きます。</p>
   <ol class="steps">
-    <li>ログインID・パスワードを入力する。<b>担当ジャンルのID／パスワードは下記の「ログインアカウント一覧」を参照。</b></li>
+    <li>ログインID・パスワードを入力する。<b>担当ジャンルのID／パスワードは下記の「ログインアカウント一覧」を参照。</b><br><span style="color:#9B2C2C">※入力欄に前のアカウントのID/パスワードが残っていることがある。残っていたら消して、担当ジャンルのものを入れ直す。</span></li>
     <li><b>「ログイン」</b>ボタンを押す。</li>
     <li>画面右上に担当アカウント名（例：【PLUS】包茎手術）が出ていればログイン成功。</li>
   </ol>
@@ -254,7 +263,7 @@
     <li><b>流入経路名</b> を入力（必須・日本語OK）。タグ名と揃えると分かりやすい。</li>
     <li>青い <b>「アクションの設定」</b> ボタンを押す。</li>
     <li>開いた窓の <b>「タグ追加 → タグ選択」</b> で、①で作ったタグを選ぶ。</li>
-    <li>別ツールで決定した、記事にマッチする<b>シナリオを設定する</b>。<span style="color:#9B2C2C;font-weight:700">※シナリオを設定しないと、友だち追加後にトーク欄へ何も配信されません。</span></li>
+    <li>推薦ツールで決まった診断タイプに合う<b>既存のシナリオを選ぶ</b>（新規作成ではなく既存から選択）。<span style="color:#9B2C2C;font-weight:700">※シナリオを設定しないと、友だち追加後にトーク欄へ何も配信されません。</span></li>
     <li><b>「設定する」</b> で窓を閉じる。</li>
     <li>（任意）<b>カテゴリ</b> を選ぶ（例：SEO）。分析のフィルタに使う。</li>
     <li>下部の <b>「流入経路分析の登録・更新」</b> を押して保存。</li>
@@ -333,8 +342,15 @@
     </ul>
   </div>
 
-  <!-- ===== 5. GTM ===== -->
-  <h2 id="gtm">5. GTMで離脱防止タグを記事に配信する</h2>
+  <div class="box point">
+    <div class="t">💡 次（GTM）で使うもの</div>
+    ここで作った離脱防止タグの<b>ID（back_uqid）</b>は、次の手順5（GTM配信）で使います。一覧の&lt;script&gt;内 <code>back_uqid=◯◯◯</code> の値を控えておく。
+  </div>
+
+  <!-- ===== 5. GTM (折りたたみ) ===== -->
+  <details id="gtm" class="gtmfold">
+    <summary><span class="sumh">5. GTMで離脱防止タグを記事に配信する</span><span class="sumnote">クリックで開く（社内対応か検討中）</span></summary>
+    <div class="foldbody">
   <p class="lead">Winutで作った離脱防止タグ（&lt;script&gt;）は、<b>GTM（Googleタグマネージャー）</b>経由で対象記事ページに出します。「トリガー（どの記事に出すか）」と「タグ（何を出すか）」を作って公開する流れです。</p>
 
   <div class="box point">
@@ -373,9 +389,10 @@
 &lt;script&gt;
 // スクリプトの配列を定義
 var scripts = [
-'https://js.winut.net/winback.js?back_uqid=1EZMNGG',
-'https://js.winut.net/winback.js?back_uqid=1C59XXU'
+'https://js.winut.net/winback.js?back_uqid=★ここに離脱防止タグID①★',
+'https://js.winut.net/winback.js?back_uqid=★ここに離脱防止タグID②★'
 ];
+// ↑ ★…★ を自分の離脱防止タグID(back_uqid)に差し替える。1つだけでもOK（その場合は1行）。
 
 // ランダムにスクリプトを選択
 var selectedScript = scripts[Math.floor(Math.random() * scripts.length)];
@@ -405,8 +422,11 @@ document.head.appendChild(scriptElement);
     <ul>
       <li>トリガーの発生場所（Page URL 含む）が間違っていると、別の記事に出たり・どこにも出なかったりする。対象記事のパスを正確に。</li>
       <li>公開（バージョン公開）しないと本番に反映されない。プレビューだけで終わらせない。</li>
+      <li>どのGTMコンテナで作業するかは担当者に確認すること（コンテナを間違えると別サイトに配信される）。</li>
     </ul>
   </div>
+    </div>
+  </details>
 
   <!-- ===== 6. まとめ ===== -->
   <h2 id="matome">6. まとめ：全体の関係と最終チェック</h2>
