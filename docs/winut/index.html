@@ -60,6 +60,17 @@
   a.doclink{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;text-decoration:none;
     border-radius:8px;padding:10px 18px;font-weight:700;font-size:15px;margin:4px 0}
   a.doclink:hover{background:#15602f}
+  /* 全体フロー */
+  .flow{margin:18px 0 8px}
+  .flow-step{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-left:5px solid var(--green);border-radius:10px;padding:14px 18px}
+  .flow-step .n{flex:0 0 auto;width:32px;height:32px;background:var(--green);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px}
+  .flow-step .body{flex:1}
+  .flow-step .body b{font-size:16px;color:var(--green)}
+  .flow-step .body p{margin:4px 0 8px;font-size:14px;color:#444}
+  .flow .arrow{text-align:center;color:var(--green);font-size:22px;line-height:1;margin:6px 0}
+  .badge-todo{display:inline-block;background:#f1f1f1;color:#777;border:1px dashed #bbb;border-radius:6px;padding:2px 10px;font-size:12px}
+  a.toollink{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1.5px solid var(--green);color:var(--green);text-decoration:none;border-radius:8px;padding:7px 14px;font-weight:700;font-size:14px}
+  a.toollink:hover{background:var(--green-bg)}
   table.chk{border-collapse:collapse;width:100%;margin:16px 0;font-size:14px}
   table.chk td,table.chk th{border:1px solid var(--line);padding:8px 10px;text-align:left}
   table.chk th{background:var(--green-bg);color:var(--green)}
@@ -87,9 +98,24 @@
     </ul>
   </div>
 
+  <h2 id="flow">業務全体の流れ（依頼フロー）</h2>
+  <p class="lead">新規記事が完成してから、LINEの友だちを獲得できる状態にするまでの一連の流れです。各ステップのツールはリンクから開けます。Winutの詳しい操作はこのページの下（手順1〜5）にあります。</p>
+  <div class="flow">
+    <div class="flow-step"><span class="n">1</span><div class="body"><b>新規記事が完成</b><p>対象の新規記事が公開された状態からスタート。</p></div></div>
+    <div class="arrow">▼</div>
+    <div class="flow-step"><span class="n">2</span><div class="body"><b>診断PU推薦ツールにかける</b><p>記事本文を貼ってジャンルを選ぶと、おすすめの<b>診断タイプ</b>と<b>PU訴求軸</b>が出る。「この記事に何のPUを設置すべきか」をここで決める。</p><a class="toollink" href="https://diagnosis-pu-recommender.streamlit.app" target="_blank" rel="noopener">🔧 診断PU推薦ツールを開く ▶</a></div></div>
+    <div class="arrow">▼</div>
+    <div class="flow-step"><span class="n">3</span><div class="body"><b>バナー画像を用意</b><p>離脱防止ポップアップに使うバナー画像を作成（推奨サイズ 1000×1490px）。②で決めた訴求軸に合わせる。</p></div></div>
+    <div class="arrow">▼</div>
+    <div class="flow-step"><span class="n">4</span><div class="body"><b>Winutを設定</b><p>①タグ作成 → ②流入経路作成 → ③離脱防止タグ作成。流入経路URLと、ページ貼付用の&lt;script&gt;タグが発行される。</p><a class="toollink" href="#login">📘 このページの手順（1〜5）を見る ▼</a></div></div>
+    <div class="arrow">▼</div>
+    <div class="flow-step"><span class="n">5</span><div class="body"><b>記事・LPに設置（GTM）</b><p>発行された流入経路URL／離脱防止の&lt;script&gt;タグを、<b>GTM（Googleタグマネージャー）</b>経由で対象ページに設置する。</p><span class="badge-todo">GTM操作手順：別途このページに追加予定</span></div></div>
+  </div>
+
   <nav class="toc">
     <b>目次</b>
     <ol>
+      <li><a href="#flow">業務全体の流れ（依頼フロー）</a></li>
       <li><a href="#zentai">まず全体像をつかむ</a></li>
       <li><a href="#login">前提：Winutにログインする</a></li>
       <li><a href="#tag">①タグを作成する</a></li>
