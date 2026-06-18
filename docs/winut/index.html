@@ -63,6 +63,8 @@
   table.chk{border-collapse:collapse;width:100%;margin:16px 0;font-size:14px}
   table.chk td,table.chk th{border:1px solid var(--line);padding:8px 10px;text-align:left}
   table.chk th{background:var(--green-bg);color:var(--green)}
+  table.login td:nth-child(2),table.login td:nth-child(3){font-family:"SF Mono",Menlo,Consolas,monospace;font-size:13px}
+  table.login td:nth-child(3){color:#9B2C2C}
   .tip{font-size:13px;color:var(--muted)}
   hr{border:0;border-top:1px solid var(--line);margin:40px 0}
 </style>
@@ -142,11 +144,25 @@
   <h2 id="login">1. 前提：Winutにログインする</h2>
   <p>ブラウザで <a href="https://manage.winut.net/login" target="_blank" rel="noopener">manage.winut.net/login</a> を開きます。</p>
   <ol class="steps">
-    <li>ログインID・パスワードを入力する。<b>担当アカウントのID／パスワードは下記の一覧（社内Notion）を参照。</b></li>
+    <li>ログインID・パスワードを入力する。<b>担当ジャンルのID／パスワードは下記の「ログインアカウント一覧」を参照。</b></li>
     <li><b>「ログイン」</b>ボタンを押す。</li>
     <li>画面右上に担当アカウント名（例：【PLUS】包茎手術）が出ていればログイン成功。</li>
   </ol>
-  <p><a class="doclink" href="https://www.notion.so/9b09037922ce4726a684098bf1adc218" target="_blank" rel="noopener">📒 ログインアカウント一覧（ID・パスワード）／社内Notion ▶</a></p>
+  <h3>ログインアカウント一覧</h3>
+  <p class="tip">担当ジャンルの行のID・パスワードでログインする。</p>
+  <table class="chk login">
+    <tr><th>ジャンル</th><th>ログインID</th><th>パスワード</th></tr>
+    <tr><td>医療ダイエット(GLP-1)</td><td>MDiet_PLS</td><td>8Uu8e7D61he</td></tr>
+    <tr><td>包茎手術</td><td>Phim_PLS</td><td>oiIe8h2uD18H31m</td></tr>
+    <tr><td>ED</td><td>EDG_PLS</td><td>9IiUd81he8E2</td></tr>
+    <tr><td>FAGA</td><td>FAGA_PLS</td><td>8IiKe1u3nd8E8gD</td></tr>
+    <tr><td>AGA</td><td>AGAGuide_PLS</td><td>9Iie92Je37He7eggE</td></tr>
+    <tr><td>オンラインピル</td><td>PLUS_onlinepill</td><td>9IuI29h34nfH1h32i</td></tr>
+    <tr><td>ホクロ除去</td><td>Hokuro_PLS</td><td>9Iio928hd83hHE</td></tr>
+    <tr><td>いびき治療</td><td>Ibiki_PLs</td><td>0iOod92jdei23</td></tr>
+    <tr><td>リカバリーウェア</td><td>PLUS_recoveryW</td><td>kJdb1j38Dh109DER</td></tr>
+  </table>
+  <p class="tip">原本（更新時はこちら）：<a href="https://www.notion.so/9b09037922ce4726a684098bf1adc218" target="_blank" rel="noopener">社内Notion「各アカウントログイン情報」</a></p>
 
   <figure class="shot">
     <img src="images/01-login.png" alt="ログイン画面" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
@@ -211,7 +227,7 @@
     <li><b>流入経路名</b> を入力（必須・日本語OK）。タグ名と揃えると分かりやすい。</li>
     <li>青い <b>「アクションの設定」</b> ボタンを押す。</li>
     <li>開いた窓の <b>「タグ追加 → タグ選択」</b> で、①で作ったタグを選ぶ。</li>
-    <li>（任意）追加と同時に配信を始めたいなら「シナリオ」を選ぶ。パック・リッチメニューも必要なら設定。</li>
+    <li>別ツールで決定した、記事にマッチする<b>シナリオを設定する</b>。<span style="color:#9B2C2C;font-weight:700">※シナリオを設定しないと、友だち追加後にトーク欄へ何も配信されません。</span></li>
     <li><b>「設定する」</b> で窓を閉じる。</li>
     <li>（任意）<b>カテゴリ</b> を選ぶ（例：SEO）。分析のフィルタに使う。</li>
     <li>下部の <b>「流入経路分析の登録・更新」</b> を押して保存。</li>
@@ -261,7 +277,6 @@
     <li><b>「流入経路設定」</b> ボタンを押し、②で作った流入経路を選ぶ。</li>
     <li><b>基本設定：</b>経過時間（秒）に <b>90</b> を入力。「別タブ遷移（ブラウザアプリ離脱も含む）」を <b>「使用」</b> にチェック。</li>
     <li><b>バナー用画像</b>（必須）を「ファイルを選択」でアップロード。サイズは <b>1000×1490px</b> 推奨。</li>
-    <li>（任意）<b>画像上のテキスト1行目／2行目</b>（各15文字以内）で画像に文字を重ねられる。</li>
     <li>下部の <b>「ポップアップバナータグの登録/編集」</b> を押して保存。</li>
   </ol>
 
