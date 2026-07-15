@@ -87,13 +87,52 @@
   table.login td:nth-child(3){color:#9B2C2C}
   .tip{font-size:13px;color:var(--muted)}
   hr{border:0;border-top:1px solid var(--line);margin:40px 0}
+  /* ヒーロー直下のクイックリンク */
+  .quicklinks{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+  .quicklinks a{display:inline-flex;align-items:center;gap:6px;background:#fff;color:var(--green);border-radius:8px;padding:9px 16px;font-weight:700;font-size:14px;text-decoration:none;box-shadow:0 2px 6px rgba(0,0,0,.18)}
+  .quicklinks a.key{background:#FFD54D;color:#5b4300}
+  /* ログインアカウント一覧の大ボタン */
+  a.account-cta{display:block;background:var(--green);color:#fff;text-decoration:none;border-radius:12px;padding:18px 22px;margin:18px 0;box-shadow:0 3px 10px rgba(27,122,61,.35)}
+  a.account-cta:hover{background:#15602f}
+  a.account-cta .big{font-size:18px;font-weight:700}
+  a.account-cta .small{font-size:13px;opacity:.92;margin-top:3px}
+  /* 左サイドバー（PC幅のみ表示） */
+  nav.side{display:none}
+  @media(min-width:1200px){
+    body{padding-left:280px}
+    nav.side{display:block;position:fixed;top:0;left:0;width:280px;height:100vh;overflow-y:auto;background:#fff;border-right:1px solid var(--line);padding:22px 16px;z-index:10}
+    nav.side .ttl{font-weight:700;color:var(--green);font-size:15px;margin:0 0 12px}
+    nav.side a.sidekey{display:block;background:var(--green);color:#fff;text-decoration:none;border-radius:10px;padding:12px 14px;font-weight:700;font-size:14px;margin-bottom:16px;text-align:center}
+    nav.side a.sidekey:hover{background:#15602f}
+    nav.side a.navlink{display:block;color:#444;text-decoration:none;font-size:13.5px;padding:7px 10px;border-radius:8px;border-left:3px solid transparent;margin:1px 0}
+    nav.side a.navlink:hover{background:var(--green-bg)}
+    nav.side a.navlink.on{background:var(--green-bg);color:var(--green);border-left-color:var(--green);font-weight:700}
+    nav.toc{display:none}
+  }
 </style>
 </head>
 <body>
+<nav class="side">
+  <p class="ttl">📘 Winut操作マニュアル</p>
+  <a class="sidekey" href="./accounts/">🔑 ログインID/PW一覧</a>
+  <a class="navlink" href="#flow">業務全体の流れ</a>
+  <a class="navlink" href="#zentai">1. まず全体像をつかむ</a>
+  <a class="navlink" href="#login">2. Winutにログインする</a>
+  <a class="navlink" href="#tag">3. ①タグを作成する</a>
+  <a class="navlink" href="#inflow">4. ②流入経路を作成する</a>
+  <a class="navlink" href="#popup">5. ③離脱防止タグを作成する</a>
+  <a class="navlink" href="#gtm">6. GTMで記事に配信する</a>
+  <a class="navlink" href="#matome">7. まとめ・チェックリスト</a>
+</nav>
 <header class="hero">
   <h1>Winut 操作マニュアル</h1>
   <div class="sub">タグ作成 → 流入経路作成 → 離脱防止タグ作成</div>
   <div class="meta">業務委託メンバー向け オンボーディング資料　／　対象ツール：Winut（manage.winut.net）</div>
+  <div class="quicklinks">
+    <a class="key" href="./accounts/">🔑 ログインID/PW一覧</a>
+    <a href="https://diagnosis-pu-recommender.streamlit.app" target="_blank" rel="noopener">🔧 診断PU推薦ツール</a>
+    <a href="https://pu-image-generator.streamlit.app/" target="_blank" rel="noopener">🎨 PU画像ジェネレーター</a>
+  </div>
 </header>
 
 <div class="wrap">
@@ -108,7 +147,7 @@
   </div>
 
   <h2 id="flow">業務全体の流れ（依頼フロー）</h2>
-  <p class="lead">新規記事が完成してから、LINEの友だちを獲得できる状態にするまでの一連の流れです。各ステップのツールはリンクから開けます。Winutの詳しい操作はこのページの下（手順1〜5）にあります。</p>
+  <p class="lead">新規記事が完成してから、LINEの友だちを獲得できる状態にするまでの一連の流れです。各ステップのツールはリンクから開けます。Winutの詳しい操作はこのページの下（手順2〜6）にあります。</p>
   <div class="flow">
     <div class="flow-step"><span class="n">1</span><div class="body"><b>新規記事が完成</b><p>対象の新規記事が公開された状態からスタート。</p></div></div>
     <div class="arrow">▼</div>
@@ -116,27 +155,27 @@
     <div class="arrow">▼</div>
     <div class="flow-step"><span class="n">3</span><div class="body"><b>PU画像（バナー）を作る</b><p><b>PU画像ジェネレーター</b>に参考画像を1枚アップ→②で決めた文言・訴求軸でヘッドライン／サブコピー／はい・いいえ／イラストを差し替え→<b>1000×1490px</b>で生成してダウンロード。これが離脱防止ポップアップのバナーになる。</p><a class="toollink" href="https://pu-image-generator.streamlit.app/" target="_blank" rel="noopener">🎨 PU画像ジェネレーターを開く ▶</a></div></div>
     <div class="arrow">▼</div>
-    <div class="flow-step"><span class="n">4</span><div class="body"><b>Winutを設定</b><p>①タグ作成 → ②流入経路作成 → ③離脱防止タグ作成。流入経路URLと、ページ貼付用の&lt;script&gt;タグが発行される。</p><a class="toollink" href="#login">📘 このページの手順（1〜5）を見る ▼</a></div></div>
+    <div class="flow-step"><span class="n">4</span><div class="body"><b>Winutを設定</b><p>①タグ作成 → ②流入経路作成 → ③離脱防止タグ作成。流入経路URLと、ページ貼付用の&lt;script&gt;タグが発行される。</p><a class="toollink" href="#login">📘 このページの手順（2〜6）を見る ▼</a></div></div>
     <div class="arrow">▼</div>
-    <div class="flow-step"><span class="n">5</span><div class="body"><b>記事・LPに設置（GTM）</b><p>流入経路URLは記事・LP・ボタンに設置。離脱防止の&lt;script&gt;タグは<b>GTM（Googleタグマネージャー）</b>経由で対象記事に配信する（トリガー＋カスタムHTML→公開）。<br><span style="color:#777;font-size:13px">※GTM部分は社内対応になる可能性あり（手順5は折りたたみ）。</span></p><a class="toollink" href="#gtm">📘 GTM配信の手順（手順5）を見る ▼</a></div></div>
+    <div class="flow-step"><span class="n">5</span><div class="body"><b>記事・LPに設置（GTM）</b><p>流入経路URLは記事・LP・ボタンに設置。離脱防止の&lt;script&gt;タグは<b>GTM（Googleタグマネージャー）</b>経由で対象記事に配信する（トリガー＋カスタムHTML→公開）。<br><span style="color:#777;font-size:13px">※GTM部分は社内対応になる可能性あり（手順6は折りたたみ）。</span></p><a class="toollink" href="#gtm">📘 GTM配信の手順（手順6）を見る ▼</a></div></div>
   </div>
 
   <nav class="toc">
     <b>目次</b>
-    <ol>
+    <ol style="list-style:none;padding-left:4px">
       <li><a href="#flow">業務全体の流れ（依頼フロー）</a></li>
-      <li><a href="#zentai">まず全体像をつかむ</a></li>
-      <li><a href="#login">前提：Winutにログインする</a></li>
-      <li><a href="#tag">①タグを作成する</a></li>
-      <li><a href="#inflow">②流入経路を作成する</a></li>
-      <li><a href="#popup">③離脱防止タグ（ポップアップバナータグ）を作成する</a></li>
-      <li><a href="#gtm">GTMで離脱防止タグを記事に配信する</a></li>
-      <li><a href="#matome">まとめ・公開前チェックリスト</a></li>
+      <li><a href="#zentai">1. まず全体像をつかむ</a></li>
+      <li><a href="#login">2. 準備：Winutにログインする 🔑</a></li>
+      <li><a href="#tag">3. ①タグを作成する</a></li>
+      <li><a href="#inflow">4. ②流入経路を作成する</a></li>
+      <li><a href="#popup">5. ③離脱防止タグを作成する</a></li>
+      <li><a href="#gtm">6. GTMで離脱防止タグを記事に配信する</a></li>
+      <li><a href="#matome">7. まとめ・公開前チェックリスト</a></li>
     </ol>
   </nav>
 
   <!-- ===== 0. 全体像 ===== -->
-  <h2 id="zentai">0. まず全体像をつかむ</h2>
+  <h2 id="zentai">1. まず全体像をつかむ</h2>
   <p class="lead">Winutでやることは、ざっくり3ステップ。この順番で作ると各パーツがキレイに連動します。</p>
 
   <div class="diagram">
@@ -177,7 +216,7 @@
   </div>
 
   <!-- ===== 1. ログイン ===== -->
-  <h2 id="login">1. 前提：Winutにログインする</h2>
+  <h2 id="login">2. 準備：Winutにログインする</h2>
   <p>ブラウザで <a href="https://manage.winut.net/login" target="_blank" rel="noopener">manage.winut.net/login</a> を開きます。</p>
   <ol class="steps">
     <li>ログインID・パスワードを入力する。<b>担当ジャンルのID／パスワードは下記「ログインアカウント一覧」ページを参照。</b><br><span style="color:#9B2C2C">※入力欄に前のアカウントのID/パスワードが残っていることがある。残っていたら消して、担当ジャンルのものを入れ直す。</span></li>
@@ -185,7 +224,10 @@
     <li>画面右上に担当アカウント名（例：【PLUS】包茎手術）が出ていればログイン成功。</li>
   </ol>
   <h3>ログインアカウント一覧</h3>
-  <p class="tip">🔒 <a href="./accounts/">ログインアカウント一覧を開く</a>（閲覧パスワードが必要。共有されたパスワードを入力。分からない場合は管理者に確認）</p>
+  <a class="account-cta" href="./accounts/">
+    <div class="big">🔑 ログインID・パスワード一覧を開く</div>
+    <div class="small">閲覧パスワードが必要です。共有されたパスワードを入力（分からない場合は管理者に確認）</div>
+  </a>
 
   <figure class="shot">
     <img src="images/01-login.png" alt="ログイン画面" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
@@ -208,7 +250,7 @@
   </div>
 
   <!-- ===== 2. タグ ===== -->
-  <h2 id="tag">2. ①タグを作成する</h2>
+  <h2 id="tag">3. ①タグを作成する</h2>
   <h3>どこを開く？</h3>
   <p>左メニュー <span class="path">友だち → タグ管理</span>（URL：manage.winut.net/tags/ta_list）</p>
   <h3>手順</h3>
@@ -240,7 +282,7 @@
   </div>
 
   <!-- ===== 3. 流入経路 ===== -->
-  <h2 id="inflow">3. ②流入経路を作成する</h2>
+  <h2 id="inflow">4. ②流入経路を作成する</h2>
   <p class="lead">流入経路＝「友だち追加リンク」。このリンクから登録した人に、①で作ったタグが自動で付きます。</p>
   <h3>どこを開く？</h3>
   <p>左メニュー <span class="path">URL → 流入別経路管理</span>（URL：manage.winut.net/inflow_path/in_list）</p>
@@ -287,7 +329,7 @@
   </div>
 
   <!-- ===== 4. 離脱防止 ===== -->
-  <h2 id="popup">4. ③離脱防止タグ（ポップアップバナータグ）を作成する</h2>
+  <h2 id="popup">5. ③離脱防止タグ（ポップアップバナータグ）を作成する</h2>
   <p class="lead">記事を離脱しそうな人に出すポップアップ画像。クリックすると②の友だち追加リンクへ飛びます。</p>
   <h3>どこを開く？</h3>
   <p>左メニュー <span class="path">計測 → ポップアップバナータグ</span>（URL：manage.winut.net/back/ba_list）</p>
@@ -331,12 +373,12 @@
 
   <div class="box point">
     <div class="t">💡 次（GTM）で使うもの</div>
-    ここで作った離脱防止タグの<b>ID（back_uqid）</b>は、次の手順5（GTM配信）で使います。一覧の&lt;script&gt;内 <code>back_uqid=◯◯◯</code> の値を控えておく。
+    ここで作った離脱防止タグの<b>ID（back_uqid）</b>は、次の手順6（GTM配信）で使います。一覧の&lt;script&gt;内 <code>back_uqid=◯◯◯</code> の値を控えておく。
   </div>
 
   <!-- ===== 5. GTM (折りたたみ) ===== -->
   <details id="gtm" class="gtmfold">
-    <summary><span class="sumh">5. GTMで離脱防止タグを記事に配信する</span><span class="sumnote">クリックで開く（社内対応か検討中）</span></summary>
+    <summary><span class="sumh">6. GTMで離脱防止タグを記事に配信する</span><span class="sumnote">クリックで開く（社内対応か検討中）</span></summary>
     <div class="foldbody">
   <p class="lead">Winutで作った離脱防止タグ（&lt;script&gt;）は、<b>GTM（Googleタグマネージャー）</b>経由で対象記事ページに出します。「トリガー（どの記事に出すか）」と「タグ（何を出すか）」を作って公開する流れです。</p>
 
@@ -416,7 +458,7 @@ document.head.appendChild(scriptElement);
   </details>
 
   <!-- ===== 6. まとめ ===== -->
-  <h2 id="matome">6. まとめ：全体の関係と最終チェック</h2>
+  <h2 id="matome">7. まとめ：全体の関係と最終チェック</h2>
   <div class="box point">
     <div class="t">💡 完成イメージ</div>
     <ul>
@@ -445,5 +487,19 @@ document.head.appendChild(scriptElement);
   <p class="tip">スクショの入れ方：このHTMLと同じ階層の <code>images/</code> フォルダに、各枠に書かれた保存名（例 <code>01-login.png</code>）でPNGを置くと、自動でその場所に表示されます。貼り込み作業は不要です。</p>
 
 </div>
+<script>
+// サイドバー目次の現在地ハイライト（スクロール位置に合わせて色を付ける）
+(function(){
+  var secs = Array.prototype.slice.call(document.querySelectorAll('h2[id],details[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.side a.navlink'));
+  function spy(){
+    var cur = secs[0];
+    secs.forEach(function(s){ if(s.getBoundingClientRect().top <= 130) cur = s; });
+    links.forEach(function(a){ a.classList.toggle('on', a.getAttribute('href') === '#' + cur.id); });
+  }
+  document.addEventListener('scroll', spy, {passive:true});
+  spy();
+})();
+</script>
 </body>
 </html>
